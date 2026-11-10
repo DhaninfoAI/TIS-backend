@@ -119,7 +119,10 @@ ADMIN_EMAIL=<your admin email>
   admin key on the internet. `setup.sh` refuses to run without it.
 - `DATABASE_URL` and `OPENAI_API_KEY` come over from your PC's file. With the same Neon database, all accounts,
   licences, seats, reviews and the TIS logo are already there.
-- A new `JWT_SECRET` means people sign in again once. That is expected.
+- `JWT_SECRET` signs the 15-minute access passes. Without it the app makes one up and keeps it in the database;
+  putting it in `.env` keeps it apart from the data, so a copy of the database alone cannot be used to forge an admin
+  pass. Setting or changing it signs nobody out: the extension and the dashboard renew their pass with their
+  refresh token, which does not depend on this secret.
 - `PORT` in the file does not matter: the service always uses 127.0.0.1:4010.
 
 ## Step 5. Run the set-up script
