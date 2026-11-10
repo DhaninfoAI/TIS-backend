@@ -1,0 +1,25 @@
+# Secrets: OpenAI key, database URL, JWT secret (copy .env.example to .env on each machine)
+.env
+.env.*
+!.env.example
+
+# Local data: file store, uploaded photos, server logs, account notes (ACCOUNTS.txt holds passwords)
+data/
+reports/
+*.log
+
+# Dependencies (npm install recreates them)
+node_modules/
+
+# Keys and packages
+*.pem
+*.key
+*.zip
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp

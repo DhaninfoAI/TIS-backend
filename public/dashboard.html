@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartFill Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Same tokens as the extension panel: calm neutrals, navy as the one accent, light + dark.
+   Before sign-in and for admins: SmartFill's own mark (the Boost star). A customer sees their own logo. */
+:root { --font: Geologica, "Segoe UI", system-ui, sans-serif; --bg: #f4f5f7; --card: #fff; --card-2: #f9fafb; --ink: #1d2433; --ink-2: #344054; --muted: #6b7280;
+  --line: #e5e7eb; --line-2: #eef0f3; --chip: #f1f2f4; --brand: #12254a; --brand-ink: #fff; --brand-soft: #eef2f8; --accent: #2f5597; --mark: #2f5597;
+  --red: #b42318; --soft-red: #fdf2f1; --amber: #a15c07; --soft-amber: #fdf6e7; --green: #0f7a4c; --soft-green: #eef8f2; --shadow: 0 1px 3px rgba(16,24,40,.06); color-scheme: light; }
+:root[data-theme="dark"] { --bg: #111317; --card: #1a1d22; --card-2: #1f2228; --ink: #e7e9ec; --ink-2: #cdd1d7; --muted: #979ea9; --line: #2a2e35; --line-2: #24282e; --chip: #262a31;
+  --brand: #d9e2f1; --brand-ink: #12254a; --brand-soft: #222a38; --accent: #9fb8e3; --mark: #8fb0e6; --red: #f3877e; --soft-red: #2a1c1c; --amber: #f2b85b; --soft-amber: #2a2317;
+  --green: #5fcf98; --soft-green: #17261f; --shadow: 0 1px 2px rgba(0,0,0,.35); color-scheme: dark; }
+* { box-sizing: border-box; } html, body { margin: 0; }
+body { font: 13.5px/1.5 var(--font); background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+button, input, select { font: inherit; color: inherit; } [hidden] { display: none !important; }
+.muted { color: var(--muted); } .small { font-size: 12px; }
+.mark { height: 26px; width: auto; display: block; } .logo { height: 24px; max-width: 180px; object-fit: contain; } .logo-dark { display: none; } [data-theme="dark"] .logo-light { display: none; } [data-theme="dark"] .logo-dark { display: block; }
+.primary { background: var(--brand); color: var(--brand-ink); border: 0; border-radius: 10px; padding: 9px 16px; font-weight: 500; cursor: pointer; }
+.primary:disabled { opacity: .5; cursor: default; }
+.ghost { background: var(--card); color: var(--ink-2); border: 1px solid var(--line); border-radius: 9px; padding: 6px 12px; cursor: pointer; }
+.ghost:hover { background: var(--chip); } .sm { padding: 4px 10px; font-size: 12px; }
+input, select { background: var(--card-2); border: 1px solid var(--line); border-radius: 9px; padding: 7px 10px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* sign-in */
+.signin { min-height: 100vh; display: grid; place-items: center; padding: 16px; }
+.signin form { width: min(380px, 100%); background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 28px; box-shadow: var(--shadow); }
+.signin h1 { font-size: 19px; font-weight: 500; margin: 18px 0 4px; } .signin label { display: block; font-size: 12px; color: var(--muted); margin-top: 14px; }
+.signin input { width: 100%; margin-top: 4px; } .signin .primary { width: 100%; margin-top: 20px; } .err { color: var(--red); font-size: 12.5px; min-height: 18px; margin: 10px 0 0; }
+
+/* shell */
+header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 24px; background: color-mix(in srgb, var(--card) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.org-cell { display: flex; align-items: center; gap: 10px; } .org-logo { height: 22px; max-width: 70px; object-fit: contain; }
+.brand-edit { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; padding-top: 4px; border-top: 1px solid var(--line-2); }
+.logo-prev { display: flex; gap: 8px; flex-basis: 100%; } .lp { display: grid; place-items: center; height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--line); }
+.lp.light { background: #fff; } .lp.dark { background: #1a1d22; } .lp img { height: 24px; max-width: 160px; object-fit: contain; }
+.form label.chk { display: flex; align-items: center; gap: 6px; } .form label.chk input { min-width: 0; margin: 0; }
+header .title { font-weight: 500; padding-left: 12px; border-left: 1px solid var(--line); }
+header .who { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.badge { font-size: 11px; padding: 2px 9px; border-radius: 99px; background: var(--chip); color: var(--ink-2); } .badge.admin { background: var(--brand); color: var(--brand-ink); }
+nav.tabs { display: flex; gap: 2px; padding: 0 24px; background: var(--card); border-bottom: 1px solid var(--line); overflow-x: auto; }
+nav.tabs button { border: 0; background: none; padding: 11px 12px; color: var(--muted); border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+nav.tabs button[aria-selected=true] { color: var(--ink); border-bottom-color: var(--brand); font-weight: 500; }
+.bar-filters { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; padding: 14px 24px 0; }
+main { padding: 16px 24px 40px; max-width: 1400px; }
+h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 500; margin: 24px 0 10px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.grid { display: grid; gap: 12px; } .tiles { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.two { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); }
+.tile .k { font-size: 12px; color: var(--muted); } .tile .v { font-size: 26px; font-weight: 600; letter-spacing: -.01em; margin-top: 2px; } .tile .s { font-size: 12px; color: var(--muted); }
+.tile.tech { border-style: dashed; }
+
+/* charts (single series → no legend; the card title names it) */
+.chart { position: relative; height: 180px; display: flex; align-items: flex-end; gap: 2px; padding: 8px 0 22px; border-bottom: 1px solid var(--line); }
+.chart .b { flex: 1; min-width: 3px; background: var(--mark); border-radius: 4px 4px 0 0; position: relative; }
+.chart .b.zero { background: var(--line-2); min-height: 2px; }
+.chart .b:hover, .chart .b:focus-visible { filter: brightness(1.2); outline: none; }
+.chart .ax { position: absolute; bottom: 2px; font-size: 10.5px; color: var(--muted); } .chart .ax.r { right: 0; }
+.tip { position: fixed; z-index: 20; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12px; padding: 5px 9px; border-radius: 7px; white-space: nowrap; }
+.hbars { display: grid; gap: 8px; } .hb { display: grid; grid-template-columns: minmax(120px, 34%) 1fr 48px; gap: 10px; align-items: center; font-size: 12.5px; }
+.hb .t { height: 10px; background: var(--line-2); border-radius: 4px; overflow: hidden; } .hb .t i { display: block; height: 100%; background: var(--mark); border-radius: 0 4px 4px 0; }
+.hb .n { text-align: right; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.meter { height: 10px; background: var(--line-2); border-radius: 4px; overflow: hidden; margin: 8px 0 4px; } .meter i { display: block; height: 100%; background: var(--mark); }
+.meter.warn i { background: var(--amber); } .meter.full i { background: var(--red); }
+
+/* tables */
+.tbl { width: 100%; border-collapse: collapse; font-size: 12.5px; } .tbl-wrap { overflow-x: auto; }
+.tbl th { text-align: left; font-weight: 500; color: var(--muted); font-size: 11.5px; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.tbl td { padding: 8px 10px; border-bottom: 1px solid var(--line-2); vertical-align: top; } .tbl td.num, .tbl th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.tbl tr:hover td { background: var(--card-2); }
+.pill { font-size: 11px; padding: 1px 8px; border-radius: 99px; background: var(--chip); } .pill.red { background: var(--soft-red); color: var(--red); } .pill.amber { background: var(--soft-amber); color: var(--amber); } .pill.green { background: var(--soft-green); color: var(--green); }
+.empty { color: var(--muted); padding: 18px 4px; text-align: center; }
+.form { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; } .form label { display: grid; gap: 3px; font-size: 11.5px; color: var(--muted); }
+.form input, .form select { min-width: 120px; }
+.note { font-size: 12px; color: var(--muted); margin-top: 8px; } .ok { color: var(--green); } .bad { color: var(--red); }
+@media (max-width: 640px) { header, nav.tabs, .bar-filters, main { padding-left: 16px; padding-right: 16px; } .two { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<!-- sign-in -->
+<section class="signin" id="signin" hidden>
+  <form id="loginForm" novalidate>
+    <img class="mark" src="/brand/boost-star.png" alt="">
+    <h1>SmartFill Dashboard</h1>
+    <p class="muted small" style="margin:0">Sign in with your SmartFill account.</p>
+    <label>Email <input id="email" type="email" autocomplete="username"></label>
+    <label>Password <input id="password" type="password" autocomplete="current-password"></label>
+    <button class="primary" id="btnLogin" type="submit">Sign in</button>
+    <p class="err" id="loginErr" role="alert"></p>
+  </form>
+</section>
+
+<!-- app -->
+<div id="app" hidden>
+  <header>
+    <span id="brandSlot"><img class="mark" src="/brand/boost-star.png" alt=""></span>
+    <span class="title">SmartFill Dashboard</span>
+    <span class="who"><span id="whoName"></span><span id="whoOrg" class="muted small"></span><span id="whoRole" class="badge"></span>
+      <button class="ghost sm" id="btnTheme" title="Light / dark">◐</button><button class="ghost sm" id="btnLogout">Sign out</button></span>
+  </header>
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <div class="bar-filters">
+    <label class="small muted">Period <select id="period"><option value="7">Last 7 days</option><option value="30" selected>Last 30 days</option><option value="90">Last 90 days</option><option value="365">Last 12 months</option></select></label>
+    <label class="small muted" id="orgPick" hidden>Customer <select id="orgSel"><option value="">All customers</option></select></label>
+    <span class="small muted" id="periodText"></span>
+  </div>
+  <main id="view"></main>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const fmt = n => n == null ? '–' : Number(n).toLocaleString('en-US');
+const money = n => n == null ? '–' : '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: n < 1 ? 3 : 2 });
+const dt = d => d ? new Date(d).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) : '–';
+const dd = d => d ? new Date(d).toLocaleDateString([], { day: 'numeric', month: 'short', year: 'numeric' }) : '–';
+const secs = s => s == null ? '–' : s < 90 ? `${s}s` : `${Math.round(s / 60)} min`;
+const ago = d => { if (!d) return '–'; const m = Math.round((Date.now() - Date.parse(d)) / 60e3); return m < 2 ? 'just now' : m < 60 ? `${m} min ago` : m < 48 * 60 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} days ago`; };
+
+// ---------------------------------------------------------------- theme
+const themeKey = 'tisqc_dash_theme';
+const setTheme = t => { document.documentElement.dataset.theme = t; try { localStorage.setItem(themeKey, t); } catch {} };
+setTheme((() => { try { return localStorage.getItem(themeKey); } catch { return null; } })() || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+$('btnTheme').onclick = () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+
+// ---------------------------------------------------------------- sign-in (access token in memory, refresh token in an HttpOnly cookie)
+let access = null, me = null, data = null, tab = 'overview';
+async function refresh() {
+  const r = await fetch('/v1/auth/refresh', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}', credentials: 'same-origin' });
+  if (!r.ok) { access = null; return false; }
+  const j = await r.json(); access = j.accessToken; me = j; return true;
+}
+async function api(method, path, body, retried) {
+  const r = await fetch(path, { method, headers: { Authorization: 'Bearer ' + access, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+  if (r.status === 401 && !retried && await refresh()) return api(method, path, body, true);
+  const j = await r.json().catch(() => ({}));
+  if (r.status === 401 || (r.status === 403 && /LICENCE|SUSPENDED/.test(j.error?.code || ''))) { showSignIn(j.error?.message); throw new Error(j.error?.message || 'Please sign in.'); }
+  if (!r.ok) throw new Error(j.error?.message || 'Something went wrong.');
+  return j;
+}
+function showSignIn(msg) { $('app').hidden = true; $('signin').hidden = false; $('loginErr').textContent = msg && !/^please sign in/i.test(msg) ? msg : ''; setTimeout(() => $('email').focus(), 30); }
+$('loginForm').onsubmit = async e => {
+  e.preventDefault(); $('btnLogin').disabled = true; $('loginErr').textContent = '';
+  try {
+    const r = await fetch('/v1/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: $('email').value.trim(), password: $('password').value, client: 'dashboard' }) });
+    const j = await r.json(); if (!r.ok) throw new Error(j.error?.message || 'Sign-in failed.');
+    access = j.accessToken; me = j; $('password').value = ''; start();
+  } catch (err) { $('loginErr').textContent = err.message; } finally { $('btnLogin').disabled = false; }
+};
+$('btnLogout').onclick = async () => { await fetch('/v1/auth/logout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' }).catch(() => {}); access = null; showSignIn(); };
+
+// ---------------------------------------------------------------- app
+const admin = () => me?.user?.role === 'admin';
+const TABS = () => admin() ? [['overview', 'Overview'], ['orders', 'Orders'], ['ai', 'AI usage & cost'], ['customers', 'Customers & licences'], ['users', 'Users']]
+  : [['overview', 'Overview'], ['orders', 'Orders'], ['inspectors', 'Inspectors'], ['licence', 'Licence & team']];
+async function start() {
+  $('signin').hidden = true; $('app').hidden = false;
+  $('whoName').textContent = me.user.name; $('whoOrg').textContent = admin() ? '' : me.org?.name || '';
+  // a customer sees their own logo; admins (us) and organisations without a logo see SmartFill's mark
+  const b = !admin() && me.org?.brand, light = b?.logoLight, dark = b?.logoDark || light;
+  $('brandSlot').innerHTML = light ? `<img class="logo logo-light" src="${esc(light)}" alt="${esc(b.name)}"><img class="logo logo-dark" src="${esc(dark)}" alt="${esc(b.name)}">` : '<img class="mark" src="/brand/boost-star.png" alt="">';
+  $('whoRole').textContent = admin() ? 'Admin' : 'Customer'; $('whoRole').className = 'badge' + (admin() ? ' admin' : '');
+  $('orgPick').hidden = !admin();
+  if (!TABS().some(([k]) => k === tab)) tab = 'overview';   // e.g. a customer tab after an admin signs in
+  $('tabs').innerHTML = TABS().map(([k, l]) => `<button role="tab" data-tab="${k}" aria-selected="${k === tab}">${l}</button>`).join('');
+  await load();
+}
+$('tabs').onclick = e => { const b = e.target.closest('[data-tab]'); if (!b) return; tab = b.dataset.tab; [...$('tabs').children].forEach(x => x.setAttribute('aria-selected', String(x === b))); render(); };
+$('period').onchange = load; $('orgSel').onchange = load;
+async function load() {
+  const days = Number($('period').value), from = new Date(Date.now() - (days - 1) * 864e5).toISOString().slice(0, 10);
+  const q = new URLSearchParams({ from }); if ($('orgSel').value) q.set('org', $('orgSel').value);
+  $('view').innerHTML = '<div class="empty">Loading…</div>';
+  try { data = await api('GET', '/v1/dashboard?' + q); } catch (e) { $('view').innerHTML = `<div class="empty">${esc(e.message)}</div>`; return; }
+  if (admin()) { const cur = $('orgSel').value; $('orgSel').innerHTML = '<option value="">All customers</option>' + (data.orgs || []).map(o => `<option value="${esc(o.orgId)}"${o.orgId === cur ? ' selected' : ''}>${esc(o.name)}</option>`).join(''); }
+  $('periodText').textContent = `${dd(data.period.from)} – ${dd(data.period.to)}`;
+  render();
+}
+function render() { $('view').innerHTML = ({ overview, orders, inspectors, licence, ai, customers, users }[tab] || overview)(); bindTips(); }
+
+const tile = (k, v, s = '', tech) => `<div class="card tile${tech ? ' tech' : ''}"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`;
+function columnChart(points, key, label, valueFmt = fmt) {
+  const max = Math.max(1, ...points.map(p => p[key] || 0));
+  return `<div class="chart" role="img" aria-label="${esc(label)}">${points.map(p => { const v = p[key] || 0;
+    return `<div class="b${v ? '' : ' zero'}" tabindex="0" data-tip="${esc(dd(p.date))}: ${esc(valueFmt(v))}" style="height:${v ? Math.max(3, v / max * 100) : 1}%"></div>`; }).join('')}
+    <span class="ax">${esc(dd(points[0]?.date))}</span><span class="ax r">${esc(dd(points.at(-1)?.date))}</span></div>`;
+}
+const hbars = (rows, label, key) => { const max = Math.max(1, ...rows.map(r => r[key])); return rows.length ? `<div class="hbars">${rows.map(r => `<div class="hb" data-tip="${esc(r[label])}: ${fmt(r[key])}"><span>${esc(r[label])}</span><span class="t"><i style="width:${r[key] / max * 100}%"></i></span><span class="n">${fmt(r[key])}</span></div>`).join('')}</div>` : '<div class="empty">Nothing in this period</div>'; };
+function bindTips() {
+  const tip = $('tip');
+  document.querySelectorAll('[data-tip]').forEach(el => {
+    const show = e => { tip.textContent = el.dataset.tip; tip.hidden = false; const r = el.getBoundingClientRect(); tip.style.left = Math.min(innerWidth - tip.offsetWidth - 8, Math.max(8, (e?.clientX ?? r.left + r.width / 2) - tip.offsetWidth / 2)) + 'px'; tip.style.top = (r.top - 34) + 'px'; };
+    el.onmouseenter = show; el.onmousemove = show; el.onfocus = () => show(); el.onmouseleave = el.onblur = () => (tip.hidden = true);
+  });
+}
+
+function overview() {
+  const t = data.totals, ai = data.ai;
+  return `<div class="grid tiles">
+      ${tile('Orders reviewed', fmt(t.ordersReviewed), `${fmt(t.reviewsRun)} review runs`)}
+      ${tile('Must-fix items found', fmt(t.mustFix), `${fmt(t.toCheck)} to check · ${fmt(t.advisory)} advisory`)}
+      ${tile('Missed hazards found', fmt(t.hazardsFound), 'in photos, without a recommendation')}
+      ${tile('Fixes applied', fmt(t.fixesApplied), `${fmt(t.dismissed)} dismissed${t.acceptance != null ? ` · ${t.acceptance}% accepted` : ''}`)}
+      ${tile('Photos reviewed', fmt(t.photosReviewed), 'by the AI, counted once per photo')}
+      ${tile('Average review time', secs(t.avgReviewSeconds), 'from start to results')}
+      ${ai ? tile('AI cost', money(ai.cost), `${ai.costPerOrder != null ? money(ai.costPerOrder) + ' per order' : ''} · admin only`, true) : ''}
+    </div>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><h2 style="margin-top:0">Orders reviewed per day</h2>${columnChart(data.byDay, 'orders', 'Orders reviewed per day')}</div>
+      <div class="card"><h2 style="margin-top:0">Findings by area</h2>${hbars(data.byArea, 'module', 'findings')}</div>
+    </div>
+    <h2>Most frequent issues</h2>
+    <div class="card tbl-wrap">${data.topIssues.length ? `<table class="tbl"><thead><tr><th>Issue</th><th>Area</th><th class="num">Orders</th></tr></thead><tbody>${data.topIssues.map(i => `<tr><td>${esc(i.title)}</td><td class="muted">${esc(i.area)}</td><td class="num">${fmt(i.orders)}</td></tr>`).join('')}</tbody></table>` : '<div class="empty">No issues in this period</div>'}</div>`;
+}
+function orders() {
+  const A = admin(), o = data.orders;
+  if (!o.length) return '<div class="card empty">No orders reviewed in this period</div>';
+  return `<div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Order</th>${A && !$('orgSel').value ? '<th>Customer</th>' : ''}<th>Insured · location</th><th>Reviewed</th><th>By</th>
+      <th class="num">Must fix</th><th class="num">To check</th><th class="num">Advisory</th><th class="num">Hazards</th><th class="num">Applied</th><th class="num">Dismissed</th><th class="num">Time</th>
+      ${A ? '<th class="num">AI cost</th><th class="num">Tokens in / out</th><th>Models</th><th class="num">Re-runs</th>' : ''}</tr></thead><tbody>
+    ${o.map(r => `<tr><td><b>${esc(r.orderId)}</b></td>${A && !$('orgSel').value ? `<td>${esc((data.orgs || []).find(x => x.orgId === r.orgId)?.name || r.orgId)}</td>` : ''}
+      <td>${esc(r.insured)}<div class="muted small">${esc(r.location)}</div></td><td>${esc(dt(r.reviewedAt))}</td><td>${esc(r.reviewer)}</td>
+      <td class="num">${r.mustFix ? `<span class="pill red">${r.mustFix}</span>` : 0}</td><td class="num">${r.toCheck}</td><td class="num">${r.advisory}</td><td class="num">${r.hazards}</td>
+      <td class="num">${r.applied}</td><td class="num">${r.dismissed}</td><td class="num">${secs(r.seconds)}</td>
+      ${A ? `<td class="num">${money(r.cost)}</td><td class="num">${fmt(r.tokensIn)} / ${fmt(r.tokensOut)}</td><td class="small">${esc(r.models || r.engine || '')}</td><td class="num">${r.reruns}</td>` : ''}</tr>`).join('')}
+    </tbody></table></div>`;
+}
+function inspectors() {
+  const i = data.inspectors;
+  return `<p class="muted small">How each inspector's reports looked when they reached QC.</p><div class="card tbl-wrap">${i.length ? `<table class="tbl"><thead><tr><th>Inspector</th><th class="num">Orders</th><th class="num">Must-fix items per order</th><th class="num">Average rating (of 10)</th></tr></thead><tbody>
+    ${i.map(r => `<tr><td>${esc(r.inspector)}</td><td class="num">${r.orders}</td><td class="num">${r.mustFixPerOrder}</td><td class="num">${r.avgRating ?? '–'}</td></tr>`).join('')}</tbody></table>` : '<div class="empty">No orders in this period</div>'}</div>`;
+}
+function meter(used, total, label) {
+  if (!total) return `<div class="small">${fmt(used)} ${label} <span class="muted">(no limit)</span></div>`;
+  const p = Math.min(100, used / total * 100);
+  return `<div class="meter ${p >= 100 ? 'full' : p >= 80 ? 'warn' : ''}" role="img" aria-label="${used} of ${total} ${label}"><i style="width:${p}%"></i></div><div class="small">${fmt(used)} of ${fmt(total)} ${label}</div>`;
+}
+function licence() {
+  const L = data.licence || {}, left = L.expiresAt ? Math.ceil((Date.parse(L.expiresAt) - Date.now()) / 864e5) : null;
+  return `<div class="grid tiles">
+      <div class="card tile"><div class="k">Plan</div><div class="v" style="font-size:20px">${esc(L.plan || '–')}</div><div class="s">${esc(L.organisation || '')}</div></div>
+      <div class="card tile"><div class="k">Seats in use (computers signed in)</div>${meter(L.seatsUsed || 0, L.seats, 'seats')}</div>
+      <div class="card tile"><div class="k">Photos this month</div>${meter(L.imagesThisMonth || 0, L.imagesPerMonth, 'photos')}<div class="s muted">${fmt(L.ordersThisMonth)} orders · resets on the 1st</div></div>
+      <div class="card tile"><div class="k">Valid until</div><div class="v" style="font-size:20px">${esc(dd(L.expiresAt))}</div><div class="s ${left != null && left < 15 ? 'bad' : ''}">${left != null ? `${left} days left` : 'No end date'}</div></div>
+    </div>
+    <h2>Computers signed in</h2>${devicesTable(data.devices || [], false)}
+    <p class="note">Each computer signed in to the SmartFill extension uses one seat; signing in to this dashboard does not.${idleNote(L.seatIdleHours)} If all seats are taken, sign out a computer that is no longer used and its seat is free at once. That computer is asked to sign in again the next time it is used.</p>
+    <h2>Team</h2><div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Name</th><th>Email</th><th>Status</th><th>Last sign-in</th></tr></thead><tbody>
+      ${(data.team || []).map(u => `<tr><td>${esc(u.name)}</td><td>${esc(u.email)}</td><td>${u.status === 'active' ? '<span class="pill green">Active</span>' : '<span class="pill">Disabled</span>'}</td><td>${esc(dt(u.lastLoginAt))}</td></tr>`).join('') || '<tr><td colspan="4" class="empty">No team members yet</td></tr>'}
+    </tbody></table></div><p class="note">Your plan includes a fixed number of photos per month. A photo is counted the first time it is reviewed; re-running a review does not count it again. To change plan, add people or renew, contact your SmartFill administrator.</p>`;
+}
+
+const idleNote = h => h ? ` A computer not used for ${h} hours frees its seat by itself and leaves this list; when it is used again it gets a seat back if one is free.` : '';
+/** Computers using a seat, each with Sign out (asks once more on the button itself: no browser pop-ups). */
+function devicesTable(list, showOrg) {
+  if (!list.length) return '<div class="card empty">No computers are signed in to the extension</div>';
+  return `<div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Computer</th>${showOrg ? '<th>Customer</th>' : ''}<th>Signed in as</th><th>Signed in</th><th>Last active</th><th></th></tr></thead><tbody>
+    ${list.map(d => `<tr><td><b>${esc(d.name || d.browser)}</b>${d.name ? `<div class="muted small">${esc(d.browser)}</div>` : ''}</td>${showOrg ? `<td>${esc(d.orgName)}</td>` : ''}
+      <td>${esc(d.user.name)}<div class="muted small">${esc(d.user.email)}</div></td><td>${esc(dt(d.signedInAt))}</td><td>${esc(ago(d.lastActiveAt))}</td>
+      <td style="white-space:nowrap"><button class="ghost sm" data-device="${esc(d.deviceId)}">Sign out</button></td></tr>`).join('')}</tbody></table></div>`;
+}
+
+// ---------------------------------------------------------------- admin views
+function ai() {
+  const a = data.ai;
+  return `<div class="grid tiles">
+      ${tile('AI cost in period', money(a.cost), `${fmt(a.calls)} AI calls`, true)}
+      ${tile('Cost per order', money(a.costPerOrder), `${money(a.costPerReview)} per review run`, true)}
+      ${tile('Input tokens', fmt(a.tokens.input), `${fmt(a.tokens.cached)} served from cache`, true)}
+      ${tile('Output tokens', fmt(a.tokens.output), '', true)}
+    </div>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><h2 style="margin-top:0">AI cost per day</h2>${columnChart(data.byDay, 'cost', 'AI cost per day', money)}</div>
+      <div class="card"><h2 style="margin-top:0">Cost by step</h2>${hbars(a.byStep.map(s => ({ ...s, label: s.step, cents: Math.round(s.cost * 100) })), 'label', 'cents')}<p class="note">Bars in cents.</p></div>
+    </div>
+    <h2>By model</h2><div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Model</th><th class="num">Calls</th><th class="num">Input tokens</th><th class="num">Output tokens</th><th class="num">Cost</th></tr></thead><tbody>
+      ${a.byModel.map(m => `<tr><td>${esc(m.model)}</td><td class="num">${fmt(m.calls)}</td><td class="num">${fmt(m.input)}</td><td class="num">${fmt(m.output)}</td><td class="num">${money(m.cost)}</td></tr>`).join('') || '<tr><td colspan="5" class="empty">No AI calls in this period</td></tr>'}</tbody></table></div>
+    <h2>Steps that fell back to the practice rules</h2><div class="card tbl-wrap">${a.fallbacks.length ? `<table class="tbl"><thead><tr><th>Order</th><th>Step</th><th>Engine</th><th>Reason</th></tr></thead><tbody>${a.fallbacks.map(f => `<tr><td>${esc(f.orderId)}</td><td>${esc(f.step)}</td><td>${esc(f.engine)}</td><td class="small">${esc(f.note)}</td></tr>`).join('')}</tbody></table>` : '<div class="empty">None in this period</div>'}</div>`;
+}
+const platformName = id => (data.platforms || []).find(p => p.id === id)?.name || id || '–';
+const platformOpts = sel => (data.platforms || []).map(p => `<option value="${esc(p.id)}"${p.id === sel ? ' selected' : ''}>${esc(p.name)}</option>`).join('');
+/** Picked logo file → data: URL (the server checks type and size). */
+const asDataUrl = file => new Promise((ok, no) => { if (!file?.size) return ok(undefined); if (file.size > 110e3) return no(new Error('Please use a logo under 110 KB (PNG, JPEG, WebP or SVG).'));
+  const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = () => no(new Error('Could not read that file.')); r.readAsDataURL(file); });
+function customers() {
+  const planOpts = sel => (data.plans || []).map(p => `<option value="${esc(p.id)}"${p.id === sel ? ' selected' : ''}>${esc(p.name)} · ${fmt(p.imagesPerMonth)} photos</option>`).join('');
+  return `<div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Customer</th><th>Status</th><th>Plan</th><th class="num">Seats</th><th class="num">Photos this month</th><th class="num">Orders</th><th>Valid until</th><th class="num">AI cost this month</th><th></th></tr></thead><tbody>
+    ${data.orgs.map(o => { const L = o.licence || {}; return `<tr><td><span class="org-cell">${o.brand?.logoLight ? `<img class="org-logo logo-light" src="${esc(o.brand.logoLight)}" alt=""><img class="org-logo logo-dark" src="${esc(o.brand.logoDark || o.brand.logoLight)}" alt="">` : ''}<span><b>${esc(o.name)}</b><div class="muted small">${esc(o.orgId)} · ${esc(platformName(o.platform))}</div></span></span></td>
+      <td>${o.status === 'active' ? '<span class="pill green">Active</span>' : '<span class="pill red">Suspended</span>'}</td><td>${esc(L.planName || L.plan)}</td>
+      <td class="num">${fmt(o.usage.seatsUsed)} / ${L.seats ? fmt(L.seats) : '∞'}</td><td class="num">${fmt(o.usage.imagesThisMonth)} / ${L.imagesPerMonth ? fmt(L.imagesPerMonth) : '∞'}</td><td class="num">${fmt(o.usage.ordersThisMonth)}</td>
+      <td>${esc(dd(L.expiresAt))}</td><td class="num">${money(o.costThisMonth)}</td><td><button class="ghost sm" data-edit-org="${esc(o.orgId)}">Edit</button></td></tr>`; }).join('')}</tbody></table></div>
+    <div id="orgEditor"></div>
+    <h2>New customer</h2><form class="card form" id="newOrg"><label>Name <input name="name" required></label><label>Platform <select name="platform">${platformOpts('ez')}</select></label><label>Plan <select name="plan">${planOpts('starter')}</select></label>
+      <label>Valid until <input name="expiresAt" type="date"></label><button class="primary" type="submit">Create</button><span class="note" id="newOrgMsg"></span></form>
+    <p class="note">Seats and photos per month come from the plan; change them for one customer with Edit. Platform = the web tool that customer works in; the extension picks it from their sign-in. Add their logo with Edit: their team sees it in the extension and on this dashboard after signing in.</p>
+    <h2>Plans</h2><form class="card" id="plans"><div class="tbl-wrap"><table class="tbl"><thead><tr><th>Plan</th><th class="num">Photos per month</th><th class="num">Seats</th><th>Price (for your reference)</th><th></th></tr></thead><tbody>
+      ${(data.plans || []).map((p, i) => `<tr data-plan-row><td><input name="name" value="${esc(p.name)}" aria-label="Plan name"><input type="hidden" name="id" value="${esc(p.id)}"></td>
+        <td class="num"><input name="imagesPerMonth" type="number" min="0" value="${p.imagesPerMonth}" aria-label="Photos per month"></td><td class="num"><input name="seats" type="number" min="0" value="${p.seats}" aria-label="Seats"></td>
+        <td><input name="price" value="${esc(p.price || '')}" placeholder="e.g. $499 / month" aria-label="Price"></td><td><button class="ghost sm" type="button" data-del-plan="${i}">Remove</button></td></tr>`).join('')}
+    </tbody></table></div><div class="form" style="margin-top:10px"><button class="ghost" type="button" id="addPlan">Add plan</button><button class="primary" type="submit">Save plans</button><span class="note"></span></div>
+    <p class="note">Changing a plan here does not change customers already on it; pick the plan again in their Edit form to apply the new amounts.</p></form>`;
+}
+function users() {
+  const orgName = id => (data.orgs || []).find(o => o.orgId === id)?.name || id;
+  return `<div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Customer</th><th>Status</th><th>Last sign-in</th><th class="num">Seats in use</th><th></th></tr></thead><tbody>
+    ${data.users.map(u => `<tr><td>${esc(u.name)}</td><td>${esc(u.email)}</td><td>${u.role === 'admin' ? '<span class="badge admin">Admin</span>' : 'Customer'}</td><td>${esc(orgName(u.orgId))}</td>
+      <td>${u.status === 'active' ? '<span class="pill green">Active</span>' : '<span class="pill">Disabled</span>'}</td><td>${esc(dt(u.lastLoginAt))}</td><td class="num">${u.role === 'admin' ? '–' : `${u.computers} computer${u.computers === 1 ? '' : 's'}`}</td>
+      <td style="white-space:nowrap"><button class="ghost sm" data-user="${esc(u.userId)}" data-do="${u.status === 'active' ? 'disable' : 'enable'}">${u.status === 'active' ? 'Disable' : 'Enable'}</button>
+        <button class="ghost sm" data-user="${esc(u.userId)}" data-do="signout" title="Signs this person out on every computer and the dashboard">Sign out everywhere</button><button class="ghost sm" data-user="${esc(u.userId)}" data-do="password">New password</button></td></tr>`).join('')}</tbody></table></div>
+    <div id="pwEditor"></div>
+    <h2>Computers signed in to the extension</h2>${devicesTable(data.devices || [], !$('orgSel').value)}
+    <p class="note">One row per computer; each uses one of that customer's seats. One login can be used on as many computers as the customer has seats. Dashboard sign-ins use no seat.${idleNote(data.seatIdleHours)}</p>
+    <h2>New user</h2><form class="card form" id="newUser"><label>Name <input name="name"></label><label>Email <input name="email" type="email" required></label>
+      <label>Temporary password <input name="password" type="password" autocomplete="new-password" required></label>
+      <label>Role <select name="role"><option value="customer">Customer</option><option value="admin">Admin</option></select></label>
+      <label>Customer <select name="orgId">${data.orgs.map(o => `<option value="${esc(o.orgId)}">${esc(o.name)}</option>`).join('')}</select></label>
+      <button class="primary" type="submit">Create</button><span class="note" id="newUserMsg"></span></form>
+    <p class="note">Passwords: at least 10 characters with letters and a number. Share them privately; the person can be given a new one here at any time.</p>`;
+}
+
+// admin actions (event delegation: the views are re-rendered)
+const formData = f => Object.fromEntries(new FormData(f).entries());
+$('view').addEventListener('submit', async e => {
+  e.preventDefault(); const f = e.target, d = formData(f);
+  try {
+    if (f.id === 'newOrg') { await api('POST', '/v1/admin/orgs', { name: d.name, platform: d.platform, licence: { plan: d.plan, expiresAt: d.expiresAt || null } }); await load(); }
+    if (f.id === 'plans') { const rows = [...f.querySelectorAll('[data-plan-row]')].map(r => Object.fromEntries([...r.querySelectorAll('input')].map(i => [i.name, i.value])));
+      await api('PUT', '/v1/admin/plans', { plans: rows }); await load(); }
+    if (f.id === 'newUser') { await api('POST', '/v1/admin/users', d); await load(); }
+    if (f.id === 'editOrg') {
+      const brand = { name: d.brandName };
+      if (f.removeLogo?.checked) Object.assign(brand, { logoLight: null, logoDark: null });
+      else { const l = await asDataUrl(f.logoLight.files[0]), k = await asDataUrl(f.logoDark.files[0]); if (l) brand.logoLight = l; if (k) brand.logoDark = k; }
+      await api('PATCH', '/v1/admin/orgs/' + f.dataset.org, { status: d.status, platform: d.platform, brand, licence: { plan: d.plan, seats: d.seats, imagesPerMonth: d.imagesPerMonth, expiresAt: d.expiresAt || null } }); await load(); }
+    if (f.id === 'setPw') { await api('PATCH', '/v1/admin/users/' + f.dataset.user, { password: d.password }); $('pwEditor').innerHTML = '<p class="note ok">Password changed. That person was signed out everywhere.</p>'; }
+  } catch (err) { const m = f.querySelector('.note') || f; m.textContent = err.message; m.classList?.add('bad'); }
+});
+$('view').addEventListener('change', e => {   // picking a plan for a customer fills in that plan's photos + seats
+  if (!e.target.matches('[data-plan-pick]')) return;
+  const p = (data.plans || []).find(x => x.id === e.target.value), f = e.target.form; if (!p) return;
+  f.imagesPerMonth.value = p.imagesPerMonth; f.seats.value = p.seats;
+});
+$('view').addEventListener('click', async e => {
+  if (e.target.id === 'addPlan') { e.target.closest('form').querySelector('tbody').insertAdjacentHTML('beforeend', `<tr data-plan-row><td><input name="name" placeholder="Plan name" aria-label="Plan name"><input type="hidden" name="id" value=""></td><td class="num"><input name="imagesPerMonth" type="number" min="0" value="1000" aria-label="Photos per month"></td><td class="num"><input name="seats" type="number" min="0" value="3" aria-label="Seats"></td><td><input name="price" placeholder="e.g. $499 / month" aria-label="Price"></td><td><button class="ghost sm" type="button" data-del-plan>Remove</button></td></tr>`); return; }
+  if (e.target.matches('[data-del-plan]')) { e.target.closest('tr').remove(); return; }
+  const dv = e.target.closest('[data-device]');
+  if (dv) {   // first click asks, second click signs that computer out
+    if (!dv.dataset.sure) { dv.dataset.sure = '1'; dv.textContent = 'Click again to sign out'; dv.classList.add('bad'); setTimeout(() => { if (dv.isConnected) { delete dv.dataset.sure; dv.textContent = 'Sign out'; dv.classList.remove('bad'); } }, 4000); return; }
+    dv.disabled = true; dv.textContent = 'Signing out…';
+    try { await api('POST', `/v1/devices/${encodeURIComponent(dv.dataset.device)}/sign-out`); await load(); } catch (err) { dv.disabled = false; dv.textContent = err.message; }
+    return;
+  }
+  const eo = e.target.closest('[data-edit-org]');
+  if (eo) { const o = data.orgs.find(x => x.orgId === eo.dataset.editOrg), L = o.licence || {};
+    $('orgEditor').innerHTML = `<h2>Edit ${esc(o.name)}</h2><form class="card form" id="editOrg" data-org="${esc(o.orgId)}"><label>Status <select name="status"><option value="active"${o.status === 'active' ? ' selected' : ''}>Active</option><option value="suspended"${o.status === 'suspended' ? ' selected' : ''}>Suspended</option></select></label>
+      <label>Plan <select name="plan" data-plan-pick>${L.plan && !(data.plans || []).some(p => p.id === L.plan) ? `<option value="${esc(L.plan)}" selected>${esc(L.plan)} (not in the plan list)</option>` : ''}${(data.plans || []).map(p => `<option value="${esc(p.id)}"${p.id === L.plan ? ' selected' : ''}>${esc(p.name)}</option>`).join('')}</select></label>
+      <label>Photos / month <input name="imagesPerMonth" type="number" min="0" value="${L.imagesPerMonth ?? 0}"></label><label>Seats <input name="seats" type="number" min="0" value="${L.seats ?? 0}"></label><label>Valid until <input name="expiresAt" type="date" value="${L.expiresAt ? L.expiresAt.slice(0, 10) : ''}"></label>
+      <label>Platform <select name="platform">${platformOpts(o.platform)}</select></label>
+      <div class="brand-edit"><label>Name on their logo <input name="brandName" value="${esc(o.brand?.name || o.name)}" maxlength="80"></label>
+        <div class="logo-prev">${o.brand?.logoLight ? `<span class="lp light"><img src="${esc(o.brand.logoLight)}" alt="Logo on light"></span><span class="lp dark"><img src="${esc(o.brand.logoDark || o.brand.logoLight)}" alt="Logo on dark"></span>` : '<span class="muted small">No logo yet: their team sees the SmartFill mark.</span>'}</div>
+        <label>Logo for light theme <input name="logoLight" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label>
+        <label>Logo for dark theme (optional) <input name="logoDark" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label>
+        ${o.brand?.logoLight ? '<label class="chk"><input type="checkbox" name="removeLogo"> Remove the logo</label>' : ''}</div>
+      <button class="primary" type="submit">Save</button><span class="note"></span></form>`; $('orgEditor').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+  const b = e.target.closest('[data-user]'); if (!b) return;
+  const id = b.dataset.user;
+  if (b.dataset.do === 'password') { $('pwEditor').innerHTML = `<h2>New password</h2><form class="card form" id="setPw" data-user="${esc(id)}"><label>Password <input name="password" type="password" autocomplete="new-password" required></label><button class="primary" type="submit">Set password</button><span class="note"></span></form>`; return; }
+  try {
+    if (b.dataset.do === 'signout') { await api('POST', `/v1/admin/users/${id}/sign-out`); }
+    else await api('PATCH', '/v1/admin/users/' + id, { status: b.dataset.do === 'disable' ? 'disabled' : 'active' });
+    await load();
+  } catch (err) { b.textContent = err.message; }
+});
+
+// boot: a valid refresh cookie signs you straight in
+(async () => { if (await refresh()) start(); else showSignIn(); })();
+</script>
+</body>
+</html>

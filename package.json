@@ -1,0 +1,25 @@
+{
+  "name": "tis-smart-qc-backend",
+  "version": "1.0.0",
+  "description": "TIS SmartFill backend",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node test/photo-sweep.mjs && node test/photo-claims.mjs && node test/photo-backstop.mjs && node test/ai-failure.mjs && node test/narrative-links.mjs && node test/plain-text.mjs && node test/renames.mjs && node test/fees.mjs && node test/qc-fixes.mjs && node test/e2e.mjs && node test/auth.mjs && node test/seat-idle.mjs && node test/org-brand.mjs",
+    "test:ai": "node test/ai.mjs",
+    "start": "node server.mjs",
+    "eval": "node scripts/eval.mjs",
+    "create-user": "node scripts/create-user.mjs",
+    "import-narratives": "node scripts/import-narratives.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": "true",
+  "dependencies": {
+    "pg": "^8.23.1"
+  }
+}

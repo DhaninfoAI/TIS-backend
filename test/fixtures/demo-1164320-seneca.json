@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 2,
+  "_note": "SYNTHETIC fixture reconstructed from the 19-Oct walkthrough (order 1164320, Seneca NYBO). Field keys are illustrative; replace with a real capture (prototype/ez-snapshot.js) once available.",
+  "capturedAt": "2026-10-29T12:00:00Z",
+  "ez": { "host": "d15.ezsurveyform.com", "version": "2.999944R1", "user": "demo_qc" },
+  "order": {
+    "orderId": 1164320,
+    "client": "Seneca Insurance- NYBO",
+    "status": "Pending Review",
+    "inspector": "mkan",
+    "insured": "Raybet East 79th Street Realty Corp.",
+    "location": "130 E 72nd St, New York, NY, 10021",
+    "geo": { "state": "NY", "zip": "10021", "city": "New York" },
+    "dates": { "order": "2026-10-06", "visit": "2026-10-14", "qcDue": "2026-10-30" },
+    "orderForm": {
+      "requestType": "New", "rush": false, "photosRequired": true, "diagramRequired": true, "itvRequired": false,
+      "natureOfBusiness": "Apartments w/ mercantile",
+      "coverages": ["Package"], "liability": ["Commercial General Liability"], "crime": false, "inlandMarine": false, "climaticSupplements": [],
+      "additionalInstructions": "Please verify favorable conditions on all walking surfaces within and surrounding premises.\nAny housekeeping concerns?\nWhat is the occupancy rate?\nAny construction/renovation exposure within the premises?\nAny construction/renovation exposure at the adjacent property?\nAny fire/burglar safeguards? If yes, how is the maintenance of the system(s)?\nAccess to roof & basement?\nAny E-bike exposure?\nWho is responsible for snow & ice removal?"
+    },
+    "counts": { "photos": 12, "diagrams": 1, "attachments": 0 },
+    "pricing": { "selectedFeeType": "$197 10001-20000 sf outside of NYC", "feeOptions": ["$135 ALL NYC Risks", "$156 Up to 10,000 sq ft, outside of NYC", "$197 10001-20000 sf outside of NYC", "$234 20,001-50,000 sq ft-outside of NYC", "$270 50,001-99,999 sq ft-outside of NYC", "$306 100,000 sq ft", "$85 Exterior/Rec Check"] },
+    "priorOrderIds": []
+  },
+  "forms": [
+    {
+      "formId": 9001, "name": "Seneca General Form", "version": 20, "state": "Save", "qcRelevant": true,
+      "sections": [
+        { "sectionId": "500", "copy": 1, "title": "QC Checklist", "internal": true, "omitted": false, "fields": [] },
+        { "sectionId": "501", "copy": 1, "title": "Narrative", "omitted": false, "fields": [
+          { "key": "F7_501_1_1", "type": "longtext", "label": "Narrative (mouse over for directions)", "value": "The risk is a four-story, 6,915-square-foot joisted masonry (ISO 2) mixed-use building with four apartments and one ground-floor commercial tenant. The building was constructed in 1910 and renovated in 2010. The exterior walls are solid brick masonry, the roof is heavy timber framing with rolled asphalt roofing. Housekeeping is good throughout. The utilities appeared to be in good working condition and arranged in accordance with current code requirements. The building is 100% occupied. There were no reported losses." }
+        ] },
+        { "sectionId": "502", "copy": 1, "title": "Special Underwriter Concerns Response", "omitted": false, "fields": [
+          { "key": "F7_502_1_1", "type": "longtext", "label": "LIST & RESPOND TO EACH \"ADD'L INSTRUCTIONS\" U/W CONCERN", "value": "1) walking surfaces were in an acceptable condition.\n2) housekeeping was acceptable with the exception of the basement.\n3) 100%\n4) no renovation or construction presently.\n5) no construction/renovation at adjacent property.\n6) Access to the roof was limited, basement was accessible.\n7) No E bike observed." }
+        ] },
+        { "sectionId": "503", "copy": 1, "title": "Occupancy cont'd", "omitted": false, "fields": [
+          { "key": "F1_503_1_1", "type": "text", "label": "3. Total square footage, excluding any unfinished basement or attic", "value": "6915" },
+          { "key": "F1_503_1_2", "type": "text", "label": "4. Total comm'l area (sf)", "value": "500" },
+          { "key": "F1_503_1_3", "type": "text", "label": "5. # of apartments?", "value": "4" },
+          { "key": "F1_503_1_4", "type": "text", "label": "Vacant area (sf)", "value": "0" },
+          { "key": "F1_503_1_5", "type": "text", "label": "% occupied", "value": "100" },
+          { "key": "F2_503_1_6", "type": "choice", "label": "21. Housekeeping satisfactory, with premises free of accumulated refuse & debris?", "options": ["Yes", "No", "N/A"], "value": "No",
+            "comment": { "key": "F1_503_1_7", "value": "except basement area" }, "rec": { "key": "F13_503_1_8", "trigger": ["No"], "text": "" } },
+          { "key": "F2_503_1_9", "type": "choice", "label": "If the building is vacant, is the risk heated or utilities shut off?", "options": ["Yes", "No", "N/A"], "value": "N/A" }
+        ] },
+        { "sectionId": "504", "copy": 1, "title": "Construction (as needed, Duplicate, Label & Complete for EACH bldg)", "omitted": false, "fields": [
+          { "key": "F1_504_1_1", "type": "text", "label": "1. Year built", "value": "1910" },
+          { "key": "F1_504_1_2", "type": "text", "label": "2. # of stories", "value": "4" },
+          { "key": "F4_504_1_3", "type": "choice", "label": "3. ISO class", "options": ["Select", "1", "2", "3", "4", "5", "6"], "value": "2" },
+          { "key": "F2_504_1_4", "type": "choice", "label": "4. Brick veneer present?", "options": ["Yes", "No", "N/A"], "value": "No" },
+          { "key": "F4_504_1_5", "type": "choice", "label": "5. If brick veneer, material behind the veneer (backing material)", "options": ["Plywood", "Concrete", "Other", "N/A"], "value": "Concrete" },
+          { "key": "F2_504_1_6", "type": "choice", "label": "6. Inspector got access to all required areas (roof, basement, utilities)?", "options": ["Yes", "No"], "value": "Yes" }
+        ] },
+        { "sectionId": "505", "copy": 1, "title": "Property Hazards (applies to both Property and GL Only surveys)", "omitted": false,
+          "instructions": ["*Calls for additional data/descriptions and all \"No\" responses require a \"Comment\""], "fields": [
+          { "key": "F2_505_1_1", "type": "choice", "label": "25. Does the wiring & electrical system appear safe and free of observed deficiencies?", "options": ["Yes", "No", "N/A"], "value": "Yes",
+            "comment": { "key": "F1_505_1_2", "value": "" }, "rec": { "key": "F13_505_1_3", "trigger": ["No"], "text": "" } },
+          { "key": "F2_505_1_4", "type": "choice", "label": "26. If built 1965-1975 and of residential construction, has the branch aluminum wiring been upgraded?", "options": ["Yes", "No", "N/A"], "value": "N/A" },
+          { "key": "F2_505_1_5", "type": "choice", "label": "28. Is risk free of Zinsco and/or Federal Pacific Stab-Lok panels?", "options": ["Yes", "No"], "value": "Yes" },
+          { "key": "F2_505_1_6", "type": "choice", "label": "29. Exit doors equipped with panic hardware?", "options": ["Yes", "No", "N/A"], "value": "No",
+            "comment": { "key": "F1_505_1_7", "value": "" }, "rec": { "key": "F13_505_1_8", "trigger": ["No"], "text": "Install panic equipment on exit doors requiring same." } }
+        ] },
+        { "sectionId": "506", "copy": 1, "title": "Sprinkler Protection (omit if no sprinkler system, duplicate as needed)", "omitted": false, "fields": [
+          { "key": "F4_506_1_1", "type": "choice", "label": "1. Is risk premises 100% sprinklered? (if only partially sprinklered, indicate which areas)", "options": ["Yes", "Partially sprinklered (indicate where)", "No"], "value": "Partially sprinklered (indicate where)", "comment": { "key": "F1_506_1_2", "value": "public areas" } },
+          { "key": "F4_506_1_3", "type": "choice", "label": "8. Sprinkler system with contracted inspection within last twelve months?", "options": ["Yes", "No"], "value": "Yes",
+            "rec": { "key": "F13_506_1_4", "trigger": ["No"], "text": "" } }
+        ] },
+        { "sectionId": "507", "copy": 1, "title": "Professional Liability (omit unless Prof. Liability is checked)", "omitted": false, "fields": [
+          { "key": "F1_507_1_1", "type": "text", "label": "1. Type of professional services", "value": "None" }
+        ] },
+        { "sectionId": "508", "copy": 1, "title": "Opinion of Risk", "omitted": false, "fields": [
+          { "key": "F2_508_1_1", "type": "choice", "label": "OPINION OF RISK", "options": ["Excellent", "Good", "Good with Recommendations", "Poor"], "value": "Good" }
+        ] }
+      ]
+    },
+    { "formId": 9002, "name": "Seneca Inspection Protocol", "version": 1, "state": "Complete", "qcRelevant": false, "sections": [] },
+    { "formId": 2001, "name": "Recommendations", "version": 1, "state": "Admin Complete", "qcRelevant": true, "sections": [] }
+  ],
+  "recommendations": [
+    { "key": "F13_1056_1_101", "source": "question", "questionKey": "F2_505_1_6", "number": "2026-001", "text": "Install panic equipment on exit doors requiring same.", "imageOptionValue": "", "imageOptions": ["18411586t.jpg", "18411602t.jpg", "18411621t.jpg", "18411626t.jpg", "18411630t.jpg"] },
+    { "key": "F14_1056_1_1", "source": "freeform", "number": "2026-002", "text": "Provide for unobstructed access to exit doors.", "imageOptionValue": "", "imageOptions": ["18411586t.jpg", "18411602t.jpg"] },
+    { "key": "F14_1056_1_2", "source": "freeform", "number": "2026-003", "text": "Provide that all hallway/corridor fire doors are listed and labeled, as required.", "imageOptionValue": "", "imageOptions": [] },
+    { "key": "F14_1056_1_3", "source": "freeform", "number": "2026-004", "text": "Post the required fire safety plan on the inside of apartment front entry doors presently lacking same.", "imageOptionValue": "", "imageOptions": [] },
+    { "key": "F14_1056_1_4", "source": "freeform", "number": "2026-005", "text": "Repair or replace as necessary, all apartment entry doors that do not properly self-close and latch.", "imageOptionValue": "18411602t.jpg", "imageOptions": [] },
+    { "key": "F14_1056_1_5", "source": "freeform", "number": "2026-006", "text": "Have a documented schedule for the replacement of smoke detector batteries.", "imageOptionValue": "", "imageOptions": [] },
+    { "key": "F14_1056_1_6", "source": "freeform", "number": "2026-007", "text": "Recommend emergency lighting in hallways.", "imageOptionValue": "", "imageOptions": [] }
+  ],
+  "photos": [
+    { "imageId": "18411586", "caption": "130 east 72nd st-IMG_3660 front", "order": 1, "markedHazard": false },
+    { "imageId": "18411590", "caption": "130 east 72nd st-IMG_3673 sidewalk", "order": 2, "markedHazard": false },
+    { "imageId": "18411594", "caption": "130 east 72nd st-IMG_3675 rear", "order": 3, "markedHazard": false },
+    { "imageId": "18411602", "caption": "130 east 72nd st-IMG_3690 apartment door typical", "order": 4, "markedHazard": true },
+    { "imageId": "18411610", "caption": "130 east 72nd st-IMG_3698 fire extinguisher", "order": 5, "markedHazard": false },
+    { "imageId": "18411612", "caption": "130 east 72nd st-IMG_3699 basement clutter", "order": 6, "markedHazard": true },
+    { "imageId": "18411618", "caption": "130 east 72nd st-IMG_3703 circuit breaker panel", "order": 7, "markedHazard": false },
+    { "imageId": "18411621", "caption": "130 east 72nd st-IMG_3704 chained sprinkler valve", "order": 8, "markedHazard": false },
+    { "imageId": "18411626", "caption": "130 east 72nd st-IMG_3706 basement loose wiring", "order": 9, "markedHazard": true },
+    { "imageId": "18411630", "caption": "130 east 72nd st-IMG_3707 gas meters", "order": 10, "markedHazard": false },
+    { "imageId": "18411633", "caption": "IMG_3712", "order": 11, "markedHazard": false },
+    { "imageId": "18411640", "caption": "130 east 72nd st-IMG_3720 roof", "order": 12, "markedHazard": false }
+  ],
+  "diagram": { "present": true, "sqft": 8800, "note": "dimensions 20' x 88' x 5 stories noted; no SF written on the diagram" },
+  "priorReports": []
+}

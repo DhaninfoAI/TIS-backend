@@ -1,0 +1,690 @@
+{
+ "source": "Documentation/Hazard_reference_doc.docx",
+ "version": "2026-10-29",
+ "hazards": [
+  {
+   "id": "window_air_conditioning_units",
+   "name": "Window Air conditioning Units",
+   "parent": null,
+   "guidance": "Window air conditioning units are common and often installed incorrectly. Each unit should be bolted to the inside of the window frame or supported with metal brackets attached to the exterior wall. Without brackets, people often prop units with loose items such as bricks, wood, or books, which creates an added hazard if those items fall. When the AC units are removed, the loose items are often left on the sills, where they can fall or blow off. All air conditioners should have proper metal brackets, and there should be no loose items on exterior window sills.",
+   "photoExamples": [
+    "AC unit lacking brackets - supported by wood",
+    "AC unit lacking brackets - supported by bricks or no supports",
+    "AC with brackets installed",
+    "AC unit lacking brackets and flower pots on top windows"
+   ]
+  },
+  {
+   "id": "basement_hazards",
+   "name": "Basement Hazards",
+   "parent": null,
+   "guidance": "Basements are common problem areas because they are rarely visited and often used for unwanted storage. They typically house building utilities, so problems often appear there first. Common issues include poor housekeeping, flooding, un-repaired ceiling leaks, hazardous activities (wood working, spray painting, cooking), laundry room hazards, electrical fire risks, and trip-fall hazards from poorly maintained stairways.",
+   "photoExamples": [
+    "Water back up near sump pump",
+    "Water pooling near utilities - likely a water heater leak",
+    "Basement being used for makeshift cooking - fire hazard",
+    "Tarps used inside indicate efforts to repair leaks - leaks near electrical service are a major hazard"
+   ]
+  },
+  {
+   "id": "bbq_units",
+   "name": "BBQ units",
+   "parent": null,
+   "guidance": "Barbecue units are popular but often used in unsafe areas. They should never be within 10 feet of a building or flammable structure, nor placed on fire escapes, balconies, or rooftops—unless professionally installed for that purpose. Tenant-purchased units should not be in or near buildings. Barbecues can be hard to spot since they are often mixed with other items or covered, but their silhouettes are usually recognizable even from a distance.",
+   "photoExamples": [
+    "Typical apartment tenant BBQ too close to building",
+    "BBQ on balcony of a larger apartment building - difficult to spot but still a hazard",
+    "BBQ on balcony close up",
+    "Multiple BBQ units at apartment building rear",
+    "BBQ on roof deck",
+    "BBQ units behind commercial building - it’s not just a residential problem"
+   ]
+  },
+  {
+   "id": "blocked_egress",
+   "name": "Blocked Egress",
+   "parent": null,
+   "guidance": "Exit doors and egress routes must remain clear of storage at all times. Because these doors are often rarely used, people tend to block them with stored items. This creates a serious hazard, especially at marked exits. Storage should never block doors, aisles, hallways, stairways, or stairwells—any walking area must stay unobstructed.",
+   "photoExamples": [
+    "Marked exit door blocked by store merchandise",
+    "Storage blocking main stairwell outside apartments",
+    "Storage completely blocking stairway and blocking standpipe - major housekeeping hazard",
+    "Tenant items on stairway - Trip fall hazard and obstructed egress",
+    "Tenant items on landing - blocking roof ladder - this storage could easily expand to the stairway",
+    "Tenant items in hallway - trip fall hazard and obstructed egress"
+   ]
+  },
+  {
+   "id": "bowstring_roofs",
+   "name": "Bowstring Roofs",
+   "parent": null,
+   "guidance": "Wood bowstring roofs were once common in large spaces such as garages, malls, and bowling alleys. They have a straight span with a curved, barrel-shaped bow, creating a distinctive half-barrel roof. Hazards arise if the wood rots, connections loosen, or water intrusion occurs. In a fire, these roofs can fail catastrophically, leading to collapse. Because of these risks, their presence should always be noted. All bowstring images credit: vertexeng.com",
+   "photoExamples": [
+    "Typical wood bowstring roof interior",
+    "Typical barrel shape roof exterior",
+    "Lattice style bow string truss",
+    "Lattice style bow string truss"
+   ]
+  },
+  {
+   "id": "ceiling_damage",
+   "name": "Ceiling Damage",
+   "parent": null,
+   "guidance": "Ceiling damage, especially to drop ceilings, is common and often overlooked. The panels themselves are easy to replace, but the real concern is what caused the damage. Water intrusion—whether from a roof leak, pipe condensation, or an upstairs water heater—is the underlying issue. Damaged ceilings should be repaired, but the source of the water must also be identified and corrected.",
+   "photoExamples": [
+    "Typical ceiling tile staining from leak above",
+    "Typical damage to drywall ceiling",
+    "Light staining - the issue will likely get much worse over time - it’s been caught early here",
+    "Severe leak damage - garbage can to catch leaking water is typical",
+    "Light staining in multiple areas - possible early signs of a roof issue",
+    "Water damage to apartment plaster ceiling"
+   ]
+  },
+  {
+   "id": "compressed_gas_tanks",
+   "name": "Compressed Gas Tanks",
+   "parent": null,
+   "guidance": "Compressed gas tanks, such as welding or medical oxygen tanks, present serious hazards. If a tank falls and its valve breaks, it can launch like a rocket, causing severe damage or death. Many gases are also flammable, adding fire risk. If compressed gas tanks are present on site it’s important to note how they are being used. For example, welding tanks indicate that welding work is being done and it’s important to understand that activity. Tanks must be stored with protective caps when not in use and secured tightly in an upright position with proper chains or straps. Chains or ropes that are ",
+   "photoExamples": [
+    "Tanks stored without caps and not secured in an upright position",
+    "Tanks stored with caps but not secured in an upright position"
+   ]
+  },
+  {
+   "id": "commercial_cooking",
+   "name": "Commercial Cooking",
+   "parent": null,
+   "guidance": "Commercial cooking is a major fire source in commercial buildings. If a restaurant is present, underwriters need to know what is cooked, what equipment is used, and how it is protected. This applies even for liability coverage, since a restaurant fire endangers the entire building and its occupants, regardless of ownership. Common kitchen issues, beyond expired hood and AES tags, include several additional hazards listed below.",
+   "photoExamples": []
+  },
+  {
+   "id": "fryers_lacking_baffles",
+   "name": "Fryers lacking baffles",
+   "parent": "Commercial Cooking",
+   "guidance": "Deep-fat fryers can cause fires if grease contacts open flames from nearby equipment. Each fryer must either have a permanently installed baffle separating it from open-flame appliances or be placed at a safe distance. Improvised barriers, such as baking trays, are not acceptable.",
+   "photoExamples": [
+    "Fryer directly adjacent to open flame ranges - fire hazard",
+    "Cookie sheet used as improvised baffle between flames and fryer - This is not a true permanent baffle",
+    "Fryers without baffles should be at least 16 inches from nearby flames",
+    "Typical baffle correctly installed"
+   ]
+  },
+  {
+   "id": "floor_frying_and_pan_frying",
+   "name": "Floor frying and Pan frying",
+   "parent": "Commercial Cooking",
+   "guidance": "Deep-fat frying without a proper fryer—such as using pans on stoves or large pots on floor-mounted ranges—is hazardous. The same risks apply: flammable grease can ignite if it contacts open flames. Floor frying is especially dangerous due to the large volumes of hot grease, which can cause an immediate, severe fire if spilled or ignited. All significant frying should be done only in a dedicated deep-fat fryer.",
+   "photoExamples": [
+    "Typical floor frying set up"
+   ]
+  },
+  {
+   "id": "small_counter_top_fryers",
+   "name": "Small counter top fryers",
+   "parent": "Commercial Cooking",
+   "guidance": "Some businesses without full kitchens use small countertop deep fryers behind counters or registers. These are hazardous because they produce flammable grease and vapors, often without proper hood or fire protection. Any countertop fryer requires a hood and a K-class fire extinguisher. Even small units count as commercial cooking and must be treated as such.",
+   "photoExamples": [
+    "Typical plug in countertop deep fryers - require the same fire protection as larger fryers",
+    "Small fryer tucked into corner of improvised kitchen area"
+   ]
+  },
+  {
+   "id": "inadequate_hood_systems_and_mesh_filters",
+   "name": "Inadequate hood systems and mesh filters",
+   "parent": "Commercial Cooking",
+   "guidance": "Some businesses cook or fry food using improvised or residential equipment. The key issue is grease-laden vapor, which is hazardous and accumulates on surfaces. Residential hood systems with mesh filters are acceptable at home but not in commercial settings. In any commercial setting, if cooking produces grease-laden vapors—or is more than simple boiling—a commercial hood system is required.",
+   "photoExamples": [
+    "Residential style filters and hood in a commercial cooking setting.",
+    "Old style mesh filters - these types of filters are outdated"
+   ]
+  },
+  {
+   "id": "grease_build_up_on_hood_systems_and_equipment",
+   "name": "Grease build up on hood systems and equipment",
+   "parent": "Commercial Cooking",
+   "guidance": "All equipment should be cleaned regularly in house to avoid buildup of flammable grease. If there is visible grease buildup on equipment, including on the exterior of hood baffles, it’s an indication that additional cleaning needs to be done in addition to the required professional hood cleaning by an outside contractor.",
+   "photoExamples": [
+    "Typical grease build up on baffle exterior - additional cleaning needed",
+    "General grease buildup on kitchen components - fire hazard",
+    "Grease build up on baffles - gap in baffles should also be closed to ensure proper function"
+   ]
+  },
+  {
+   "id": "decks_and_railings",
+   "name": "Decks and Railings",
+   "parent": null,
+   "guidance": "Exterior decks and railings often develop hazards from neglect. Wooden decks may rot or loosen at connections, making them unstable and prone to collapse. Railings can be unsafe if bolsters are spaced wider than four inches, missing, or built horizontally so children can climb them. These issues may be hard to spot without direct access but pose serious safety risks.",
+   "photoExamples": [
+    "Typical missing balusters - creates hazards for entrapment and falling through the railing",
+    "Typical wood deck/ stairway with structural issues - collapse possible",
+    "Serious wood rot and deterioration - deck also has structural issues"
+   ]
+  },
+  {
+   "id": "electrical_hazards",
+   "name": "Electrical Hazards",
+   "parent": null,
+   "guidance": "Electrical systems always present fire risks and must be properly maintained. Several common hazards are listed below; these are not the only possibilities but are the ones most often encountered.",
+   "photoExamples": []
+  },
+  {
+   "id": "gaps_in_breakers",
+   "name": "Gaps in breakers",
+   "parent": "Electrical Hazards",
+   "guidance": "Breaker panel gaps must be filled with approved blank breakers. Improvised covers such as cardboard or wood are not acceptable. Open gaps expose live components, creating shock and fire risks, and allow dirt or pests into the panel. Even a single gap suggests that there may be others  present in the property.",
+   "photoExamples": [
+    "Breaker panel missing breakers - interior of the panel is open",
+    "Missing breakers with visible dust on live interior components",
+    "Large gaps in panel - it would be easy to reach in and contact live components my mistake",
+    "Panel with gap in service correctly filled with blanks -"
+   ]
+  },
+  {
+   "id": "tape_on_breakers",
+   "name": "Tape on Breakers",
+   "parent": "Electrical Hazards",
+   "guidance": "It is unacceptable to use tape to hold a breaker open. This is usually an attempt to bypass tripping rather than fix the underlying problem. Taping a breaker indicates potential overloading or malfunction if causing the breaker to trip and that the breaker is being deliberately held open to prevent this. Breakers should only be locked open with purpose-built devices, such as in hospitals or industrial settings where critical systems must not be shut off. Any taped breaker should have the tape removed, and the panel inspected to ensure no damage has occurred and to identify the cause of trippin",
+   "photoExamples": [
+    "Tape covering older breaker panel switches",
+    "Large amounts of electrical tape preventing breaker access and impeding function",
+    "Tape over breaker switch"
+   ]
+  },
+  {
+   "id": "missing_electrical_covers",
+   "name": "Missing Electrical Covers",
+   "parent": "Electrical Hazards",
+   "guidance": "Missing covers on breaker panels or junction boxes are common hazards. Often covers are removed during work and not replaced, or improvised panels are used instead of proper ones. All breakers and junction boxes must have covers designed for that equipment. Improvised or missing covers expose live wiring and create the same risks as breaker gaps—shock, fire, and panel failure.",
+   "photoExamples": [
+    "Main breaker missing cover - wiring exposed",
+    "Breaker panel missing cover - wiring exposed",
+    "Missing junction box cover - exposed wiring"
+   ]
+  },
+  {
+   "id": "improvised_wiring",
+   "name": "Improvised wiring",
+   "parent": "Electrical Hazards",
+   "guidance": "All electrical work should be done by a licensed electrician, but this is often ignored to save money. Signs of improvised wiring include sloppy splices, extension cords or light bulbs wired into panels, and wires held with tape. These can be hard to detect, but unusual cords, fixtures, or wiring are warning signs. Any suspected improvised work should be inspected by a qualified electrician.",
+   "photoExamples": [
+    "Haphazard splicing one fixture into another.",
+    "Break panel with signs of non-professional work",
+    "Improvised wiring used to power extension cord"
+   ]
+  },
+  {
+   "id": "fuses",
+   "name": "Fuses",
+   "parent": "Electrical Hazards",
+   "guidance": "Fuses—cartridge or screw-in—are a safe form of overcurrent protection, and cartridge fuses are still used in modern applications. However, older fuse panels, especially screw-in types, should be inspected by an electrician. The concern is not the fuses themselves but that they signal an aging electrical system, which may have other issues. An inspection ensures the system is still safe and functional. There should also not be anything in the fuse panel other than fuses. Pennys or other items can sometimes be used as a fill in for a fuse. These should be removed and replaced with fuses.",
+   "photoExamples": [
+    "Plug style fuses",
+    "......   Plug style fuses",
+    "Cartridge Fuses"
+   ]
+  },
+  {
+   "id": "knob_and_tube_wiring",
+   "name": "Knob and Tube Wiring",
+   "parent": "Electrical Hazards",
+   "guidance": "Knob and tube wiring, is an old style of wiring that uses ceramic knobs and tubes to support single-insulated copper wires. Though not inherently unsafe, its age, lack of grounding, and vulnerability to damage or DIY alterations increase risks of overheating and fire. Some older buildings, especially homes, may still have knob and tube wiring present. In all cases it should be inspected and replaced by an electrician.",
+   "photoExamples": [
+    "Knob and Tube Wiring in an attic"
+   ]
+  },
+  {
+   "id": "extension_cords",
+   "name": "Extension Cords",
+   "parent": "Electrical Hazards",
+   "guidance": "Extension cords are temporary solutions and should not power large appliances or serve as permanent wiring. Appliances such as freezers, refrigerators, or dryers must be plugged directly into wall outlets. Extension cords attached to ceilings, run permanently, or plugged into power strips indicate the need for additional outlets. Extension cords should never be used on a permanent basis.",
+   "photoExamples": [
+    "Improvised wiring with extension cord attached to light fixture",
+    "Typical basement extension cord overuses - additional outlets needed",
+    "Power strip connected to extension cord to provide additional outlets for nearby apartment",
+    "Example of power strip powering large appliances",
+    "Example of extension cord set up for long term use"
+   ]
+  },
+  {
+   "id": "exterior_conditions",
+   "name": "Exterior Conditions",
+   "parent": null,
+   "guidance": "Exterior hazards vary widely. Building owners and tenants often create issues outside, from fire pits too close to the structure to damaged decks, sinkholes, or deteriorating landscaping. Any exterior damage to the building or conditions that could cause someone to fall or be injured should be a concern, along with any conditions that could foreseeably cause these types of problems in the future. Some specific examples from the field are shown below",
+   "photoExamples": []
+  },
+  {
+   "id": "exterior_damage",
+   "name": "Exterior Damage",
+   "parent": "Exterior Conditions",
+   "guidance": "",
+   "photoExamples": [
+    "Large amounts of tires stored behind apartment building",
+    "Open fire pit behind a college fraternity house - fire hazard and liability hazard",
+    "Storage and combustible debris in apartment building backyard -",
+    "Disorganized propane tank storage in tenant yard"
+   ]
+  },
+  {
+   "id": "exterior_housekeeping",
+   "name": "Exterior Housekeeping",
+   "parent": "Exterior Conditions",
+   "guidance": "Poor exterior housekeeping can cause trip-fall hazards or can be a fire hazard if the accumulated items are combustible. Generally speaking, conditions outside of the building should be well organized, just as conditions inside of the building are.",
+   "photoExamples": [
+    "Large amounts of tires stored behind apartment building",
+    "Open fire pit behind a college fraternity house - fire hazard and liability hazard",
+    "Storage and combustible debris in apartment building backyard -",
+    "Disorganized propane tank storage in tenant yard"
+   ]
+  },
+  {
+   "id": "groundskeeping_and_landscaping",
+   "name": "Groundskeeping and landscaping",
+   "parent": "Exterior Conditions",
+   "guidance": "Groundskeeping and landscaping issues can create hazards. Overgrown areas may cause injuries, increase fire risk, or become storage spots for refuse and debris, leading to future housekeeping problems. Severe grounds keeping issues can also be an indication of generally poor management.",
+   "photoExamples": [
+    "Collapsed retaining wall - fall hazard and subsidence",
+    "Severely Overgrown yard - lack of maintenance"
+   ]
+  },
+  {
+   "id": "doors_to_nowhere",
+   "name": "Doors to nowhere",
+   "parent": "Exterior Conditions",
+   "guidance": "In some cases, an exterior stairway or deck may be removed without sealing an adjacent door. This creates a liability hazard because an unsuspecting person can step out of the door and fall, potentially a very long way",
+   "photoExamples": []
+  },
+  {
+   "id": "fire_alarm_systems",
+   "name": "Fire Alarm systems",
+   "parent": null,
+   "guidance": "Fire alarm systems are either local or central station. Local systems only sound alarms within the building. Central station systems detect fires and automatically alert emergency services. It is often necessary to ask the building owner to confirm which type is present, though large systems with central panels are typically central station.",
+   "photoExamples": [
+    "Typical central station fire alarm panel"
+   ]
+  },
+  {
+   "id": "fire_escapes",
+   "name": "Fire Escapes",
+   "parent": null,
+   "guidance": "Not all buildings have fire escapes, but where present they must remain clear and unobstructed. Common problems include garbage, barbecues, or tenant belongings blocking them. Fire escapes may also be in poor condition—rusty, cracked, or damaged. They should be maintained and kept completely free of stored items.",
+   "photoExamples": [
+    "Tenant items stored on an obstructing rear fire escape",
+    "Storage on fire escape and rear roof extension seen from above",
+    "Cracked step tread on fire escape stairway"
+   ]
+  },
+  {
+   "id": "fire_extinguishers",
+   "name": "Fire extinguishers",
+   "parent": null,
+   "guidance": "Fire extinguishers are required in most buildings and occupancies. Each commercial unit, common area, and basement utility area should typically have one. Extinguishers must be wall-mounted with a visible tag showing a current inspection date. Common issues include units being unmounted, shoved in corners or otherwise hidden and units having expired or missing tags.",
+   "photoExamples": [
+    "Unmounted unit with expired tag",
+    "Unmounted unit",
+    "Fire extinguishers stored under sink - not accessible or maintained",
+    "Example of a mounted and tagged unit in an apartment setting"
+   ]
+  },
+  {
+   "id": "fire_doors",
+   "name": "Fire doors",
+   "parent": null,
+   "guidance": "Fire doors are specially tested for fire resistance and must have a label stating their rating. The label is usually on the door edge, frame, or sometimes on the front or back. Without this label, the door cannot be confirmed as a fire door.",
+   "photoExamples": [
+    "Example of fire door label",
+    "Example of fire door label"
+   ]
+  },
+  {
+   "id": "graffiti",
+   "name": "Graffiti",
+   "parent": null,
+   "guidance": "Graffiti on buildings falls into two categories. Commissioned murals are not an issue. Unapproved graffiti, especially gang-related or in hidden areas like alleys and hallways, is an attractive nuisance. It signals that areas are not monitored, encouraging more graffiti and unwanted activity. Any graffiti not clearly commissioned art should be removed.",
+   "photoExamples": [
+    "Example of graffiti as attractive nuisance",
+    "Graffiti inside a vacant building indicates unauthorised access to interior",
+    "Graffiti on building exterior"
+   ]
+  },
+  {
+   "id": "gutters",
+   "name": "Gutters",
+   "parent": null,
+   "guidance": "Gutters direct roof runoff to safe areas. Damaged or clogged gutters cause water to pool near foundations and create icy hazards in cold weather. Gutters should be intact, with downspouts directing water away from buildings and walkways, and cleaned regularly to prevent debris buildup.",
+   "photoExamples": [
+    "Severe gutter damage",
+    "Gutter downspout not draining away from building",
+    "Tree related debris and leaves blocking gutters",
+    "Typical gutter damage and missing downspout"
+   ]
+  },
+  {
+   "id": "housekeeping",
+   "name": "Housekeeping",
+   "parent": null,
+   "guidance": "Housekeeping issues, such as excessive or misplaced storage, increase fire load and block spaces from being used properly. Storage must never block walking areas, egress routes, or roofs, and should be kept at least three feet from basement utility areas. Even organized but excessive storage—like large amounts of paper records creates additional fire risk. Disorganized storage, even if non-combustible, encourages further accumulation and should be removed or organized, since storage tends to grow over time if unchecked.",
+   "photoExamples": [
+    "Disorganized and combustible basement storage",
+    "Storage too close to electrical utilities",
+    "Storage too close to heating unit - fire hazard",
+    "Poor housekeeping in stairway - blocking egress and causing a trip hazard",
+    "Combustible storage too close to furnace - fire hazard"
+   ]
+  },
+  {
+   "id": "laundry_rooms",
+   "name": "Laundry Rooms",
+   "parent": null,
+   "guidance": "Laundry rooms carry risks from water leaks and dryer lint fires. Hoses should be puncture-proof or armored, usually with a metal coating. Apartment laundry rooms require rigid metal dryer venting; flexible venting is only acceptable in single-family homes. Dryer filters must be cleaned regularly, and exterior vents checked to prevent lint buildup. A fire extinguisher should also be present in every apartment building laundry room. Large appliances, like dryers and washers should not be powered by extension cords.",
+   "photoExamples": [
+    "Flexible venting and non-puncture proof hoses",
+    "Rigid metal dryer venting",
+    "Rigid venting behind dryer",
+    "Example of flexible dryer venting",
+    "Example of armored hoses",
+    "Example of mixed venting - it should be all rigid metal"
+   ]
+  },
+  {
+   "id": "mold",
+   "name": "Mold",
+   "parent": null,
+   "guidance": "Mold occurs when water enters a building and stagnates, often in drywall, insulation, or other permeable materials. It is less common on masonry. While only some molds are harmful, all mold should be treated as a concern since visual identification cannot confirm the type. Mold is usually obvious as black smears or circles, but a strong moldy odor—different from a mild basement mustiness—is also sufficient evidence, even if mold is not directly visible.",
+   "photoExamples": [
+    "Black water damage staining can indicate mold growth",
+    "Typical severe mold on drywall",
+    "Mold growing on water damaged ceiling"
+   ]
+  },
+  {
+   "id": "playgrounds",
+   "name": "Playgrounds",
+   "parent": null,
+   "guidance": "Playgrounds vary widely in age and equipment, but common hazards include outdated or damaged equipment and inadequate ground cover. Swings should not exceed two per bay, and no S-hooks should be present. Ground cover—wood chips, rubber, etc.—must extend several feet around all equipment to cushion falls. Insufficient ground cover and outdated equipment are the most frequent issues.",
+   "photoExamples": [
+    "Damaged equipment and too many swings per bay - lack of ground cover",
+    "Lack of ground cover - any falling children will fall directly onto the ground",
+    "Modern playground with ground cover panels installed",
+    "Ground cover is in place but does not protect from falls in all directions"
+   ]
+  },
+  {
+   "id": "pushmatic_breakers",
+   "name": "Pushmatic Breakers",
+   "parent": null,
+   "guidance": "Pushmatic breakers are an old style of breakers. Usually they will say Pushmatic on them. They may have other labels. It's not a specific brand. It's a style. They look slightly different from other breakers because they're push buttons, not switches. Some underwriters are concerned about these because they may not be as effective. Others just want them to be flagged because they're an older system component and they indicate that the electrical system hasn't been updated in a long time. If Pushmatic breakers are present, there should be a recommendation to have an electrician come in and eval",
+   "photoExamples": [
+    "Typical pushmatic breakers",
+    "Typical pushmatic breakers"
+   ]
+  },
+  {
+   "id": "roof_hazards",
+   "name": "Roof hazards",
+   "parent": null,
+   "guidance": "Roofs are a major source of insurance claims. Leaks and damage to the roof surface are common, but even well-maintained roofs can fail if drains are blocked and water builds up, adding weight. Roofs should only be accessed for work or emergencies. The covering should be in good condition, regularly maintained, with no ponding water, blocked drains, or storage. If a roof is designed for tenant use, activity should stay within designated areas, and lightweight items such as plastic chairs should not be present, as they can blow off in high winds.",
+   "photoExamples": []
+  },
+  {
+   "id": "ponding",
+   "name": "Ponding",
+   "parent": "Roof hazards",
+   "guidance": "Ponding is water buildup on a roof caused by poor drainage, blocked drains, or low spots from deterioration. Standing water is heavy and can damage or even collapse the roof. It also promotes algae and degrades the roof covering. Any ponding is a concern, especially large areas or ponding caused by blocked drains.",
+   "photoExamples": [
+    "Severe ponding on rolled asphalt roof - likely a blocked train",
+    "Severe ponding - the water can add weight and cause collapse",
+    "Ponding caused by leaves blocking drains"
+   ]
+  },
+  {
+   "id": "storage",
+   "name": "Storage",
+   "parent": "Roof hazards",
+   "guidance": "Storage on roofs creates multiple problems. Items can damage the roof surface, especially when heat softens materials like asphalt, leading to leaks. Stored objects can also blow off, endangering people or nearby buildings. Accessing stored items means more foot traffic, further damaging the roof. Roofs not designed for regular use should never have storage or debris. Leftover materials from roof work—such as buckets, wood, or tools—should always be removed.",
+   "photoExamples": [
+    "Storage on roof, ponding is likely due to drain blockage from stored items.",
+    "Typical Debris and storage on roof - this will damage the roof and can blow off",
+    "Typical bucket left on roof - this can blow off or blow around and damage roof"
+   ]
+  },
+  {
+   "id": "unauthorized_access",
+   "name": "Unauthorized access",
+   "parent": "Roof hazards",
+   "guidance": "Flat rooftops are often used by tenants as gathering spaces, but this is unsafe unless the roof is specifically designed for occupancy. Items such as barbecues, chairs, toys, or playground equipment should not be present. Only contractor-installed roof decks are acceptable, and even then, activity must be limited to the deck. No barbecues or lightweight items that could blow off should be allowed.",
+   "photoExamples": [
+    "Tenant items combined with ponding from blocked drain - hazard to the roof and hazards from injury",
+    "Typical hang out area on a roof not designed for hanging out - fire, injury and property hazards"
+   ]
+  },
+  {
+   "id": "deterioration",
+   "name": "Deterioration",
+   "parent": "Roof hazards",
+   "guidance": "As roof coverings age and are exposed to the elements and UV rays and heat from sunlight, they will deteriorate. Different types of roof coverings deteriorate differently. Shingles will lose their granular covering, become deformed and blow off. Rolled asphalt will lose its granulation, metal will rust and rubber will wrinkle, blister, and fail at seams.",
+   "photoExamples": [
+    "Many roof coverings will also develop moss or algae growth over time, which damages the surface",
+    "Metal roof showing rust and holes from age related deterioration",
+    "Typical moss growth on shingle roof",
+    "Typical moss growth on tar and gravel roof - this is not a “green” roof",
+    "Typical blown off shingles",
+    "Typical shingle deterioration - curling - this roof is in poor condition"
+   ]
+  },
+  {
+   "id": "sidewalks_and_walkways",
+   "name": "Sidewalks and Walkways",
+   "parent": null,
+   "guidance": "Sidewalks and exterior walking areas are common sources of trip-fall claims, making them a major concern for underwriters. Sidewalks should be in good condition, with even small cracks or vegetation flagged for review, since minor issues can worsen over time. This includes curbs and any exterior walking surface with cracks, heaving, or unevenness, all of which should be repaired by a qualified contractor. While responsibility for sidewalks may vary by jurisdiction, underwriters always want their condition documented. Even if maintenance is not the owner’s duty, liability claims often involve t",
+   "photoExamples": [
+    "Typical damage to walk way",
+    "Typical heaving on sidewalk",
+    "Heaving of sidewalk fixtures",
+    "Typical small cracking - this is still a hazard that can cause claims - it needs repair",
+    "Tree planting creates a raised area that is a trip hazard, it should be level",
+    "Typical damaged patching, this creates a lip and a trip fall hazard"
+   ]
+  },
+  {
+   "id": "sprinkler_systems",
+   "name": "Sprinkler Systems",
+   "parent": null,
+   "guidance": "A sprinkler system provides a high level of fire protection and it’s usually easy to confirm that there is some sort of sprinkler system present. For underwriters however, a simple confirmation that the system exists is not usually enough. In order to rate the building properly, they need to understand how much of the building the sprinkler system covers. For example, a building with sprinklers in the hallways only does not have the same protection level as an identical building with sprinklers in the hallways, basement, and apartments. For an underwriter, that is a big difference in terms of ",
+   "photoExamples": []
+  },
+  {
+   "id": "system_coverage",
+   "name": "System Coverage",
+   "parent": "Sprinkler Systems",
+   "guidance": "Sprinkler heads need to be placed in more or less visible areas in order to be effective. The heads can either be exposed or behind cosmetic covers, but in either case they are usually easy to spot.Underwriters generally ask for photos of sprinkler heads from each area of the building that has sprinkler protection. So a building with sprinklers in the hallways and apartments would have photos unambiguously showing that sprinkler heads are present in those areas.  Sprinkler heads hidden behind cosmetic covers are designed to blend in and can be hard to spot at first.",
+   "photoExamples": [
+    "Sprinkler head in an exit stairway",
+    "Sprinklers in an apartment setting",
+    "Coverage in a commercial storage area",
+    "Example of a common plastic cover for a sprinkler head",
+    "Sprinkler covers blending into an apartment ceiling"
+   ]
+  },
+  {
+   "id": "tools_spare_heads_and_tags",
+   "name": "Tools, spare heads and tags",
+   "parent": "Sprinkler Systems",
+   "guidance": "Sprinkler systems are required to be annually inspected and to have inspection tags present. It’s also a requirement that there be spare sprinkler heads, and a tool for replacing sprinkler heads present. This is to ensure that any damaged heads can be quickly replaced, so that the system remains fully functional. Spare heads and tools are almost always kept in an easily identified rec box near the main valve, which is also where the tag should be located.",
+   "photoExamples": [
+    "Typical red box with spare heads and wrench",
+    "Spare heads and inspection tags",
+    "Typical main valve for a large building"
+   ]
+  },
+  {
+   "id": "securing_the_sprinkler_main_valve",
+   "name": "Securing the sprinkler main valve",
+   "parent": "Sprinkler Systems",
+   "guidance": "In addition to the spare heads, the wrench and the tags, sprinkler system main valves require additional safety measures to ensure that they cannot be easily closed. Closing the valve cuts of the the water supply to the sprinkler system and removes the fire protection to the building. Very often, if the sprinkler system does not stop a fire, it’s because it’s been shut off for some reason and not turned back on.",
+   "photoExamples": [
+    "Acceptable NFPA valve supervision methods",
+    "The valve position can be chained and locked in the open position",
+    "The valve can be supervised by electronic monitoring which connects to either a central station or local alarm system.",
+    "The valve can be located within a controlled area, sealed in the open position and inspected weekly as part of an approved procedure.",
+    "Fenced valve with chain and lock in place",
+    "Interior valve with electronic monitoring in place"
+   ]
+  },
+  {
+   "id": "fire_department_connections_fdc_s",
+   "name": "Fire Department Connections (FDC’s)",
+   "parent": "Sprinkler Systems",
+   "guidance": "Some sprinkler systems and standpipe systems have a connection on the outside of the building that allows the fire department to pump additional water directly into the system. These connections have caps that must remain in place unless the fire department is using them. The caps prevent anything from entering the pipe and obstructing it, which could make it non-functional. Caps are often missing or get misplaced, and it’s also not uncommon for FDC’s that are missing caps to be stuffed with trash by passers by.",
+   "photoExamples": [
+    "FDC with caps in place",
+    "FDC with caps missing"
+   ]
+  },
+  {
+   "id": "freezing_hazards",
+   "name": "Freezing Hazards",
+   "parent": "Sprinkler Systems",
+   "guidance": "A major cause of loss when it comes to sprinkler systems is freezing. A wet sprinkler system is essentially a network of water filled pipes, which will leak if it freezes. This usually  becomes an issue in vacant buildings where the heat has been shut off or turned very low and the sprinkler system has not been winterized or drained. In a case like this, a freeze can occur, and the pipes can leak for days before someone checks the building and notices the issue.",
+   "photoExamples": [
+    "Example of a sprinkler head extending into an attic space - how is this space kept warm?"
+   ]
+  },
+  {
+   "id": "other_common_issues",
+   "name": "Other Common Issues",
+   "parent": "Sprinkler Systems",
+   "guidance": "There are two other issues frequently seen with sprinkler systems, both having to do with the sprinkler heads and piping.",
+   "photoExamples": [
+    "Example of obstruction and attachments to sprinkler piping."
+   ]
+  },
+  {
+   "id": "smoke_detectors",
+   "name": "Smoke Detectors",
+   "parent": null,
+   "guidance": "Smoke detectors, whether battery-powered, hardwired, or both, must be present in all apartment buildings and in some commercial buildings as well. Common issues include detectors missing from required areas or being removed by tenants. Tenants may take them down to avoid nuisance alarms or cover them with towels to disable them. Missing units can often be spotted by empty mounting brackets. Smoke alarm function should not be impeded in any way.",
+   "photoExamples": [
+    "Smoke detector missing in apartment"
+   ]
+  },
+  {
+   "id": "stab_lok_breakers",
+   "name": "Stab-Lok Breakers",
+   "parent": null,
+   "guidance": "Stab-Lok breakers, manufactured by Federal Pacific Electric, are an older style known for defects that prevent them from tripping, creating serious fire hazards. Many have been replaced, but some panels remain and are always a concern for underwriting. Stab-Lok panels are identified by the Federal Pacific Electric label, the box shape, and breakers with orange (sometimes white) tabs. Other FPE components, like main shut offs, are not an issue—the concern is limited to the breakers. Any suspected Stab-Lok breakers should be flagged, inspected by an electrician, and likely replaced. Even if the ",
+   "photoExamples": [
+    "Typical FPE Stab-lok panel Cover",
+    "Typical FPE Stab-lok panel interior",
+    "Typical FPE Stab-lok small panel",
+    "Alternate Stab-Lok panel design",
+    "Alternate Stab-Lok panel design",
+    "Typical FPE panel missing cover- it can still be identified by the orange tabs"
+   ]
+  },
+  {
+   "id": "stairway_hazards",
+   "name": "Stairway Hazards",
+   "parent": null,
+   "guidance": "Falls on stairways are a major underwriting concern. Hazards include slippery treads, missing or inadequate handrails, and damaged or uneven steps. In general, any stairway with more than four risers should have a handrail; very wide stairways should have two. Treads must be uniform in height, free of damage, and non-slip or fitted with non-slip coverings. Handrails must be continuous, graspable, and free of gaps—wall-secured rails that prevent a full grip are not acceptable. Stairways must never be used for storage, whether small items like shoes or large items like boxes. Some common stairwa",
+   "photoExamples": []
+  },
+  {
+   "id": "missing_handrails",
+   "name": "Missing Handrails",
+   "parent": "Stairway Hazards",
+   "guidance": "One very common issue is missing handrails on stairways that need them. Handrails may also be removed for some reason and not replaced.",
+   "photoExamples": [
+    "Large stairway with no handrails",
+    "Basement stairway with no handrails",
+    "Basement stairs lacking a handrail on one side, creating an obvious fall risk",
+    "Exterior stairway missing a handrail on one side",
+    "Missing handrails, this is a particularly serious example",
+    "Handrails were present but have been removed - They should be replaced"
+   ]
+  },
+  {
+   "id": "inadequate_handrails",
+   "name": "Inadequate Handrails",
+   "parent": "Stairway Hazards",
+   "guidance": "Many stairways have handrails that are not fully graspable or that do not extend the full length of the stairway, or that have gaps in the handrail. These can be harder to spot because there is a handrail present, it’s just deficient in some way. All handrails should be continuous along the entire stairway and be fully graspable along their entire length.",
+   "photoExamples": [
+    "Typical partial basement handrail - note the trip hazard from the cord on the stairs as well",
+    "Example of an obstructed handrail - opening the gate to use the stairway renders the rail unusable",
+    "Typical non-graspable handrail - there is no space for a hand between the rail and wall",
+    "Another example of a partial handrail in an apartment setting",
+    "Handrail is designed to have only partial coverage. It should be extended to reduce trip fall hazard."
+   ]
+  },
+  {
+   "id": "non_slip_treads",
+   "name": "Non-slip Treads",
+   "parent": "Stairway Hazards",
+   "guidance": "Many falls on stairs occur because the stairway surface is slippery. This can easily happen if the steps become wet, especially if the steps are made of a smooth polished stone like marble. Step surfaces should not be slippery under any conditions. Stone steps may require the addition of non-slip tread coverings to ensure that they do not become slippery. Damaged non-slip coverings pose an additional trip hazard and should be replaced with new ones.",
+   "photoExamples": [
+    "Typical stone step treads without non-slip protection",
+    "Typical stone step treads without non-slip protection",
+    "Stone steps with non-slip treads attached",
+    "Typical damaged non-slip treads on stone steps - these should be replaced"
+   ]
+  },
+  {
+   "id": "damaged_steps_and_stairways",
+   "name": "Damaged Steps and Stairways",
+   "parent": "Stairway Hazards",
+   "guidance": "Older or poorly maintained stairways may have damage to various parts of the stairs. Usually the damage is to the steps and step treads or nosings, which can become worn and broken through regular use. Stairway steps and risers should be of a uniform height and free of damage or deterioration.",
+   "photoExamples": [
+    "Serious masonry damage to exterior stairway",
+    "Tape and cracking on step treads - tape indicates noting damage",
+    "Typical nosing cracking and damage",
+    "Damage to exterior stairway - also note missing handrails"
+   ]
+  },
+  {
+   "id": "structural_issues",
+   "name": "Structural Issues",
+   "parent": null,
+   "guidance": "Structural issues are serious but usually easy to identify, as parts of the building may appear severely damaged or show unusual cracking. Any evidence of structural problems should be flagged immediately, as the underwriter will want to know right away.",
+   "photoExamples": [
+    "Structural crack",
+    "Exterior cracking in brick",
+    "Severe masonry damage"
+   ]
+  },
+  {
+   "id": "overhanging_trees",
+   "name": "Overhanging Trees",
+   "parent": null,
+   "guidance": "Overhanging trees create multiple hazards. They drop debris that clogs gutters and drains, damages roof surfaces, and causes leaks. Branches rubbing against roofs or walls in the wind can also cause damage. Dead trees or large dead limbs may fall on buildings or people. Trees should not overhang or touch buildings, roof and gutter debris should be cleared, and dead or dying trees near structures should be removed or trimmed back.",
+   "photoExamples": [
+    "Tree overhanging and touching building roof",
+    "Tree overhanging and touching roof",
+    "Tree touching building siding and overhanging roof",
+    "Tree related debris on roof - drain clog and ponding hazard"
+   ]
+  },
+  {
+   "id": "water_heater_straps",
+   "name": "Water Heater Straps",
+   "parent": null,
+   "guidance": "Water heaters can topple during earthquakes, causing water damage or fire. In earthquake-prone areas such as California or Washington, they should be strapped upright and secured to walls or other structural supports to prevent tipping.",
+   "photoExamples": [
+    "Typical strap installation",
+    "Typical strap installation"
+   ]
+  },
+  {
+   "id": "zinsco_breakers",
+   "name": "Zinsco Breakers",
+   "parent": null,
+   "guidance": "Zinsco breakers, also sold as Sylvania or GTE Sylvania, are an older brand with defects that prevent reliable tripping, creating fire hazards similar to Stab-Lok breakers. Any Zinsco breakers found should be inspected and replaced by an electrician. They are easy to spot by their color-coded breakers and labels such as Zinsco, GTE Sylvania, or Sylvania Zinsco. Other Zinsco components are not necessarily problematic but may indicate Zinsco breakers elsewhere in the building. The breakers are the real concern as those are the components that are known to have a defect.",
+   "photoExamples": [
+    "Typical Zinsco panel with colored breakers",
+    "Typical Zinsco panel with colored breakers",
+    "Typical Zinsco Label",
+    "Zinsco Panel with label but lacking the usual colored breakers",
+    "Zinsco Panel with label but lacking the usual colored breakers",
+    "Alternate Zinsco label design"
+   ]
+  }
+ ]
+}

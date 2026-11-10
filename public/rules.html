@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TIS QC Rules</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#12254a; --blue:#105fc6; --red:#a71b21; --bg:#f1f3f5; --card:#fff; --ink:#1c1c1c; --muted:#5d6c7b; --line:#dde2e8; --chip:#e8eef8; --ok:#1b7f3b; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0e1626; --card:#16213a; --ink:#e7ecf4; --muted:#9aa8bb; --line:#26344f; --chip:#1d2b4a; --blue:#5b9bf0; } }
+  * { box-sizing:border-box } body { margin:0; font:14px/1.5 Geologica, system-ui, sans-serif; background:var(--bg); color:var(--ink); }
+  header { background:var(--navy); color:#fff; padding:12px 20px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  header img { height:26px } header h1 { font-size:16px; font-weight:500; margin:0; flex:1 } header .pill { background:rgba(255,255,255,.14); color:#fff }
+  .pill { font-size:12px; padding:2px 9px; border-radius:99px; background:var(--chip) }
+  main { display:grid; grid-template-columns:320px 1fr; gap:16px; padding:16px 20px; max-width:1300px; margin:auto }
+  @media (max-width:860px) { main { grid-template-columns:1fr; padding:16px } }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:14px; margin-bottom:14px }
+  h2 { font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:0 0 8px; font-weight:500 }
+  input, textarea, select { font:inherit; color:inherit; background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:7px 9px; width:100% }
+  textarea { min-height:220px; font-family:ui-monospace, Consolas, monospace; font-size:13px }
+  button { font:inherit; background:var(--navy); color:#fff; border:0; border-radius:8px; padding:7px 14px; cursor:pointer }
+  button.ghost { background:transparent; color:var(--blue); border:1px solid var(--line) } button:disabled { opacity:.5 }
+  .list { max-height:300px; overflow:auto; margin-top:8px } .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:10px }
+  .li { padding:6px 8px; border-radius:8px; cursor:pointer; display:flex; justify-content:space-between; gap:6px } .li:hover, .li.on { background:var(--chip) }
+  .sev { font-size:11px; font-weight:600; text-transform:uppercase } .sev.blocker { color:var(--red) } .sev.warning { color:#b26a00 } .sev.advisory { color:var(--blue) }
+  .kb { white-space:pre-wrap; background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:10px; max-height:280px; overflow:auto; font-size:13px }
+  .muted { color:var(--muted) } .ok { color:var(--ok) } .err { color:var(--red) }
+  table { width:100%; border-collapse:collapse; font-size:13px } td, th { text-align:left; padding:5px 6px; border-bottom:1px solid var(--line) } th { color:var(--muted); font-weight:500 }
+</style>
+</head>
+<body>
+<header>
+  <img src="/brand/boost-star.png" alt="SmartFill">
+  <h1>SmartFill · Rules</h1>
+  <span class="pill" id="ver">…</span>
+  <input id="token" type="password" placeholder="token" style="width:140px" aria-label="API token">
+</header>
+<main>
+  <section>
+    <div class="card">
+      <h2>Notes for the AI</h2>
+      <p class="muted" style="margin:0 0 8px">Plain-English rules TIS adds per client or form. They are given to the AI on every analysis and override the stored knowledge base.</p>
+      <select id="scope"><option value="client">Client</option><option value="form">Form</option><option value="universal">All clients</option></select>
+      <input id="filter" placeholder="Search…" style="margin-top:8px">
+      <div class="list" id="docList"></div>
+    </div>
+    <div class="card">
+      <h2>Logic rules</h2>
+      <p class="muted" style="margin:0 0 8px">If-A-then-B checks run instantly without AI.</p>
+      <div class="list" id="ruleList"></div>
+      <div class="row"><button class="ghost" id="btnNewRule">New rule</button></div>
+    </div>
+  </section>
+  <section>
+    <div class="card" id="editor"><h2>Select a client, form or rule</h2><p class="muted">Changes are versioned. Logic rules are saved as drafts, tested on stored orders, then published.</p></div>
+    <div class="card"><h2>Change log</h2><table id="log"></table></div>
+  </section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+try { $('token').value = localStorage.getItem('tisqc_token') || 'dev-token'; } catch { $('token').value = 'dev-token'; }
+$('token').onchange = () => { try { localStorage.setItem('tisqc_token', $('token').value); } catch {} load(); };
+const api = async (m, p, b) => { const r = await fetch(p, { method: m, headers: { Authorization: 'Bearer ' + $('token').value, 'Content-Type': 'application/json', 'X-EZ-User': 'rules-page' }, body: b ? JSON.stringify(b) : undefined }); const j = await r.json(); if (!r.ok) throw new Error(j.error?.message || r.status); return j; };
+let tree = null;
+
+async function load() {
+  try { tree = await api('GET', '/v1/rules/tree'); } catch (e) { $('editor').innerHTML = `<p class="err">${esc(e.message)}</p>`; return; }
+  $('ver').textContent = 'rules v' + tree.rulesVersion + (tree.drafts.length ? ` · ${tree.drafts.length} draft(s)` : '');
+  renderDocs(); renderRules(); renderLog();
+}
+function renderDocs() {
+  const scope = $('scope').value, q = $('filter').value.toLowerCase();
+  const names = scope === 'client' ? Object.keys(tree.clients) : scope === 'form' ? tree.forms : ['all'];
+  $('docList').innerHTML = names.filter(n => n.toLowerCase().includes(q)).map(n => {
+    const has = tree.docs.includes(`${scope}/${n}`);
+    const tag = scope === 'client' && tree.clients[n]?.status === 'excluded' ? '<span class="pill">test</span>' : has ? '<span class="pill">notes</span>' : '';
+    return `<div class="li" data-doc="${esc(n)}"><span>${esc(n)}</span>${tag}</div>`;
+  }).join('');
+  $('docList').querySelectorAll('[data-doc]').forEach(el => el.onclick = () => openDoc(scope, el.dataset.doc));
+}
+function renderRules() {
+  $('ruleList').innerHTML = tree.structuredRules.map(r => `<div class="li" data-rule="${esc(r.id)}"><span>${esc(r.id)}</span><span class="sev ${esc(r.severity)}">${esc(r.severity)}</span></div>`).join('');
+  $('ruleList').querySelectorAll('[data-rule]').forEach(el => el.onclick = () => openRule(el.dataset.rule));
+}
+async function renderLog() {
+  const { changelog } = await api('GET', '/v1/rules/changelog');
+  $('log').innerHTML = '<tr><th>When</th><th>Version</th><th>Who</th><th>Change</th></tr>' + changelog.slice().reverse().slice(0, 30).map(c => `<tr><td>${esc(new Date(c.at).toLocaleString())}</td><td>${c.version}</td><td>${esc(c.author || '')}</td><td>${esc(c.note || (c.changed || []).join(', '))}</td></tr>`).join('');
+}
+async function openDoc(scope, id) {
+  const d = await api('GET', `/v1/rules/${scope}/${encodeURIComponent(id)}`);
+  $('editor').innerHTML = `<h2>${esc(scope === 'universal' ? 'All clients' : scope)}: ${esc(id)}</h2>
+    ${d.kbEntry ? `<details><summary class="muted">Stored knowledge base entry (read-only)</summary><div class="kb">${esc(JSON.stringify(d.kbEntry, null, 2))}</div></details>` : ''}
+    <label class="muted" style="display:block;margin:10px 0 4px">TIS notes for the AI (markdown, one rule per line works well)</label>
+    <textarea id="md" placeholder="- Flag every sidewalk crack as a required recommendation.\n- Narrative must name each tenant and its operations.">${esc(d.markdown || '')}</textarea>
+    <div class="row"><input id="note" placeholder="What changed and why" style="flex:1;min-width:200px"><button id="save">Save</button><span id="msg" class="muted"></span></div>
+    ${d.history.length ? `<p class="muted" style="margin-top:10px">${d.history.length} version(s), last ${esc(new Date(d.history.at(-1).at).toLocaleString())}</p>` : ''}`;
+  $('save').onclick = async () => {
+    try { await api('PUT', `/v1/rules/${scope}/${encodeURIComponent(id)}`, { markdown: $('md').value, note: $('note').value }); $('msg').innerHTML = '<span class="ok">Saved. Used from the next analysis.</span>'; load(); }
+    catch (e) { $('msg').innerHTML = `<span class="err">${esc(e.message)}</span>`; }
+  };
+}
+async function openRule(id, draft) {
+  const r = draft ? { rule: draft, draft: true } : await api('GET', `/v1/rules/rule/${encodeURIComponent(id)}`);
+  $('editor').innerHTML = `<h2>Logic rule ${r.draft ? '<span class="pill">draft</span>' : ''}</h2>
+    <textarea id="json">${esc(JSON.stringify(r.rule, null, 2))}</textarea>
+    <div class="row"><button id="saveRule">Save draft</button><button class="ghost" id="testRule">Test on stored orders</button><button class="ghost" id="pub">Publish drafts</button><span id="msg" class="muted"></span></div>
+    <div id="testOut"></div>
+    <p class="muted">"dsl" rules: <code>when {q, equals}</code> → <code>then {q, in | notIn}</code> using question names from the form registry (e.g. brick_veneer, veneer_backing). "code" rules are built in.</p>`;
+  $('saveRule').onclick = async () => { try { const rule = JSON.parse($('json').value); await api('PUT', `/v1/rules/rule/${encodeURIComponent(rule.id)}`, { rule }); $('msg').innerHTML = '<span class="ok">Draft saved</span>'; load(); } catch (e) { $('msg').innerHTML = `<span class="err">${esc(e.message)}</span>`; } };
+  $('testRule').onclick = async () => { try { const rule = JSON.parse($('json').value); await api('PUT', `/v1/rules/rule/${encodeURIComponent(rule.id)}`, { rule }); const t = await api('POST', `/v1/rules/rule/${encodeURIComponent(rule.id)}/test`, {});
+    $('testOut').innerHTML = `<p>Flags <b>${t.ordersFlagged}</b> of ${t.ordersTested} stored orders.</p><ul>${t.results.filter(x => x.hits.length).map(x => `<li>${x.orderId}: ${esc(x.hits[0])}${x.hits.length > 1 ? ` (+${x.hits.length - 1})` : ''}</li>`).join('')}</ul>`; } catch (e) { $('msg').innerHTML = `<span class="err">${esc(e.message)}</span>`; } };
+  $('pub').onclick = async () => { const note = prompt('Describe the change for the log'); if (note == null) return; try { const p = await api('POST', '/v1/rules/publish', { note }); $('msg').innerHTML = `<span class="ok">Published v${p.rulesVersion}</span>`; load(); } catch (e) { $('msg').innerHTML = `<span class="err">${esc(e.message)}</span>`; } };
+}
+$('btnNewRule').onclick = () => openRule(null, { id: 'client.new_rule', kind: 'dsl', severity: 'warning', checklistItem: '5.1', scope: { formTypes: ['general'] }, when: { q: 'brick_veneer', equals: 'Yes' }, then: { q: 'veneer_backing', notIn: ['N/A', ''] }, message: 'Describe what is wrong.' });
+$('scope').onchange = renderDocs; $('filter').oninput = renderDocs;
+load();
+</script>
+</body>
+</html>

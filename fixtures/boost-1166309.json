@@ -1,0 +1,5034 @@
+{
+  "schemaVersion": 2,
+  "capturedAt": "2026-10-29T10:03:39.285Z",
+  "ez": {
+    "host": "server-ezsm.ezsurveyform.com",
+    "version": "2.999944R1",
+    "user": "Boost_QC1"
+  },
+  "order": {
+    "orderId": 1166309,
+    "status": "Complete",
+    "insured": "T.I.S",
+    "client": "Boost AI",
+    "inspector": "None",
+    "location": "5000 West 128th Street, New York, NY, 10027",
+    "priorOrderIds": [
+      1162400
+    ],
+    "counts": {
+      "photos": 49,
+      "diagrams": 1,
+      "attachments": 0
+    },
+    "orderForm": {
+      "requestType": "",
+      "photosRequired": true,
+      "diagramRequired": true,
+      "natureOfBusiness": "*********",
+      "coverages": [
+        "Monoline Property"
+      ],
+      "liability": [],
+      "additionalInstructions": "",
+      "additionalAddresses": ""
+    },
+    "pricing": {
+      "selectedFeeType": "",
+      "feeOptions": [
+        "$135 ALL NYC Risks",
+        "$156 Up to 10,000 sq ft, outside of NYC",
+        "$197 10001-20000 sf outside of NYC",
+        "$234 20,001-50,000 sq ft-outside of NYC",
+        "$270 50,001-99,999 sq ft-outside of NYC",
+        "$306 100,000 sq ft",
+        "$85 Exterior/Rec Check"
+      ]
+    },
+    "geo": {
+      "state": "NY",
+      "zip": "10027",
+      "city": ""
+    },
+    "fees": {
+      "inspector": "0.00",
+      "inspectorHours": "",
+      "client": "0.00",
+      "clientHours": "",
+      "preInspection": "0.00"
+    },
+    "pricingNotes": {
+      "inspector": "",
+      "qc": "",
+      "admin": ""
+    },
+    "comments": ""
+  },
+  "forms": [
+    {
+      "formId": 3045,
+      "name": "General Form- Property Only",
+      "version": 15,
+      "state": "Admin Complete",
+      "qcRelevant": true,
+      "sections": [
+        {
+          "sectionId": "112391",
+          "copy": 1,
+          "title": "QC Checklist",
+          "omitted": false,
+          "internal": true,
+          "fields": [
+            {
+              "key": "F2_112391_1_11105503",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "SECTION 1 ************************************************"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105502",
+              "label": "SECTION 1 ***********************************************",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "******"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105535",
+              "label": "Square Footage consistent - Narrative, diagram, form:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105483",
+              "label": "Square footage matches prior report/ order form:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105536",
+              "label": "Square footage matches number of apartments:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105537",
+              "label": "Square footage checks out on Google Earth:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105538",
+              "label": "Square Footage of vacant areas correct:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105522",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "SECTION 2 ************************************************"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105527",
+              "label": "SECTION 2 ***********************************************",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "******"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105539",
+              "label": "ISO class consistent - Narrative, diagram, form:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105486",
+              "label": "Brick Veneer question matches ISO class:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105485",
+              "label": "ISO class matches photos:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105484",
+              "label": "ISO class matches prior report/ order form:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105493",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "SECTION 3 ***************************************************"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105492",
+              "label": "SECTION 3 **************************************************",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "******"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105487",
+              "label": "Inspector got access to all areas (if not why?):",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105478",
+              "label": "Questions for areas not accessed marked U/D or with appropriate comments:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105488",
+              "label": "Risk heated or utilities shut off:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105489",
+              "label": "Aluminum Wiring question correct:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105490",
+              "label": "Zinsco and Stab Lok questions correct:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105491",
+              "label": "Sprinkler Sections matches photos:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105534",
+              "label": "Sprinkler section matches prior reports:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105476",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "SECTION 4 ***************************************************"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105501",
+              "label": "SECTION 4 **************************************************",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "******"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105533",
+              "label": "Photos free of hazards without recs - and photos labeled:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105532",
+              "label": "Commercial cooking tag photos match form:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105531",
+              "label": "Photos match Coverage - No GL on property only:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105473",
+              "label": "Rec have photos attached:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105477",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "SECTION 5 ***************************************************"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105500",
+              "label": "SECTION 5 **************************************************",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "******"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105472",
+              "label": "Recs not redundant and match coverage:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105471",
+              "label": "Narrative matches the rest fo the report (SF, ISO, Hazards):",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105470",
+              "label": "Narrative describes operations:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105530",
+              "label": "U/W concerns addressed in U/W concerns box:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105474",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "SECTION 6 ***************************************************"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105475",
+              "label": "SECTION 6 **************************************************",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "******"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105498",
+              "label": "Square Footage issues:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105496",
+              "label": "ISO issues:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105494",
+              "label": "Missed Hazards in photos:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105520",
+              "label": "Operations not described:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105519",
+              "label": "Narrative issues:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105462",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "SECTION 7 ***************************************************"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105463",
+              "label": "SECTION 7 **************************************************",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "******"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105505",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105504",
+              "label": "1 2 3 4 5 6 7 8 9 10",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105467",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "SECTION 8 ***************************************************"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F2_112391_1_11105466",
+              "label": "SECTION 8 **************************************************",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "******"
+              ],
+              "value": ""
+            },
+            {
+              "key": "F6_112391_1_11105465",
+              "label": "QC Checklist",
+              "help": "",
+              "type": "longtext",
+              "value": "Unsatisfactory housekeeping, with  accumulated refuse & debris\n\nElectrical system deficiencies\n\nLack of fire extinguishers of correct type and # & properly mounted, where prescribed\n\nFire extinguishers lack a current inspection tag affixed \n\nRooftop with casual, unauthorized tenant activity\n\nEvidenced mold"
+            },
+            {
+              "key": "F2_112391_1_11105464",
+              "label": "Unsatisfactory housekeeping, with accumulated refuse & debris Electrical system deficiencies Lack of fire extinguishers of correct type and # & properly mounted, where prescribed Fire extinguishers lack a current inspection tag affixed Rooftop with casual, unauthorized tenant activity Evidenced mold",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes"
+              ],
+              "value": ""
+            }
+          ]
+        },
+        {
+          "sectionId": "112388",
+          "copy": 1,
+          "title": "REMINDER: DATA COLLECTION/REPORT COPY REQUESTS",
+          "omitted": false,
+          "internal": false,
+          "fields": []
+        },
+        {
+          "sectionId": "112392",
+          "copy": 1,
+          "title": "REMINDER: THIS IS PROPERTY COVERAGE ONLY",
+          "omitted": false,
+          "internal": false,
+          "fields": []
+        },
+        {
+          "sectionId": "112383",
+          "copy": 1,
+          "title": "General Information",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F8_112383_1_10558244",
+              "label": "Date of Survey:",
+              "help": "",
+              "type": "text",
+              "value": "03/30/2026"
+            },
+            {
+              "key": "F1_112383_1_10558243",
+              "label": "Representative:",
+              "help": "",
+              "type": "text",
+              "value": "tis"
+            },
+            {
+              "key": "F1_112383_1_10558252",
+              "label": "Person Interviewed & Title:",
+              "help": "",
+              "type": "text",
+              "value": "***** - Super"
+            }
+          ]
+        },
+        {
+          "sectionId": "112393",
+          "copy": 1,
+          "title": "Narrative",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F7_112393_1_10558362",
+              "label": "Narrative",
+              "help": "",
+              "type": "longtext",
+              "value": "The risk is a three-story, joisted masonry (ISO 2) mixed-use building containing eight apartments and two commercial occupancies consisting of a restaurant and spa/beauty salon. One apartment is currently vacant and offered for rent as normal tenant turnover. The building contains approximately 10,784 square feet, including a small finished basement area.\n\nThe building underwent a gut rehabilitation in 2005, including electrical, plumbing, and heating upgrades. Electrical service consists of BX cable and conduit with circuit-breaker protection. No Zinsco or Stab-Lok panels were observed. An open electrical panel box and stored materials obstructing access to basement electrical panels were noted and should be corrected. Heating is provided by low-pressure steam boilers, with wall-sleeve air conditioning for residential areas and forced-air units for the commercial spaces. A leaking basement hot-water heater was noted and was scheduled for replacement.\n\nThe exterior is brick, and the wood-joist roof with rolled-asphalt covering appears to be in good condition. Roof renovations were completed in 2021 and 2026, and no active leaks were observed. Tenant items are stored directly on the roof surface at a third-floor balcony area without protective material, creating potential for damage to the roof covering. No structural or exterior issues were otherwise noted, and there are no current or planned renovations.\n\nThe restaurant contains a full commercial cooking line with deep fryers equipped with stainless-steel baffles. The cooking line is protected by an exhaust hood with baffle-type filters and a UL 300-compliant wet-chemical automatic extinguishing system. The hood is properly cleaned and maintained, the extinguishing system is currently tagged, and a K-class fire extinguisher is present. Commercial cooking exposures appear to be appropriately controlled.\n\nThe building is fully sprinklered with a wet-pipe system. There is no central station fire alarm. Smoke and carbon monoxide detectors are present in the residential and commercial areas. Fire extinguishers are provided throughout; however, some were noted to be unmounted or lacking current service tags and should be corrected. No central station burglar alarm was observed. No previous losses, fires, security incidents, or structural issues were noted. Overall housekeeping and maintenance are average."
+            }
+          ]
+        },
+        {
+          "sectionId": "112405",
+          "copy": 1,
+          "title": "Special Underwriter Concerns",
+          "omitted": false,
+          "internal": false,
+          "fields": []
+        },
+        {
+          "sectionId": "112404",
+          "copy": 1,
+          "title": "Special Underwriter Concerns Response Special Underwriter Concerns Response",
+          "omitted": true,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F7_112404_1_11392907",
+              "label": "Special Underwriter Concerns Response Special Underwriter Concerns Response",
+              "help": "",
+              "type": "longtext",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "sectionId": "112394",
+          "copy": 1,
+          "title": "Occupancy",
+          "omitted": false,
+          "internal": false,
+          "fields": [],
+          "grid": {
+            "F16_112394_1_10558295": [
+              [
+                "0|1",
+                "Mixed use"
+              ],
+              [
+                "0|2",
+                "100%"
+              ],
+              [
+                "0|3",
+                "10,784"
+              ],
+              [
+                "0|4",
+                "4,400"
+              ],
+              [
+                "0|5",
+                "718"
+              ],
+              [
+                "0|6",
+                "N/a"
+              ],
+              [
+                "0|7",
+                "N/a"
+              ]
+            ]
+          }
+        },
+        {
+          "sectionId": "112395",
+          "copy": 1,
+          "title": "Occupancy cont'dDUPLICATE Description:",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112395_1_10558299",
+              "label": "1. Is address inspected the same as on the order request (if No, what is the address as inspected)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112395_1_10558301",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112395_1_10558303",
+              "label": "2. # of buildings?",
+              "help": "",
+              "type": "text",
+              "value": "1",
+              "comment": {
+                "key": "F1_112395_1_10558304",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112395_1_10558306",
+              "label": "3. FULLY DESCRIBE how the space is being used/what the operations are (e.g. if as a warehouse or distribution center, detail what is being warehoused & how much public access, if any; if, as an office, for what type of company, what services rendered & how much traffic):",
+              "help": "",
+              "type": "text",
+              "value": "Risk is a mixed-use building with a spa and restaurant on the ground floor and eight apartments above.",
+              "comment": {
+                "key": "F1_112395_1_10558307",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112395_1_10559173",
+              "label": "4. # of apartments?",
+              "help": "",
+              "type": "text",
+              "value": "8",
+              "comment": {
+                "key": "F1_112395_1_10559172",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112395_1_10559176",
+              "label": "5. # of vacant apartments?",
+              "help": "",
+              "type": "text",
+              "value": "1",
+              "comment": {
+                "key": "F1_112395_1_10559175",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10558309",
+              "label": "6. If occupancy is habitational, is risk free of any section 8,9, or 10 housing, inc. same for students, elderly and/or the economically disadvantaged (if \"No\", # of units or % of building with section occupancy/MOUSE OVER FOR FURTHER EXPLANATION)?",
+              "help": "Instructions These are Federal low-income housing programs, which revolve around the use of rent subsidies.",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112395_1_10558308",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10558321",
+              "label": "7. Any high risk commercial occupancies (if Yes, provide details (including name(s)/type(s) e.g. \"Ming Dynasty/Chinese restaurant\" and \"Formula Z/auto repair shop\")?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112395_1_10558320",
+                "value": "Ground floor restaurant"
+              }
+            },
+            {
+              "key": "F2_112395_1_10559035",
+              "label": "8. If occupancy includes commercial tenants, are COIs (Certificates of Insurance) required of and provided by all commercial tenants (check \"N/A\" if occupancy is habitational i.e. apts only)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes (with documentation provided)",
+                "Yes (verbal confirmation only)",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes (verbal confirmation only)",
+              "rec": {
+                "key": "F13_112395_1_11392874",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112395_1_10558318",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112395_1_10558315",
+              "label": "9. If basement and/or sub-basement is included (in the area calculations), indicate basement/sub-basement square footage & describe usage:",
+              "help": "",
+              "type": "text",
+              "value": "Basement is mostly unfinished, but there is about 800 sq. ft. used by the spa that's finished. There's also a prep area for the restaurant.",
+              "comment": {
+                "key": "F1_112395_1_10558316",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112395_1_10558313",
+              "label": "10. If risk includes an indoor parking garage, is it below grade, partially at grade, fully at or above grade or free-standing?",
+              "help": "",
+              "type": "text",
+              "value": "N/a",
+              "comment": {
+                "key": "F1_112395_1_10558314",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10558334",
+              "label": "11. Is parking garage operated by the insured and for the sole use of tenants (if No, provide details, including the name of the company, the # of spaces, whether it is self or attendant parking, etc.)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "comment": {
+                "key": "F1_112395_1_10558312",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10558337",
+              "label": "12. Are renovations in progress (if Yes, FULLY describe, including the scope of work, whether work permit are posted, name(s) of contractors, work in progress & % completed at time of survey, and timetable for completion of work)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112395_1_10558336",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10559037",
+              "label": "13. Risk free of observed/reported illegal subdivisions, e.g. illegal conversions of apartments into multiple SRO units (if No, FULLY detail)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112395_1_11392873",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112395_1_10558339",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112395_1_10558332",
+              "label": "14. Number of years the insured has owned the building (if a tenant, so state, while indicating the # of years occupying the building e.g. \"Tenant-7 years\")?",
+              "help": "",
+              "type": "text",
+              "value": "15 years",
+              "comment": {
+                "key": "F1_112395_1_10558331",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10558341",
+              "label": "15. Does risk appear well-managed & successfully operated (if No, detail why)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112395_1_10558298",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112395_1_10558311",
+              "label": "16. % occupied (if occupancy rate is under 75%, FULLY explain, including possible mitigating circumstances)?",
+              "help": "",
+              "type": "text",
+              "value": "94%",
+              "comment": {
+                "key": "F1_112395_1_10558342",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112395_1_10558323",
+              "label": "17. If all or part of the property is vacant, what portion is vacant and for how long?",
+              "help": "",
+              "type": "text",
+              "value": "One vacant unit - empty a few months - normal turnover",
+              "comment": {
+                "key": "F1_112395_1_10558325",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10558326",
+              "label": "18. Does the insured have any plans for the vacant area (if Yes, explain, including timetable for future occupancy)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112395_1_10558328",
+                "value": "For rent"
+              }
+            },
+            {
+              "key": "F2_112395_1_10558345",
+              "label": "19. Is there a laundry room (if Yes, are washers & dryers provided & maintained by the insured or by an outside contractor, the name of which is typically on the machines, indicating whom to call for servicing or other problems)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "In-house",
+                "Outside contractor",
+                "N/A"
+              ],
+              "value": "N/A",
+              "comment": {
+                "key": "F1_112395_1_10558343",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10558354",
+              "label": "20. Does laundry room have posted hours?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "comment": {
+                "key": "F1_112395_1_10558346",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10558351",
+              "label": "21. Is there a resident super or manager?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112395_1_10558353",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112395_1_10558350",
+              "label": "22. Was access provided to all required areas, including flat rooftop, if any (if No, explain)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112395_1_10558348",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112396",
+          "copy": 1,
+          "title": "Losses",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112396_1_10558360",
+              "label": "1. Have the insured had any losses of any type within the past five years (if Yes, explain)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes (detail)",
+                "None reported",
+                "Unable to Determine"
+              ],
+              "value": "None reported",
+              "comment": {
+                "key": "F1_112396_1_10558359",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112396_1_10558357",
+              "label": "2. Named source/tenure for loss history info (e.g. John Smith, super for past 10 yrs.)?",
+              "help": "",
+              "type": "text",
+              "value": "***** - Super",
+              "comment": {
+                "key": "F1_112396_1_10558358",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112385",
+          "copy": 1,
+          "title": "Construction (as needed, Duplicate, Label & Complete for EACH building)DUPLICATE Description:",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112385_1_10558367",
+              "label": "1. Construction Type (if mixed construction, check all that apply and give percentage of each):",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Frame (ISO I)",
+                "Joisted Masonry (ISO II)",
+                "Non-combustible (ISO III)",
+                "Masonry Non-combustible (ISO IV)",
+                "Modified fire-resistive (ISO V)",
+                "Fire-resistive (ISO VI)"
+              ],
+              "value": "Joisted Masonry (ISO II)",
+              "comment": {
+                "key": "F1_112385_1_10558368",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558370",
+              "label": "2. Brick (or stone) veneer (If Yes, MUST INCLUDE A CLOSE-UP EXTERIOR PHOTO, showing the pattern of the brick, as well as AN ADDITIONAL INTERIOR PHOTO, showing the tape-measured depth of the window and/or door opening)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes (close-up photos required)",
+                "No"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112385_1_10558369",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558397",
+              "label": "3. Load-bearing substrate behind the brick veneer?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Plywood or other combustible sheathing nailed to wood studs",
+                "Concrete block",
+                "Other (describe)",
+                "N/A"
+              ],
+              "value": "N/A",
+              "comment": {
+                "key": "F1_112385_1_10558371",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558373",
+              "label": "4. Type of stucco, if any (if building is stucco-clad, include CLOSE-UP INTERIOR PHOTOS showing the depth of window and/or door openings)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Traditional (hard stucco)",
+                "EIFS (stucco applied over foam board)",
+                "N/A"
+              ],
+              "value": "EIFS (stucco applied over foam board)",
+              "comment": {
+                "key": "F1_112385_1_10558372",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10695693",
+              "label": "5. If EIFS-clad, is it a Face-sealed (barrier) EIFS Assembly or a Drainable EIFS Assembly?",
+              "help": "Instructions A Face-sealed EIFS Assembly is a total barrier system, using caulk or other sealant to prevent water from getting behind the stucco. The problem with this system is that, given the typically high number of joints and other openings, including vents, the likelihood of seal failure is high (either from defective application or eventual sealant breakdown) and, with that, water frequently becomes trapped, leading to moisture-related mold &/or dry rot. A Drainable EIFS Assembly, on the other hand, includes water channels, whereby any water that may get behind the stucco, can escape, thus avoiding any moisture-related mold &/or dry rot problems. As part of your EIFS inspection, look for water channels &/or metal weep screeds (with weep holes for water escape, on the underside) at the exposed bottom of the stucco application. Especially important is that the stucco does not extend all the way to the ground, where it (as well as the weep screed) can be covered by mulch or dirt.",
+              "type": "choice",
+              "options": [
+                "Face-sealed (barrier) EIFS Assembly ",
+                "Drainable EIFS Assembly",
+                "N/A (No EIFS)"
+              ],
+              "value": "Drainable EIFS Assembly",
+              "comment": {
+                "key": "F1_112385_1_10695692",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112385_1_10558375",
+              "label": "6. # of stories (if portions of basement are at or above grade, so indicate, for example, \"3, plus partially at grade basement\")?",
+              "help": "",
+              "type": "text",
+              "value": "3",
+              "comment": {
+                "key": "F1_112385_1_10558374",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558377",
+              "label": "7. Finished basement?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112385_1_10558376",
+                "value": "Partial"
+              }
+            },
+            {
+              "key": "F1_112385_1_10558423",
+              "label": "8. Total square footage, excluding any unfinished basement area (if multiple buildings, so indicate & label for each e.g. \"8,000sf-main bldg; 2,500sf-storage bldg\" or, in the case of an apt complex, \"125,000sf-all bldgs\")?",
+              "help": "",
+              "type": "text",
+              "value": "10,784",
+              "comment": {
+                "key": "F1_112385_1_10558424",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112385_1_10558431",
+              "label": "9. Year built?",
+              "help": "",
+              "type": "text",
+              "value": "1930",
+              "comment": {
+                "key": "F1_112385_1_10558432",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112385_1_10558428",
+              "label": "10. Year gut-rehabbed, if so (otherwise indicate \"N/A\")?",
+              "help": "",
+              "type": "text",
+              "value": "2005",
+              "comment": {
+                "key": "F1_112385_1_10558429",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558426",
+              "label": "11. Load-bearing joists?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Wood",
+                "Steel",
+                "Concrete",
+                "U/D"
+              ],
+              "value": "Wood",
+              "comment": {
+                "key": "F1_112385_1_10558427",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558365",
+              "label": "12. Roof structure?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Wood joists",
+                "Wood trusses",
+                "Wood purlins",
+                "Laminated wood beams",
+                "Steel beams",
+                "Steel trusses",
+                "Steel purlins",
+                "Concrete",
+                "U/D"
+              ],
+              "value": "Wood joists",
+              "comment": {
+                "key": "F1_112385_1_10558379",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10741428",
+              "label": "13. Roof slope?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Flat",
+                "Pitched"
+              ],
+              "value": "Flat",
+              "comment": {
+                "key": "F1_112385_1_10741427",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112385_1_10558402",
+              "label": "14. If a flat roof, what is the parapet height, if any?",
+              "help": "",
+              "type": "text",
+              "value": "4 ft",
+              "comment": {
+                "key": "F1_112385_1_10558403",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558398",
+              "label": "15. Roof covering?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Rubber",
+                "Rolled asphalt",
+                "Metal",
+                "Shingles",
+                "Other (describe)",
+                "U/D"
+              ],
+              "value": "Rubber",
+              "comment": {
+                "key": "F1_112385_1_10558412",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10559039",
+              "label": "16. Type of wiring (check all that apply)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Romex",
+                "BX Cable",
+                "Conduit",
+                "Aluminum",
+                "Knob & Tube",
+                "U/D",
+                "N/A"
+              ],
+              "value": "BX Cable|Conduit",
+              "rec": {
+                "key": "F13_112385_1_11392848",
+                "trigger": [
+                  "knob & Tube"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112385_1_10558406",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558380",
+              "label": "17. Overprotection?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Circuit breakers",
+                "Fuses",
+                "U/D",
+                "N/A"
+              ],
+              "value": "Circuit breakers",
+              "comment": {
+                "key": "F1_112385_1_10558404",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558418",
+              "label": "18. Type of piping (check all that apply)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Copper",
+                "Galvanized",
+                "Iron",
+                "PVC",
+                "Brass",
+                "U/D",
+                "N/A"
+              ],
+              "value": "Copper|Iron",
+              "comment": {
+                "key": "F1_112385_1_10558416",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558364",
+              "label": "19. Heat type?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Low Pressure Steam",
+                "Baseboard Hot Water",
+                "Forced Air",
+                "Radiant",
+                "HVAC",
+                "Electric",
+                "Space Heaters",
+                "Woodstove",
+                "Fireplace",
+                "Other",
+                "U/D",
+                "N/A"
+              ],
+              "value": "Low Pressure Steam",
+              "comment": {
+                "key": "F1_112385_1_10558410",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558399",
+              "label": "20. Type of heating fuel?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Oil",
+                "Natural Gas",
+                "Propane",
+                "Electric",
+                "City Steam",
+                "Wood",
+                "U/D",
+                "N/A"
+              ],
+              "value": "Natural Gas",
+              "comment": {
+                "key": "F1_112385_1_10558408",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558414",
+              "label": "21. Floors?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Wood",
+                "Concrete",
+                "Other (describe)",
+                "U/D",
+                "N/A"
+              ],
+              "value": "Wood|Concrete",
+              "comment": {
+                "key": "F1_112385_1_10558415",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558382",
+              "label": "22. Firewalls?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112385_1_10558381",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558385",
+              "label": "23. Firedoors?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112385_1_10558384",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558388",
+              "label": "24. Enclosed stairwells?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112385_1_10558387",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558391",
+              "label": "25. Exterior stairways?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112385_1_10558390",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112385_1_10558419",
+              "label": "26. Are stairways combustible or non-combustible?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Combustible",
+                "Non-combustible",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112385_1_10558420",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112386",
+          "copy": 1,
+          "title": "Building Updates (as needed, Duplicate, Label & Complete for EACH bldg)DUPLICATE Description:",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F1_112386_1_10558448",
+              "label": "1. Roof",
+              "help": "",
+              "type": "text",
+              "value": "2026",
+              "comment": {
+                "key": "F1_112386_1_10558445",
+                "value": "The roof was observed to be in good condition. Half of the roof was renovated in 2021, and the other half was renovated in 2026. It is covered with rolled asphalt and sealed with paint."
+              }
+            },
+            {
+              "key": "F1_112386_1_10558443",
+              "label": "2. Electrical",
+              "help": "",
+              "type": "text",
+              "value": "2005",
+              "comment": {
+                "key": "F1_112386_1_10558441",
+                "value": "Electrical panel upgrade "
+              }
+            },
+            {
+              "key": "F1_112386_1_10558444",
+              "label": "3. Plumbing",
+              "help": "",
+              "type": "text",
+              "value": "2005",
+              "comment": {
+                "key": "F1_112386_1_10558446",
+                "value": "Plumbing upgrade"
+              }
+            },
+            {
+              "key": "F1_112386_1_10558439",
+              "label": "4. Heating",
+              "help": "",
+              "type": "text",
+              "value": "2005",
+              "comment": {
+                "key": "F1_112386_1_10558438",
+                "value": "New boilers installed"
+              }
+            },
+            {
+              "key": "F1_112386_1_10558447",
+              "label": "5. A/C system",
+              "help": "",
+              "type": "text",
+              "value": "Various",
+              "comment": {
+                "key": "F1_112386_1_10558440",
+                "value": "As needed"
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112387",
+          "copy": 1,
+          "title": "Property Hazards DUPLICATE Description:",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112387_1_10708047",
+              "label": "1. Risk secured from unauthorized access (including mercantiles during non-business hours)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392856",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707992",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707988",
+              "label": "2. Risk with key/buzzer/intercom entry system?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112387_1_10707989",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707998",
+              "label": "3. Does risk have a central station burglar alarm system?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112387_1_10707985",
+                "value": "Tenant discretion"
+              }
+            },
+            {
+              "key": "F1_112387_1_10707996",
+              "label": "4. Name of the central station monitoring company?",
+              "help": "",
+              "type": "text",
+              "value": "N/a",
+              "comment": {
+                "key": "F1_112387_1_10707995",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707970",
+              "label": "5. Monitored surveillance cameras (if Yes, covering what areas & how monitored)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112387_1_10707971",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707969",
+              "label": "6. Roll down metal security gating in place & padlocked during non-business hours?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112387_1_10707956",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708045",
+              "label": "7. If building is vacant, are grade level window and door openings secured?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "rec": {
+                "key": "F13_112387_1_11392857",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707962",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708043",
+              "label": "8. If building is vacant, are above-grade window openings that are easily accessible from the roof and/or fire escape(s) boarded or blocked-over?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "rec": {
+                "key": "F13_112387_1_11392858",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707953",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707997",
+              "label": "9. Any physical barriers, for example, fencing, limiting unauthorized access, (if Yes, describe type e.g. \"six feet high chain link perimeter fencing, with padlocked gating\")?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "comment": {
+                "key": "F1_112387_1_10707947",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708035",
+              "label": "10. Other than for apartment buildings & mercantiles (open to the general public), what visitor controls are in place (check all that apply)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Visitor sign-in",
+                "Visitor ID check",
+                "Visitor announcement",
+                "Other (describe)",
+                "Uncontrolled access",
+                "N/A"
+              ],
+              "value": "N/A",
+              "rec": {
+                "key": "F13_112387_1_11392859",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707948",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707952",
+              "label": "11. Uniformed security guards (if Yes, indicate if armed & hours)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112387_1_10707950",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10741431",
+              "label": "12. If flat, was roof accessed (if Yes, provide a PHOTO confirming same; if No, EXPLAIN WHY no roof access)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112387_1_10741430",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708039",
+              "label": "13. Roof free of any evidenced damage, deterioration or leaks (if No, indicate how determined and provide supportive photos)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D (no roof access &/or not otherwise determinable))",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392872",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707967",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708029",
+              "label": "14. Parapets, chimneys, gutters & downspouts all in good condition?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D (no roof access &/or not otherwise determinable)",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392871",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707983",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708027",
+              "label": "15. Type of roof door/hatch locking mechanism (& provide a PHOTO)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Panic hardware with intrusion alarm",
+                "Panic hardware",
+                "Slide bolt",
+                "Hook & eye",
+                "Other (describe)",
+                "None",
+                "N/A"
+              ],
+              "value": "Panic hardware with intrusion alarm",
+              "rec": {
+                "key": "F13_112387_1_11392866",
+                "trigger": [
+                  "None"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707987",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707982",
+              "label": "16. If not directly connected to the roof door locking mechanism, does the bulkhead stairway area have a motion detector-activated audible intrusion alarm ?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112387_1_10707981",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708033",
+              "label": "17. If a flat roof, is it free of evidenced casual, unauthorized tenant activity (also check Yes, if the rooftop has been designed for tenant use, as is the case, for example, with some penthouse dwellings)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D (no roof access)",
+                "N/A"
+              ],
+              "value": "No",
+              "rec": {
+                "key": "F13_112387_1_11392870",
+                "trigger": [
+                  "No"
+                ],
+                "text": "Discontinue all casual, unauthorized tenant rooftop activity and remove all loose items from roof top."
+              },
+              "comment": {
+                "key": "F1_112387_1_10707986",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707973",
+              "label": "18. Any lease of rooftop by 3rd parties as telecommunication equipment stations (if YES, describe & provide a PHOTO)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D (no roof access)",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112387_1_10707963",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707984",
+              "label": "19. Any heavy rooftop equipment e.g. large A/C units (if Yes, describe)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D (no roof access)",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112387_1_10707965",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708041",
+              "label": "20. Risk free of propane grills and other BBQ units on rooftops, balconys, porches or within 10 feet of the building?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "U/D (no roof access)",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392868",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707976",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708037",
+              "label": "21. Housekeeping satisfactory and with premises free of accumulated refuse & debris?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "rec": {
+                "key": "F13_112387_1_11392869",
+                "trigger": [
+                  "No"
+                ],
+                "text": "Improve housekeeping, removing all accumulated storage from utility areas."
+              },
+              "comment": {
+                "key": "F1_112387_1_10707991",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708015",
+              "label": "22. If EIFS stucco clad, is the application free of any indicated/observed deficiencies?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392861",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707968",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708017",
+              "label": "23. Ceilings in good condition, free of water stains and other damage?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392862",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707957",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708019",
+              "label": "24. Floors in good condition?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392863",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707958",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708003",
+              "label": "25. Does the wiring & electrical system, including junction & panel boxes, etc., all appear safely arranged and free of observed deficiencies (if No, FULLY DESCRIBE & LOCATE)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "rec": {
+                "key": "F13_112387_1_11392860",
+                "trigger": [
+                  "No"
+                ],
+                "text": "Contract a licensed and insured electrician to fill gaps in main breaker service and replace any missing electrical panel covers in basement."
+              },
+              "comment": {
+                "key": "F1_112387_1_10707959",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708023",
+              "label": "26. If built during during the years 1965-1975 and of residential construction (OTHERWISE, CHECK \"N/A\"), is risk free of any observed or reported branch aluminum (\"AL\") wiring (BE SURE TO ASK, even if none is observed)?",
+              "help": "Instructions Typically used for house wiring only, especially in the mid-1960s. Identified by word \"aluminum\" or \"AL\" printed on the cable jacket. Look for same in areas of exposed wiring e.g. in panel boxes or behind outlet covers.",
+              "type": "choice",
+              "options": [
+                "Yes- no observed branch AL wiring  (describe how determined)",
+                "Yes- no verbally reported branch AL wiring (indicate by whom & position)",
+                "No, risk does have branch AL wiring (FULLY describe, incl. how determined & where)",
+                "U/D",
+                "N/A"
+              ],
+              "value": "N/A",
+              "rec": {
+                "key": "F13_112387_1_11392865",
+                "trigger": [
+                  "~~~U/D"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707960",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708031",
+              "label": "27. If \"No\" to the above (OTHERWISE, CHECK \"N/A\"), has the branch aluminum wiring been upgraded, either by pigtailing, using special COALUM connectors or by replacing the original switches and receptacles with approved \"CO/ALR\" switches and receptacles (even if none is observed BE SURE TO ASK if the branch aluminum wiring has been pigtailed or otherwise updated)?",
+              "help": "Instructions Pigtailing eliminates the aluminum wire connection to switches and outlets by splicing in (using an approved special connector named \"COALUM\") a short length of copper wire (with the resulting splice being a more reliable conductor).",
+              "type": "choice",
+              "options": [
+                "Yes-observed to be upgraded (detail, incl. how & where & provide photo)",
+                "Yes-upgraded, with documentation provided",
+                "Yes-verbally, w/o documentation",
+                "No-not upgraded",
+                "N/A"
+              ],
+              "value": "N/A",
+              "rec": {
+                "key": "F13_112387_1_11392867",
+                "trigger": [
+                  "~~~Yes-verbally, w/o documentation",
+                  "~~~No-not upgraded",
+                  ""
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707943",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708021",
+              "label": "28. Is risk free of Federal Pacific Electric (FPE) Stab-Lok type electrical panels & circuit breakers- MOVE CURSOR OVER TEXT FOR DETAILS (if No, provide a CLOSE-UP PHOTO SHOWING \"STAB-LOK\" ON THE LABEL?",
+              "help": "Instructions Federal Pacific Electric (FPE) Stab-Lok type electric panels have a history of breakers not tripping when they should. Due to design or other problems, two-pole FPE Stab-Lok circuit breakers (the type that would feed clothes dryers, for example) do not always work reliably, and, in some studies, they have been noted to fail 30% or more of the time. Identifying an FPE Stab-Lok panel is easy. Simply look for Federal Pacific & the Stab-Lok logo either on the inside or outside of the panel door.",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392864",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707922",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10830308",
+              "label": "29. Is risk free of GTE Sylvania Zinsco circuit breakers- MOVE CURSOR OVER TEXT FOR DETAILS (if No, provide a CLOSE-UP PHOTO SHOWING \"Sylvania Zinsco\" label)?",
+              "help": "Instructions GTE-Sylvania Zinsco breakers have a history of breakers not tripping when they should. The problem is that the circuit breakers inside many Zinsco panels melt to the main bus bar, rendering the breaker unable to trip, even when theres a short or overloaded circuit, with the net result, given a surge of power, wires melt and a fire ensues. Identifying a GTE-Sylvania Zinsco breaker is easy. Simply look for the \"GTE-Sylvania\" &/or \"Zinsco\" label anywhere on the panel. Additionally, Zinsco breakers have color-coded toggle switches (15 amps blue; 20 amp red or orange; 30 amp green; 40 amp grey).",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392855",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10830309",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708013",
+              "label": "30. Is risk free of extension cord overuse?",
+              "help": "Instructions Extension cords should never be permanently coonected to large appliances e.g. a refrigerator or an air conditioning unit.",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112387_1_11392850",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10708000",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708011",
+              "label": "31. Does the plumbing, including all observed piping, appear adequate and satisfactorily maintained, while free of leaks, seepage, rust, damage or other deficiencies (if No, FULLY describe & locate)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "rec": {
+                "key": "F13_112387_1_11392851",
+                "trigger": [
+                  "No"
+                ],
+                "text": "Have a licensed & insured plumber, inspect basement water heater and make any repairs needed to correct flooding in basement."
+              },
+              "comment": {
+                "key": "F1_112387_1_10707924",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707926",
+              "label": "32. If building is vacant, what utilities, if any, remain on (check all that apply)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Electric",
+                "Heat",
+                "Water",
+                "None",
+                "N/A"
+              ],
+              "value": "N/A",
+              "comment": {
+                "key": "F1_112387_1_10707927",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708025",
+              "label": "33. If vacant & unheated (or only partially heated), have all unheated areas with piping been drained of water so as to prevent freezing/bursting of piping during cold weather months (If No, has an approved antifreeze mix been added to the water)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "rec": {
+                "key": "F13_112387_1_11392849",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707928",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708005",
+              "label": "34. Is risk free of evidenced mold or conditions contributing to same (if No, detail, including likely source)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "rec": {
+                "key": "F13_112387_1_11392854",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707925",
+                "value": "There is a leaking water heater in the basement with a buildup of water. No evidence of mold at this time."
+              }
+            },
+            {
+              "key": "F2_112387_1_10708009",
+              "label": "35. If risk has a laundry room, are dryers properly vented and free of observed lint build-up?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "rec": {
+                "key": "F13_112387_1_11392852",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707929",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112387_1_10707933",
+              "label": "36. How often are dryers checked for lint build-up and who checks?",
+              "help": "",
+              "type": "text",
+              "value": "N/a",
+              "comment": {
+                "key": "F1_112387_1_10707930",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10707937",
+              "label": "37. Does risk have a compactor?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112387_1_10707918",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112387_1_10708007",
+              "label": "38. If Yes, are compactor chute doors self-closing (and if compactor is not in use, are all chute doors sealed)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "rec": {
+                "key": "F13_112387_1_11392853",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112387_1_10707932",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112389",
+          "copy": 1,
+          "title": "Comm'l Cooking Equipment (Duplicate, Label & Complete for EACH) Comm'l Cooking Equipment (Duplicate, Label & Complete for EACH) DUPLICATE",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112389_1_10558747",
+              "label": "Comm'l Cooking Equipment (Duplicate, Label & Complete for EACH) Comm'l Cooking Equipment (Duplicate, Label & Complete for EACH) DUPLICATE",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Ranges",
+                "Griddle",
+                "Deepfat Fryers",
+                "Charbroiler ",
+                "Salamander (wall-mounted broiler)",
+                "Floor Pot Boiler (Candle stick)",
+                "Woks",
+                "Regular Ovens",
+                "Convection Ovens",
+                "Other (specify below)"
+              ],
+              "value": "Ranges|Deepfat Fryers|Regular Ovens|Convection Ovens"
+            },
+            {
+              "key": "F1_112389_1_10558746",
+              "label": "2. Specify \"Other\" appliances :",
+              "help": "",
+              "type": "text",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "sectionId": "112397",
+          "copy": 1,
+          "title": "Comm'l Cooking Exposures (Duplicate, Label & Complete for EACH) Comm'l Cooking Exposures (Duplicate, Label & Complete for EACH) DUPLICATE",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112397_1_10708093",
+              "label": "1. Approved exhaust system provided for all cooking equipment which emit smoke or grease-laden vapors (PROVIDE PHOTO OF COOKING LINE)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392877",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708048",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708089",
+              "label": "2. Are removable listed baffle-type filters provided?",
+              "help": "Instructions Mesh filters do not meet code and must be replaced with baffle-type removable filters. Additionally, any missing sections of filters must be replaced.",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392884",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708049",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708091",
+              "label": "3. Is the hood system on a quarterly cleaning contract?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392883",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708050",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112397_1_10708053",
+              "label": "4. Name of cleaning contractor?",
+              "help": "",
+              "type": "text",
+              "value": "Hood Cleaner Corp.",
+              "comment": {
+                "key": "F1_112397_1_10708052",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112397_1_10708056",
+              "label": "5. Date (mo-day-yr) of last and next scheduled cleaning (PROVIDE PHOTO OF THE CLEANING STICKER)?",
+              "help": "",
+              "type": "text",
+              "value": "January 2026",
+              "comment": {
+                "key": "F1_112397_1_10708055",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708095",
+              "label": "6. Do filters & appliance surfaces have weekly in-house cleaning?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392876",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708057",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708087",
+              "label": "7. Does risk have a UL-300-compliant, wet chemical automatic fire suppression system?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392885",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708059",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708107",
+              "label": "8. Is there at least one AES nozzle directed at EACH grease-producing appliance?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392878",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708064",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708097",
+              "label": "9. Is the auto extinguishing system on a semi-annual service contract?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392875",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708080",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112397_1_10708075",
+              "label": "10. Name of AES servicing contractor?",
+              "help": "",
+              "type": "text",
+              "value": "AES Service Corp.",
+              "comment": {
+                "key": "F1_112397_1_10708076",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112397_1_10708077",
+              "label": "11. Date (mo-yr, as tagged) of last extinguishing system service (PROVIDE PHOTO OF THE SERVICE TAG)?",
+              "help": "",
+              "type": "text",
+              "value": "October 2025",
+              "comment": {
+                "key": "F1_112397_1_10708078",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708099",
+              "label": "12. Is there a remote manual activation switch easily identified & readily accessible for the auto extinguishing system?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392882",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708073",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708101",
+              "label": "13. Is there an automatic fuel cut-off device connected to the extinguishing system?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392881",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708071",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708085",
+              "label": "14. Are all fat fryers spaced at least 16\" from flames of adjacent cooking equipment or, lacking same, with a permanently installed stainless steel baffle (min. 8\" in height) between the fryer(s) and an open flame source?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392886",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708069",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708103",
+              "label": "15. Are all fryers equipped with a thermostat & a separate automatic high limit temp. control to shut-off fuel source?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392880",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708067",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112397_1_10708105",
+              "label": "16. Does kitchen have a currently tagged K class fire extinguisher?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112397_1_11392879",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112397_1_10708061",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112398",
+          "copy": 1,
+          "title": "Private Protection (duplicate & label as needed)DUPLICATE Description:",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112398_1_10708128",
+              "label": "1. Sprinkler protection (if Yes, complete the Sprinkler section below)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112398_1_10708129",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112398_1_10708109",
+              "label": "2. Standpipe system (if Yes, type & include photo)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112398_1_10708108",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112398_1_10708112",
+              "label": "3. Does risk have pulldown fire alarm system, with pull stations by all exit doors?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112398_1_10708111",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112398_1_10708135",
+              "label": "4. Are fire extinguishers of correct type and # & properly mounted, where prescribed (if No, describe)?",
+              "help": "Instructions They should typically be 2A10BC dry chemical fire extinguishers in sufficient distribution to meet the basic maximum travel distance of 75 feet or less. The extinguishers should have placement where they are readily accessible, not subject to physical damage, and positioned along the course of normal egress. The distribution to be provided should be one extinguisher per floor, assuming that such numbers meet the aforementioned travel distance and placement requirements. Additional units should be located in boiler & elevator motor rooms, and with at least one unit in each commercial occupancy.",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "rec": {
+                "key": "F13_112398_1_11392887",
+                "trigger": [
+                  "No"
+                ],
+                "text": "Have a company certified to sell & service portable fire extinguishers provide fire extinguishers of correct type and size wall-mounted where prescribed so as to be in compliance with NFPA 10, the Standard For Portable Fire Extinguishers."
+              },
+              "comment": {
+                "key": "F1_112398_1_10708113",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112398_1_10708137",
+              "label": "5. Do all fire extinguishers have a durable inspection tag affixed and showing a dated inspection within the past twelve months by a company certified to service portable fire extinguishers?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "rec": {
+                "key": "F13_112398_1_11392888",
+                "trigger": [
+                  "No"
+                ],
+                "text": "Have a company certified to service/inspect portable fire extinguishers affix a current inspection tag on all premises fire extinguishers lacking same and inspect/tag extinguishers on an annual basis thereafter."
+              },
+              "comment": {
+                "key": "F1_112398_1_10708119",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112398_1_10708133",
+              "label": "6. Smoke detectors (check type)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Hard-wired with battery back-up",
+                "Hard-wired",
+                "Battery",
+                "None",
+                "N/A"
+              ],
+              "value": "Hard-wired with battery back-up",
+              "rec": {
+                "key": "F13_112398_1_11392889",
+                "trigger": [
+                  "None"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112398_1_10708114",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112398_1_10708131",
+              "label": "7. Does risk have a documented schedule for the replacement of smoke detector batteries?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112398_1_11392890",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112398_1_10708124",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112398_1_10708125",
+              "label": "8. Does risk have a central station fire alarm system?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112398_1_10708126",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112399",
+          "copy": 1,
+          "title": "Sprinkler Protection (omit if no sprinkler system, duplicate as needed) Sprinkler Protection (omit if no sprinkler system, duplicate as needed) DUPLICATE",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112399_1_10708145",
+              "label": "1. Is risk premises 100% sprinklered (if only partially sprinklered, indicate which areas are sprinkler-protected.) IN ALL CASES, PROVIDE CONFIRMATORY FLOOR-TO-CEILING PHOTOS SHOWING AT LEAST ONE SPRINKLER HEAD IN EACH OF THE COVERAGE AREAS E.G. FOR AN APARTMENT BUILDING, A COMMON HALLWAY CORRIDOR, AN APARTMENT UNIT & A LAUNDRY ROOM.",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "100% sprinklered",
+                "Partially sprinklered (indicate where)",
+                "Not sprinkler-protected"
+              ],
+              "value": "100% sprinklered",
+              "comment": {
+                "key": "F1_112399_1_10708144",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112399_1_10708142",
+              "label": "2. If sprinklered, type of system (e.g. Wet, Dry, Deluge, Hi-rack, ESFR)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Wet",
+                "Dry",
+                "Other (describe)",
+                "N/A"
+              ],
+              "value": "Wet",
+              "comment": {
+                "key": "F1_112399_1_10708143",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112399_1_10708161",
+              "label": "3. If vacant, is the water still on, so as to provide continuous water supply to the sprinkler piping/system?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "rec": {
+                "key": "F13_112399_1_11392895",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112399_1_10708155",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112399_1_10708163",
+              "label": "4. Are all wet sprinkler-protected areas heated to a minimum of 55 degrees, so as to prevent bursting of piping during cold weather months?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112399_1_11392894",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112399_1_10708140",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112399_1_10708165",
+              "label": "5. Does sprinkler system appear in good working order?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112399_1_11392893",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112399_1_10708148",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112399_1_10708159",
+              "label": "6. Are all sprinkler heads over 50 years old replaced or sample tested (at 10 year intervals)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112399_1_11392896",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112399_1_10708150",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112399_1_10708167",
+              "label": "7. Is sprinkler main valve locked in open position (PROVIDE PHOTO) and with extra sprinkler heads & wrench by same?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112399_1_11392892",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112399_1_10708152",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112399_1_10708169",
+              "label": "8. Sprinkler system with contracted inspection within last twelve months?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112399_1_11392891",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112399_1_10708153",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112400",
+          "copy": 1,
+          "title": "Public Protection Public Protection",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F1_112400_1_10558830",
+              "label": "Public Protection Public Protection",
+              "help": "",
+              "type": "text",
+              "value": "FDNY"
+            },
+            {
+              "key": "F1_112400_1_10558827",
+              "label": "Public Protection Public Protection",
+              "help": "",
+              "type": "text",
+              "value": "Paid"
+            },
+            {
+              "key": "F1_112400_1_10558828",
+              "label": "Public Protection Public Protection",
+              "help": "",
+              "type": "text",
+              "value": "4"
+            },
+            {
+              "key": "F1_112400_1_10558829",
+              "label": "Public Protection Public Protection",
+              "help": "",
+              "type": "text",
+              "value": "0.5"
+            },
+            {
+              "key": "F1_112400_1_10558831",
+              "label": "Public Protection Public Protection",
+              "help": "",
+              "type": "text",
+              "value": "Hydrants"
+            },
+            {
+              "key": "F1_112400_1_10558826",
+              "label": "Public Protection Public Protection",
+              "help": "",
+              "type": "text",
+              "value": "Within 50 ft."
+            }
+          ]
+        },
+        {
+          "sectionId": "112401",
+          "copy": 1,
+          "title": "Crime (omit unless included in coverages) Crime (omit unless included in coverages)",
+          "omitted": true,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F1_112401_1_10708236",
+              "label": "1. Fully describe the insured's operation(s):",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708261",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708289",
+              "label": "2. Describe the products and services of the predominant business or activity:",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708291",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708259",
+              "label": "3. Is the insured a:",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Corporation",
+                "Proprietorship",
+                "Partnership",
+                "Other (describe)"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708211",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708171",
+              "label": "4. If a corporation, does any employee own more than 50% of the stock (IF YES, PROVIDE NAME AND PERCENTAGE)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708213",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708214",
+              "label": "5. # of employees?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708216",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708288",
+              "label": "6. What hiring procedures are in place (check all that apply)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Reference checks",
+                "Prior employment verification",
+                "Criminal background checks",
+                "Drug testing",
+                "Other (detail)",
+                "None"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708296",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708285",
+              "label": "7. # of employees who handle, have custody or maintain records of money, securities or other property?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708287",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708282",
+              "label": "8. Average # of employees on duty at any given time?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708284",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708218",
+              "label": "9. Any use of temporary or sub-contracted help e.g. bookkeeping or security guard serviceS (IF YES, DESCRIBE AND ARE THEY BONDED)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708217",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708221",
+              "label": "10. # of additional locations?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708219",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708224",
+              "label": "11. Are there any locations in foreign countries (IF YES, PROVIDE DETAILS)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708222",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708292",
+              "label": "12. How long operating?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708225",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708226",
+              "label": "13. Hours/days of operation?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708228",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708281",
+              "label": "14. Annual gross sales/receipts?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708232",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708172",
+              "label": "15. Average/maximum value of inventory/stock?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708231",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708256",
+              "label": "16. Any crime-related claims or losses in the past five years (IF YES, FULLY DESCRIBE)?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708257",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708182",
+              "label": "17. What is the maximum amount of money on premises at any given time?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708183",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708192",
+              "label": "18. What is the maximum amount of money kept overnight?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708193",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708312",
+              "label": "19. Are in-coming checks immediately stamped \"For Deposit Only\" to the credit of the insured?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "rec": {
+                "key": "F13_112401_1_11392897",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112401_1_10708185",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708298",
+              "label": "20. Are all deposits made in the name of the insured?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "rec": {
+                "key": "F13_112401_1_11392904",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112401_1_10708186",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708247",
+              "label": "21. How often are bank deposits made and who makes them?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708188",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708310",
+              "label": "22. Does the time of day and route taken to make deposits vary?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "rec": {
+                "key": "F13_112401_1_11392898",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112401_1_10708190",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708271",
+              "label": "23. Is a night depository used (IF YES, HOW OFTEN)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708273",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708308",
+              "label": "24. Are bank deposits reconciled monthly by someone NOT authorized to deposit or withdraw therefrom?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "rec": {
+                "key": "F13_112401_1_11392899",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112401_1_10708275",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708174",
+              "label": "25. Is countersignature of checks required?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708194",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708277",
+              "label": "26. What is the maximum value of securities in banks or safe deposit boxes?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708276",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708306",
+              "label": "27. Are securities subject to joint control by two or more responsible employees?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "rec": {
+                "key": "F13_112401_1_11392900",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112401_1_10708293",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708304",
+              "label": "28. Is at least one continuous week of vacation taken annually by all employees?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "rec": {
+                "key": "F13_112401_1_11392901",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112401_1_10708294",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708181",
+              "label": "29. What internal audit procedures are in place?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708180",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708302",
+              "label": "30. Is an external CPA audit performed at least annually and made in accordance with generally accepted auditing standards and so certified?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "rec": {
+                "key": "F13_112401_1_11392902",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112401_1_10708179",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708300",
+              "label": "31. Is an inventory of merchandise and all equipment taken at least annually?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "rec": {
+                "key": "F13_112401_1_11392903",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112401_1_10708175",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708202",
+              "label": "32. Do employees ever take equipment (e.g. laptops) off-premises for home or other use (IF YES, DESCRIBE, INCLUDING DOCUMENTATION PROCEDURES IN PLACE)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708203",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112401_1_10708176",
+              "label": "33. Describe messenger usage/duties, if any?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708262",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708170",
+              "label": "34. Do messengers use private transportation?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708263",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708251",
+              "label": "35. Do messengers use safety satchels?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708248",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708265",
+              "label": "36. Are messengers accompanied by guards?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708252",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708267",
+              "label": "37. Does premises have a safe/vault (IF YES, PROVIDE DETAILED DESCRIPTION, INCLUDING TYPE, MANUFACTURER, CLASS, LABELS, DOOR TYPE & THICKNESS AND TYPE OF LOCKS)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708266",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708269",
+              "label": "38. Does premises have a security alarm system (IF YES, GRADE AND EXTENT OF PROTECTION)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708268",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708241",
+              "label": "39. Does the security alarm system cover both premises and safes/vault, if any?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708242",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708244",
+              "label": "40. Does the security alarm system include hold-up buttons?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708243",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708237",
+              "label": "41. Is the security alarm system on central station (IF YES, NAME OF MONITORING COMPANY)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708246",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708200",
+              "label": "42. Does premises have a surveillance system, with back-up tapes (IF YES, COVERING WHAT AREAS)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708201",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708197",
+              "label": "43. Does the insured employ security guards and/or watchpersons (IF YES, DESCRIBE, INCLUDING NUMBER, AREAS COVERED, & WHETHER ON CLOCK WATCH)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708196",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708209",
+              "label": "44. Is risk area subject to routine patrols by police/law enforcement agencies?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708210",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112401_1_10708206",
+              "label": "45. Is risk located in a stable, low crime area (IF NO, DESCRIBE)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112401_1_10708207",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112402",
+          "copy": 1,
+          "title": "ExposuresDescription:",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F1_112402_1_10708321",
+              "label": "1. Distance (in feet) between risk and non-risk exposure buildings within 100 feet of risk?",
+              "help": "",
+              "type": "text",
+              "value": "Adjacent to nearby buildings",
+              "comment": {
+                "key": "F1_112402_1_10708319",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708317",
+              "label": "2. If a multi-building risk (e.g. an apartment complex), are buildings minimally 50' from each other (if No, what is the actual distance between buildings)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "N/A",
+              "comment": {
+                "key": "F1_112402_1_10708318",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708314",
+              "label": "3. Is risk free of hazardous occupancies within 100' of risk (if No, FULLY describe)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112402_1_10708315",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708324",
+              "label": "4. Are adjacent properties undergoing any construction/excavation/demolition activities (if Yes, describe and PROVIDE A PHOTO)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112402_1_10708322",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708347",
+              "label": "5. Is risk free of any overhanging tree limbs and/or large dead or dying trees within 100' (if No, describe)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "rec": {
+                "key": "F13_112402_1_11392905",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112402_1_10708346",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708327",
+              "label": "6. Any history of heavy snow build-up on roof (if Yes, detail, including frequency and whether collapse ever ensued)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112402_1_10708328",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112402_1_10708330",
+              "label": "7. Distance (in feet) to nearest brush and/or woods exposure?",
+              "help": "",
+              "type": "text",
+              "value": "N/a",
+              "comment": {
+                "key": "F1_112402_1_10708329",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708334",
+              "label": "8. Any history of brush and/or wild fires in the general area (if Yes, detail, including frequency, proximity and whether evacuation was ever ordered)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112402_1_10708333",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708344",
+              "label": "9. Is risk within 3,000 feet of bodies of water, including oceans, Intercoastal waterways, rivers, and creeks that have a history of flooding (if Yes, FULLY describe, including the actual distance to the water source, whether risk is located in a designated flood plain, and if the area has a history of flooding and/or storm surge)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112402_1_10708332",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708325",
+              "label": "10. Any history of landslides or sinkholes in the general area (if Yes, detail, including frequency, proximity and whether evacuation was ever ordered)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "No",
+              "comment": {
+                "key": "F1_112402_1_10708326",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708337",
+              "label": "11. Type of neighborhood (check all that apply)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Residential",
+                "Commercial",
+                "Industrial",
+                "Urban",
+                "Suburban",
+                "Rural"
+              ],
+              "value": "Residential|Commercial|Urban",
+              "comment": {
+                "key": "F1_112402_1_10708345",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112402_1_10708343",
+              "label": "12. Is neighborhood stable and free of evidenced vandalism, mischief activity, gang activity, vacant buildings, etc. (if No, FULLY explain)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "Yes",
+              "comment": {
+                "key": "F1_112402_1_10708338",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112403",
+          "copy": 1,
+          "title": "Miscellaneous Miscellaneous",
+          "omitted": true,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112403_1_10559001",
+              "label": "1. Does EDP equipment, if any, have surge protection?",
+              "help": "Instructions Electronic Data Processing equipment. e.g. computers, fax machines, etc.",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112403_1_10559002",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112403_1_10559007",
+              "label": "2. If coverage includes contents and/or BPP, do actual values approximate policy limits?",
+              "help": "Instructions Business & Personal Property",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112403_1_10559006",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112403_1_10559004",
+              "label": "3. If coverage includes I & B, do actual cost of improvements approximate policy limits ?",
+              "help": "Instructions A property coverage specific to permanent improvements or betterments to the property (e.g. adding custom built-ins or decorative brick interior walls) made by and at the expense of the insured, who is a tenant in the building. Lacking said coverage, the insured, who doesn’t own the property, would not be compensated for the cost of such improvements, in the event of damage (to the improvements) as a result of a fire, for example.",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112403_1_10559003",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112403_1_10559010",
+              "label": "4. Estimated gross receipts?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112403_1_10559009",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112403_1_10559013",
+              "label": "5. Are free-standing signs, if any, stable and in good repair?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "rec": {
+                "key": "F13_112403_1_11392906",
+                "trigger": [
+                  "No"
+                ],
+                "text": ""
+              },
+              "comment": {
+                "key": "F1_112403_1_10559012",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112403_1_10559016",
+              "label": "6. Hours of operation?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112403_1_10559015",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112403_1_10559019",
+              "label": "7. If bar/restaurant/banquet hall, indicate posted capacity & type of clientele catered?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112403_1_10559018",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112403_1_10559022",
+              "label": "8. Any live entertainment (if Yes, describe)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112403_1_10559021",
+                "value": ""
+              }
+            },
+            {
+              "key": "F1_112403_1_10559025",
+              "label": "9. If bar/night club, # of bouncers?",
+              "help": "",
+              "type": "text",
+              "value": "",
+              "comment": {
+                "key": "F1_112403_1_10559024",
+                "value": ""
+              }
+            },
+            {
+              "key": "F2_112403_1_10559028",
+              "label": "10. Smoking prohibited (if No, indicate method for disposal of cigarette butts)?",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Yes",
+                "No",
+                "N/A"
+              ],
+              "value": "",
+              "comment": {
+                "key": "F1_112403_1_10559027",
+                "value": ""
+              }
+            }
+          ]
+        },
+        {
+          "sectionId": "112381",
+          "copy": 1,
+          "title": "Opinion of Risk",
+          "omitted": false,
+          "internal": false,
+          "fields": [
+            {
+              "key": "F2_112381_1_10559031",
+              "label": "Opinion of Risk",
+              "help": "",
+              "type": "choice",
+              "options": [
+                "Excellent",
+                "Good",
+                "Good, but with Property or Liability recommendations noted",
+                "Poor"
+              ],
+              "value": "Good, but with Property or Liability recommendations noted"
+            }
+          ]
+        },
+        {
+          "sectionId": "112382",
+          "copy": 1,
+          "title": "Disclaimer",
+          "omitted": false,
+          "internal": false,
+          "fields": []
+        }
+      ]
+    },
+    {
+      "formId": 2001,
+      "name": "Recommendations",
+      "version": 1,
+      "state": "Admin Complete",
+      "qcRelevant": true,
+      "sections": [
+        {
+          "sectionId": "1003",
+          "copy": 1,
+          "title": "General Data Heading",
+          "omitted": false,
+          "internal": false,
+          "fields": []
+        },
+        {
+          "sectionId": "1056",
+          "copy": 1,
+          "title": "Inspection Recommendations Inspection Recommendations",
+          "omitted": false,
+          "internal": false,
+          "fields": []
+        }
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "key": "F14_1056_1_10321503",
+      "source": "freeform",
+      "text": "Remove all tenant items sitting directly on roof surface. Have a qualified contractor install protective coverings designed for occupancy on balconies before tenant occupancy resumes.",
+      "imageOptionValue": "18441173t.JPG",
+      "imageOptions": [
+        "18441220t.JPG",
+        "18441219t.JPG",
+        "18441218t.JPG",
+        "18441215t.JPG",
+        "18441214t.JPG",
+        "18441213t.JPG",
+        "18441212t.JPG",
+        "18441211t.JPG",
+        "18441210t.JPG",
+        "18441209t.JPG",
+        "18441208t.JPG",
+        "18441207t.JPG",
+        "18441206t.JPG",
+        "18441205t.JPG",
+        "18441204t.JPG",
+        "18441203t.JPG",
+        "18441202t.JPG",
+        "18441201t.JPG",
+        "18441200t.JPG",
+        "18441199t.JPG",
+        "18441198t.JPG",
+        "18441197t.JPG",
+        "18441196t.JPG",
+        "18441195t.JPG",
+        "18441194t.JPG",
+        "18441193t.JPG",
+        "18441192t.JPG",
+        "18441191t.JPG",
+        "18441190t.JPG",
+        "18441189t.JPG",
+        "18441188t.JPG",
+        "18441187t.JPG",
+        "18441186t.JPG",
+        "18441185t.JPG",
+        "18441184t.JPG",
+        "18441183t.JPG",
+        "18441182t.JPG",
+        "18441217t.JPG",
+        "18441216t.JPG",
+        "18441181t.JPG",
+        "18441180t.JPG",
+        "18441179t.JPG",
+        "18441178t.JPG",
+        "18441177t.JPG",
+        "18441176t.JPG",
+        "18441175t.JPG",
+        "18441174t.JPG",
+        "18441173t.JPG",
+        "18441172t.JPG"
+      ]
+    },
+    {
+      "key": "F13_1056_1_11392851",
+      "source": "question",
+      "text": "Have a licensed & insured plumber, inspect basement water heater and make any repairs needed to correct flooding in basement.",
+      "imageOptionValue": "18441216t.JPG",
+      "imageOptions": [
+        "18441220t.JPG",
+        "18441219t.JPG",
+        "18441218t.JPG",
+        "18441215t.JPG",
+        "18441214t.JPG",
+        "18441213t.JPG",
+        "18441212t.JPG",
+        "18441211t.JPG",
+        "18441210t.JPG",
+        "18441209t.JPG",
+        "18441208t.JPG",
+        "18441207t.JPG",
+        "18441206t.JPG",
+        "18441205t.JPG",
+        "18441204t.JPG",
+        "18441203t.JPG",
+        "18441202t.JPG",
+        "18441201t.JPG",
+        "18441200t.JPG",
+        "18441199t.JPG",
+        "18441198t.JPG",
+        "18441197t.JPG",
+        "18441196t.JPG",
+        "18441195t.JPG",
+        "18441194t.JPG",
+        "18441193t.JPG",
+        "18441192t.JPG",
+        "18441191t.JPG",
+        "18441190t.JPG",
+        "18441189t.JPG",
+        "18441188t.JPG",
+        "18441187t.JPG",
+        "18441186t.JPG",
+        "18441185t.JPG",
+        "18441184t.JPG",
+        "18441183t.JPG",
+        "18441182t.JPG",
+        "18441217t.JPG",
+        "18441216t.JPG",
+        "18441181t.JPG",
+        "18441180t.JPG",
+        "18441179t.JPG",
+        "18441178t.JPG",
+        "18441177t.JPG",
+        "18441176t.JPG",
+        "18441175t.JPG",
+        "18441174t.JPG",
+        "18441173t.JPG",
+        "18441172t.JPG"
+      ]
+    },
+    {
+      "key": "F13_1056_1_11392860",
+      "source": "question",
+      "text": "Contract a licensed and insured electrician to fill gaps in main breaker service and replace any missing electrical panel covers in basement.",
+      "imageOptionValue": "18441193t.JPG",
+      "imageOptions": [
+        "18441220t.JPG",
+        "18441219t.JPG",
+        "18441218t.JPG",
+        "18441215t.JPG",
+        "18441214t.JPG",
+        "18441213t.JPG",
+        "18441212t.JPG",
+        "18441211t.JPG",
+        "18441210t.JPG",
+        "18441209t.JPG",
+        "18441208t.JPG",
+        "18441207t.JPG",
+        "18441206t.JPG",
+        "18441205t.JPG",
+        "18441204t.JPG",
+        "18441203t.JPG",
+        "18441202t.JPG",
+        "18441201t.JPG",
+        "18441200t.JPG",
+        "18441199t.JPG",
+        "18441198t.JPG",
+        "18441197t.JPG",
+        "18441196t.JPG",
+        "18441195t.JPG",
+        "18441194t.JPG",
+        "18441193t.JPG",
+        "18441192t.JPG",
+        "18441191t.JPG",
+        "18441190t.JPG",
+        "18441189t.JPG",
+        "18441188t.JPG",
+        "18441187t.JPG",
+        "18441186t.JPG",
+        "18441185t.JPG",
+        "18441184t.JPG",
+        "18441183t.JPG",
+        "18441182t.JPG",
+        "18441217t.JPG",
+        "18441216t.JPG",
+        "18441181t.JPG",
+        "18441180t.JPG",
+        "18441179t.JPG",
+        "18441178t.JPG",
+        "18441177t.JPG",
+        "18441176t.JPG",
+        "18441175t.JPG",
+        "18441174t.JPG",
+        "18441173t.JPG",
+        "18441172t.JPG"
+      ]
+    },
+    {
+      "key": "F13_1056_1_11392869",
+      "source": "question",
+      "text": "Improve housekeeping, removing all accumulated storage from utility areas.",
+      "imageOptionValue": "18441196t.JPG",
+      "imageOptions": [
+        "18441220t.JPG",
+        "18441219t.JPG",
+        "18441218t.JPG",
+        "18441215t.JPG",
+        "18441214t.JPG",
+        "18441213t.JPG",
+        "18441212t.JPG",
+        "18441211t.JPG",
+        "18441210t.JPG",
+        "18441209t.JPG",
+        "18441208t.JPG",
+        "18441207t.JPG",
+        "18441206t.JPG",
+        "18441205t.JPG",
+        "18441204t.JPG",
+        "18441203t.JPG",
+        "18441202t.JPG",
+        "18441201t.JPG",
+        "18441200t.JPG",
+        "18441199t.JPG",
+        "18441198t.JPG",
+        "18441197t.JPG",
+        "18441196t.JPG",
+        "18441195t.JPG",
+        "18441194t.JPG",
+        "18441193t.JPG",
+        "18441192t.JPG",
+        "18441191t.JPG",
+        "18441190t.JPG",
+        "18441189t.JPG",
+        "18441188t.JPG",
+        "18441187t.JPG",
+        "18441186t.JPG",
+        "18441185t.JPG",
+        "18441184t.JPG",
+        "18441183t.JPG",
+        "18441182t.JPG",
+        "18441217t.JPG",
+        "18441216t.JPG",
+        "18441181t.JPG",
+        "18441180t.JPG",
+        "18441179t.JPG",
+        "18441178t.JPG",
+        "18441177t.JPG",
+        "18441176t.JPG",
+        "18441175t.JPG",
+        "18441174t.JPG",
+        "18441173t.JPG",
+        "18441172t.JPG"
+      ]
+    },
+    {
+      "key": "F13_1056_1_11392870",
+      "source": "question",
+      "text": "Discontinue all casual, unauthorized tenant rooftop activity and remove all loose items from roof top.",
+      "imageOptionValue": "18441174t.JPG",
+      "imageOptions": [
+        "18441220t.JPG",
+        "18441219t.JPG",
+        "18441218t.JPG",
+        "18441215t.JPG",
+        "18441214t.JPG",
+        "18441213t.JPG",
+        "18441212t.JPG",
+        "18441211t.JPG",
+        "18441210t.JPG",
+        "18441209t.JPG",
+        "18441208t.JPG",
+        "18441207t.JPG",
+        "18441206t.JPG",
+        "18441205t.JPG",
+        "18441204t.JPG",
+        "18441203t.JPG",
+        "18441202t.JPG",
+        "18441201t.JPG",
+        "18441200t.JPG",
+        "18441199t.JPG",
+        "18441198t.JPG",
+        "18441197t.JPG",
+        "18441196t.JPG",
+        "18441195t.JPG",
+        "18441194t.JPG",
+        "18441193t.JPG",
+        "18441192t.JPG",
+        "18441191t.JPG",
+        "18441190t.JPG",
+        "18441189t.JPG",
+        "18441188t.JPG",
+        "18441187t.JPG",
+        "18441186t.JPG",
+        "18441185t.JPG",
+        "18441184t.JPG",
+        "18441183t.JPG",
+        "18441182t.JPG",
+        "18441217t.JPG",
+        "18441216t.JPG",
+        "18441181t.JPG",
+        "18441180t.JPG",
+        "18441179t.JPG",
+        "18441178t.JPG",
+        "18441177t.JPG",
+        "18441176t.JPG",
+        "18441175t.JPG",
+        "18441174t.JPG",
+        "18441173t.JPG",
+        "18441172t.JPG"
+      ]
+    },
+    {
+      "key": "F13_1056_1_11392887",
+      "source": "question",
+      "text": "Have a company certified to sell & service portable fire extinguishers provide fire extinguishers of correct type and size wall-mounted where prescribed so as to be in compliance with NFPA 10, the Standard For Portable Fire Extinguishers.",
+      "imageOptionValue": "18441183t.JPG",
+      "imageOptions": [
+        "18441220t.JPG",
+        "18441219t.JPG",
+        "18441218t.JPG",
+        "18441215t.JPG",
+        "18441214t.JPG",
+        "18441213t.JPG",
+        "18441212t.JPG",
+        "18441211t.JPG",
+        "18441210t.JPG",
+        "18441209t.JPG",
+        "18441208t.JPG",
+        "18441207t.JPG",
+        "18441206t.JPG",
+        "18441205t.JPG",
+        "18441204t.JPG",
+        "18441203t.JPG",
+        "18441202t.JPG",
+        "18441201t.JPG",
+        "18441200t.JPG",
+        "18441199t.JPG",
+        "18441198t.JPG",
+        "18441197t.JPG",
+        "18441196t.JPG",
+        "18441195t.JPG",
+        "18441194t.JPG",
+        "18441193t.JPG",
+        "18441192t.JPG",
+        "18441191t.JPG",
+        "18441190t.JPG",
+        "18441189t.JPG",
+        "18441188t.JPG",
+        "18441187t.JPG",
+        "18441186t.JPG",
+        "18441185t.JPG",
+        "18441184t.JPG",
+        "18441183t.JPG",
+        "18441182t.JPG",
+        "18441217t.JPG",
+        "18441216t.JPG",
+        "18441181t.JPG",
+        "18441180t.JPG",
+        "18441179t.JPG",
+        "18441178t.JPG",
+        "18441177t.JPG",
+        "18441176t.JPG",
+        "18441175t.JPG",
+        "18441174t.JPG",
+        "18441173t.JPG",
+        "18441172t.JPG"
+      ]
+    },
+    {
+      "key": "F13_1056_1_11392888",
+      "source": "question",
+      "text": "Have a company certified to service/inspect portable fire extinguishers affix a current inspection tag on all premises fire extinguishers lacking same and inspect/tag extinguishers on an annual basis thereafter.",
+      "imageOptionValue": "18441182t.JPG",
+      "imageOptions": [
+        "18441220t.JPG",
+        "18441219t.JPG",
+        "18441218t.JPG",
+        "18441215t.JPG",
+        "18441214t.JPG",
+        "18441213t.JPG",
+        "18441212t.JPG",
+        "18441211t.JPG",
+        "18441210t.JPG",
+        "18441209t.JPG",
+        "18441208t.JPG",
+        "18441207t.JPG",
+        "18441206t.JPG",
+        "18441205t.JPG",
+        "18441204t.JPG",
+        "18441203t.JPG",
+        "18441202t.JPG",
+        "18441201t.JPG",
+        "18441200t.JPG",
+        "18441199t.JPG",
+        "18441198t.JPG",
+        "18441197t.JPG",
+        "18441196t.JPG",
+        "18441195t.JPG",
+        "18441194t.JPG",
+        "18441193t.JPG",
+        "18441192t.JPG",
+        "18441191t.JPG",
+        "18441190t.JPG",
+        "18441189t.JPG",
+        "18441188t.JPG",
+        "18441187t.JPG",
+        "18441186t.JPG",
+        "18441185t.JPG",
+        "18441184t.JPG",
+        "18441183t.JPG",
+        "18441182t.JPG",
+        "18441217t.JPG",
+        "18441216t.JPG",
+        "18441181t.JPG",
+        "18441180t.JPG",
+        "18441179t.JPG",
+        "18441178t.JPG",
+        "18441177t.JPG",
+        "18441176t.JPG",
+        "18441175t.JPG",
+        "18441174t.JPG",
+        "18441173t.JPG",
+        "18441172t.JPG"
+      ]
+    }
+  ],
+  "photos": [
+    {
+      "imageId": "18441220",
+      "caption": "Front view",
+      "order": 1,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441219",
+      "caption": "Front right view",
+      "order": 2,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441218",
+      "caption": "Back and right view",
+      "order": 3,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441215",
+      "caption": "Right side view",
+      "order": 4,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441214",
+      "caption": "Mailboxes",
+      "order": 5,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441213",
+      "caption": "Buzzer",
+      "order": 6,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441212",
+      "caption": "Interior stairs",
+      "order": 7,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441211",
+      "caption": "Smoke detector and sprinkler head",
+      "order": 8,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441210",
+      "caption": "Colombian Restaurant",
+      "order": 9,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441209",
+      "caption": "SPA salon, beauty studio",
+      "order": 10,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441208",
+      "caption": "Sprinkler connections",
+      "order": 11,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441207",
+      "caption": "Colombian Restaurant entrance",
+      "order": 12,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441206",
+      "caption": "Colombian Restaurant, ovens",
+      "order": 13,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441205",
+      "caption": "Colombian Restaurant fire extinguisher",
+      "order": 14,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441204",
+      "caption": "Colombian Restaurant bar",
+      "order": 15,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441203",
+      "caption": "Colombian Restaurant kitchen AES remote control switch and inspection",
+      "order": 16,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441202",
+      "caption": "Colombian Restaurant, K-type extinguisher",
+      "order": 17,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441201",
+      "caption": "Colombian Restaurant kitchen",
+      "order": 18,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441200",
+      "caption": "Colombian Restaurant ranges",
+      "order": 19,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441199",
+      "caption": "Colombian Restaurant AES tube and connection",
+      "order": 20,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441198",
+      "caption": "Colombian Restaurant, kitchen filters",
+      "order": 21,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441197",
+      "caption": "Colombian Restaurant, hood cleaning",
+      "order": 22,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441196",
+      "caption": "Electric panels, obstructed with items",
+      "order": 23,
+      "markedHazard": false,
+      "usedAsRecImage": true,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441195",
+      "caption": "Circuit breakers",
+      "order": 24,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441194",
+      "caption": "Circuit breakers - gaps in service",
+      "order": 25,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441193",
+      "caption": "Open electric box",
+      "order": 26,
+      "markedHazard": false,
+      "usedAsRecImage": true,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441192",
+      "caption": "Sprinkler inspection",
+      "order": 27,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441191",
+      "caption": "Sprinkler valve",
+      "order": 28,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441190",
+      "caption": "Basement",
+      "order": 29,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441189",
+      "caption": "SPA beauty salon",
+      "order": 30,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441188",
+      "caption": "SPA beauty salon",
+      "order": 31,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441187",
+      "caption": "SPA beauty salon fire extinguisher",
+      "order": 32,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441186",
+      "caption": "SPA beauty salon circuit breakers",
+      "order": 33,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441185",
+      "caption": "61_51-03 basement stairs-61",
+      "order": 34,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441184",
+      "caption": "Salon basement",
+      "order": 35,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441183",
+      "caption": "Electric panels, obstructed",
+      "order": 36,
+      "markedHazard": false,
+      "usedAsRecImage": true,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441182",
+      "caption": "Basement fire extinguisher, not tagged",
+      "order": 37,
+      "markedHazard": false,
+      "usedAsRecImage": true,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441217",
+      "caption": "Hot water heater leaking",
+      "order": 38,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441216",
+      "caption": "Boiler room, water accumulation, hot water heater leaking",
+      "order": 39,
+      "markedHazard": false,
+      "usedAsRecImage": true,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441181",
+      "caption": "Interior stairs to",
+      "order": 40,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441180",
+      "caption": "Apartment units hall",
+      "order": 41,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441179",
+      "caption": "Apartment units hall",
+      "order": 42,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441178",
+      "caption": "Apartment unit circuit breakers",
+      "order": 43,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441177",
+      "caption": "Apartment unit smoke detector",
+      "order": 44,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441176",
+      "caption": "Ceilings",
+      "order": 45,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441175",
+      "caption": "Roof",
+      "order": 46,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441174",
+      "caption": "Roof - loose items",
+      "order": 47,
+      "markedHazard": false,
+      "usedAsRecImage": true,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441173",
+      "caption": "3rd story apartment unit balcony - no roof protection",
+      "order": 48,
+      "markedHazard": false,
+      "usedAsRecImage": true,
+      "addedAt": null
+    },
+    {
+      "imageId": "18441172",
+      "caption": "Roof",
+      "order": 49,
+      "markedHazard": false,
+      "usedAsRecImage": false,
+      "addedAt": null
+    }
+  ],
+  "diagram": {
+    "present": true
+  },
+  "priorReports": [],
+  "_note": "REAL capture of EZ Boost AI sandbox order (read-only), 2026-10-29T10:10:21.960Z | post-processed: text answer/comment pairs folded, empty labels = section title Fees, pricing notes and comments read from EZ 2026-11-06."
+}

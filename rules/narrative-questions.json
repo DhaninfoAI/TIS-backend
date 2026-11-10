@@ -1,0 +1,78 @@
+{
+  "version": "2026-11-06",
+  "source": "Updated_Building_Narrative_Question_Set.md (TIS folder)",
+  "note": "What a TIS building narrative must cover. 'when': null = always, 'gl' = only when the order includes General Liability (Package, BOP, Monoline GL, CGL), 'hazard' = only when that tenant type is present. 'kw' is a regex used when the AI is off, to guess whether the narrative mentions the topic.",
+  "sections": [
+    { "id": "s0", "title": "Coverage", "when": null, "questions": [
+      { "id": "q1", "q": "What is the coverage? (General Liability, Property Only, Package)", "kw": "liability|property only|package|coverage" } ] },
+    { "id": "s1", "title": "Basic property details", "when": null, "questions": [
+      { "id": "q2", "q": "What is the building's primary use?", "kw": "used (as|for)|primary use|mixed[- ]use|apartment|office|retail|warehouse|restaurant|school|church" },
+      { "id": "q3", "q": "What types of tenants occupy the building?", "kw": "tenant|occupied by|occupants" },
+      { "id": "q4", "q": "What percentage of the building is currently occupied?", "kw": "\\d+\\s*%|fully occupied|vacant|occupancy" },
+      { "id": "q5", "q": "What is the building's construction type?", "kw": "frame|masonry|joisted|non-combustible|fire[- ]resistive|iso" },
+      { "id": "q6", "q": "How many stories does the building have?", "kw": "stor(y|ies)" },
+      { "id": "q7", "q": "What is the total square footage?", "kw": "square f(oo|ee)t|\\bsq\\.? ?ft|\\bsf\\b" },
+      { "id": "q8", "q": "Is there a finished basement?", "kw": "basement|crawl ?space|slab" },
+      { "id": "q9", "q": "What year was the roof last updated?", "kw": "roof.{0,60}(\\b(19|20)\\d\\d\\b|replaced|updated|years? old)" },
+      { "id": "q10", "q": "What is the current condition of the roof?", "kw": "roof.{0,80}(good|fair|poor|condition)" } ] },
+    { "id": "s2", "title": "Building systems and utilities", "when": null, "questions": [
+      { "id": "q11", "q": "When was the plumbing last updated and what was done?", "kw": "plumbing" },
+      { "id": "q12", "q": "When was the electrical last updated and what was done?", "kw": "electric|wiring|breaker" },
+      { "id": "q13", "q": "Are there any Zinsco or Stab-Lok electrical panels in the building?", "kw": "zinsco|stab-?lok|federal pacific" } ] },
+    { "id": "s3", "title": "Occupancy and use", "when": null, "questions": [
+      { "id": "q14", "q": "Are there any hazardous commercial tenants?", "kw": "hazard|restaurant|cooking|woodwork|auto body|spray" },
+      { "id": "q15", "q": "Describe the nature of any hazardous commercial operations or the operations of any hazardous commercial tenants.", "kw": "operat" },
+      { "id": "q16", "q": "How many apartment units are there?", "kw": "\\d+\\s*(residential |apartment )?units?|apartments" },
+      { "id": "q17", "q": "How many vacant apartment units are there?", "kw": "vacan" } ] },
+    { "id": "s4", "title": "Fire protection and security", "when": null, "questions": [
+      { "id": "q18", "q": "Is the building sprinklered? If yes, is coverage full or partial?", "kw": "sprinkler" },
+      { "id": "q19", "q": "Is the sprinkler system a wet or dry system?", "kw": "\\b(wet|dry)\\b.{0,20}(pipe|system)|sprinkler" },
+      { "id": "q20", "q": "Is there a central station fire alarm system?", "kw": "fire alarm|central station|monitored" },
+      { "id": "q21", "q": "Are fire extinguishers present in common areas, commercial spaces and utility/boiler rooms?", "kw": "extinguisher" },
+      { "id": "q22", "q": "Are smoke and carbon monoxide detectors installed?", "kw": "smoke|carbon monoxide|\\bco\\b detector" },
+      { "id": "q23", "q": "Is there a central station burglar alarm? Which areas are covered?", "kw": "burglar|security|camera|alarm" },
+      { "id": "q24", "q": "Have there been any previous fire or security incidents?", "kw": "loss|incident|damage|claim" } ] },
+    { "id": "s5", "title": "Site and structural conditions", "when": null, "questions": [
+      { "id": "q25", "q": "Are there any obvious structural issues?", "kw": "structur" },
+      { "id": "q26", "q": "Describe any exterior issues.", "kw": "exterior|facade|siding|brick|parapet" },
+      { "id": "q27", "q": "Are there any renovations currently in progress?", "kw": "renovat|construction|remodel" },
+      { "id": "q28", "q": "Are there any planned or upcoming renovations?", "kw": "renovat|planned|upcoming" } ] },
+    { "id": "s6", "title": "General Liability", "when": "gl", "questions": [
+      { "id": "q29", "q": "Describe any trip or fall hazards on site.", "kw": "trip|fall|walking surface" },
+      { "id": "q30", "q": "Are handrails present and in good condition?", "kw": "handrail|railing" },
+      { "id": "q31", "q": "Are all step treads in good condition and not slippery?", "kw": "tread|stair|step" },
+      { "id": "q32", "q": "Are there any known liability claims or incidents in the past 5 years?", "kw": "claim|incident|loss" },
+      { "id": "q33", "q": "Is emergency lighting provided in stairwells and hallways?", "kw": "emergency light" },
+      { "id": "q34", "q": "Are there illuminated exit signs above all routes of egress?", "kw": "exit sign|egress" } ] }
+  ],
+  "hazardous": [
+    { "type": "restaurant", "title": "Restaurant operations", "detect": "restaurant|pizza|deli|grill|diner|cafe|café|bakery|bar\\b|tavern|kitchen|cooking|fryer|hood", "questions": [
+      { "id": "r1", "q": "Describe the cooking equipment. Is this a full cooking line?", "kw": "cooking|kitchen|fryer|griddle|range|oven" },
+      { "id": "r2", "q": "Are there any deep fryers? If so, do they have baffles?", "kw": "fryer" },
+      { "id": "r3", "q": "Is there a hood with baffle-type filters?", "kw": "hood|baffle" },
+      { "id": "r4", "q": "Is there an Automatic Extinguishing System (AES) present?", "kw": "\\baes\\b|ansul|automatic extinguishing|suppression" },
+      { "id": "r5", "q": "Is the hood properly cleaned?", "kw": "hood.{0,40}clean|clean.{0,40}hood" },
+      { "id": "r6", "q": "Is the AES system properly tagged?", "kw": "tag|inspected" },
+      { "id": "r7", "q": "Is there a K-class fire extinguisher present?", "kw": "k-?(class|type)" } ] },
+    { "type": "woodworking", "title": "Woodworking operations", "detect": "woodwork|cabinet|millwork|carpent|furniture (making|manufactur)|sawdust", "questions": [
+      { "id": "w1", "q": "Is sawdust properly contained and cleaned regularly?", "kw": "sawdust|dust" },
+      { "id": "w2", "q": "Are flammable finishing materials stored on-site?", "kw": "flammable|finish" },
+      { "id": "w3", "q": "Is there proper ventilation in areas where finishing or sanding occurs?", "kw": "ventilat" },
+      { "id": "w4", "q": "Are dust collection systems maintained and operational?", "kw": "dust collect" },
+      { "id": "w5", "q": "Are any spray booths used?", "kw": "spray booth" },
+      { "id": "w6", "q": "Is the paint flammable, water-based, or a mixture of both?", "kw": "water-?based|flammable paint" },
+      { "id": "w7", "q": "Are the spray booths ventilated?", "kw": "booth.{0,40}ventilat" },
+      { "id": "w8", "q": "Are the spray booths professional booths that appear to have been professionally installed?", "kw": "professional" },
+      { "id": "w9", "q": "Is there a fire suppression system in the spray booth?", "kw": "suppression" } ] },
+    { "type": "auto_body", "title": "Auto body shop operations", "detect": "auto ?body|collision|body shop|auto repair|paint shop|spray paint", "questions": [
+      { "id": "a1", "q": "Are there spray painting operations on-site?", "kw": "spray|paint" },
+      { "id": "a2", "q": "Are any spray booths used?", "kw": "spray booth" },
+      { "id": "a3", "q": "Is the paint flammable, water-based, or a mixture of both?", "kw": "water-?based|flammable" },
+      { "id": "a4", "q": "Are the spray booths ventilated?", "kw": "ventilat" },
+      { "id": "a5", "q": "Are the spray booths professional booths that appear to have been professionally installed?", "kw": "professional" },
+      { "id": "a6", "q": "Is there a fire suppression system in the spray booth?", "kw": "suppression" },
+      { "id": "a7", "q": "Does the operation appear to be overall professional?", "kw": "professional" },
+      { "id": "a8", "q": "How is the housekeeping in the occupancy?", "kw": "housekeeping" },
+      { "id": "a9", "q": "Are metal cans with self-closing lids used to dispose of oil-soaked rags?", "kw": "oily|oil-soaked|rag|self-closing" } ] }
+  ]
+}

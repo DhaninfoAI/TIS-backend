@@ -1,0 +1,88 @@
+{
+  "version": "V.10",
+  "importedAt": "2026-11-06",
+  "source": "Client and inspector Pricing Guide.pdf (TIS folder)",
+  "note": "Bands are [maxInspectorFee, clientFee] pairs, max inclusive; null = anything above the previous band. 'limited' = exterior only / rec check / phone survey. Edit this file and restart the backend to change prices. Entries marked 'assumption' are readings of ambiguous guide text: confirm with TIS.",
+
+  "inspector": {
+    "full": 70,
+    "limited": 35,
+    "hourly": 35,
+    "rules": [
+      "Full inspections pay a minimum of $70; exterior-only inspections and rec checks a minimum of $35.",
+      "A higher amount in the comments or pricing notes is paid instead of the minimum.",
+      "A travel fee in the comments or pricing notes is added to the minimum.",
+      "Hours in the comments are paid at $35 per hour (2.5 hours = $87.50)."
+    ]
+  },
+
+  "schedules": {
+    "standard": { "limited": 85, "bands": [[70, 185], [80, 210], [100, 245], [150, 280], [null, 315]] }
+  },
+
+  "clients": [
+    { "name": "AmWins Brokerage of GA, NY, Midwest", "match": "amwins", "schedule": "standard" },
+    { "name": "Arrowhead General Insurance Agency, Inc.", "match": "arrowhead", "bands": [[70, 170], [99, 220], [null, 257]] },
+    { "name": "Associated Mutual Insurance", "match": "associated mutual", "schedule": "standard" },
+    { "name": "Axon Underwriting", "match": "axon", "flat": 300, "addons": [{ "when": "wildfire", "add": 40, "label": "Wildfire Supplement ($340 total)" }] },
+    { "name": "BlueSky Tower Construction Risk", "match": "bluesky.*tower", "schedule": "standard" },
+    { "name": "BlueSky Risk / BlueSky Property", "match": "bluesky|blue sky", "schedule": "standard" },
+    { "name": "BNC Insurance Agency, Inc.", "match": "\\bbnc\\b", "schedule": "standard" },
+    { "name": "Brown & Brown of Pennsylvania, LP", "match": "brown\\s*(&|and)\\s*brown", "schedule": "standard" },
+    { "name": "Church Mutual Camps", "match": "church mutual.*camp", "exteriorSingle": 80, "flat": 500, "flatLabel": "full camp inspection" },
+    { "name": "Church Mutual Freeze Project / Wildfire", "match": "church mutual.*(freeze|wildfire)", "exteriorSingle": 80,
+      "bands": [[70, 180], [80, 215], [110, 250], [140, 285], [170, 320], [200, 355], [240, 390], [270, 425], [null, 440]] },
+    { "name": "Church Mutual Insurance Company, S.I.", "match": "church mutual", "exteriorSingle": 80,
+      "bands": [[70, 160], [80, 195], [110, 230], [140, 265], [170, 300], [200, 335], [240, 370], [270, 405], [null, 440]],
+      "useInstead": [{ "when": "freeze|wildfire", "client": "Church Mutual Freeze Project / Wildfire", "note": "a Freeze or Wildfire form is attached" },
+                     { "when": "camp", "client": "Church Mutual Camps", "note": "the risk is a camp" }] },
+    { "name": "Clear Risk Solutions", "match": "clear risk", "buildings": [210, 280, 350, 420, 490], "addons": [{ "when": "freeze", "add": 50, "label": "Freeze form attached" }] },
+    { "name": "CRC/Crump - LI", "match": "\\bcrc\\b|crump", "schedule": "standard" },
+    { "name": "Foray", "match": "foray", "flat": 350 },
+    { "name": "Freberg Environmental Ins. Inc.", "match": "freberg", "flat": 300 },
+    { "name": "Gremesco Corp.", "match": "gremesco", "schedule": "standard" },
+    { "name": "Hagerty/Markel - Personal Lines / Commercial Lines", "match": "hagerty", "bands": [[85, 210], [120, 245], [null, 285]] },
+    { "name": "Honeycomb Programs Inc.", "match": "honeycomb", "schedule": "standard" },
+    { "name": "IPC of Nevada", "match": "\\bipc\\b", "schedule": "standard", "virtual": { "buildings": [185, 210, 245], "label": "virtual inspection" } },
+    { "name": "Incarnation Specialty Underwriting", "match": "incarnation", "flat": 350 },
+    { "name": "Jencap Insurance Services (Buffalo and Atlanta)", "match": "jencap", "schedule": "standard" },
+    { "name": "K&K Insurance Group, Inc. and K&K-E&A", "match": "k\\s*&\\s*k|k and k", "limited": 140, "limitedLabel": "limited inspection (exterior only, vacant lot, etc.)",
+      "bands": [[70, 175], [80, 210], [110, 280], [null, 315]],
+      "camps": { "bands": [[110, 350], [140, 420], [190, 490], [250, 560], [320, 630], [360, 700], [400, 770], [null, 840]], "label": "camps, campgrounds, RV parks, resorts" } },
+    { "name": "Liberty Mutual Insurance Company", "match": "liberty mutual", "schedule": "standard" },
+    { "name": "Lighthouse Risk", "match": "lighthouse", "limited": 85, "bands": [[75, 250], [110, 285], [null, 315]] },
+    { "name": "LSR", "match": "\\blsr\\b", "virtualOnly": true, "phone": 90, "buildings": [118, 163, 208, 253], "extraBuilding": 42,
+      "extraBuildingNote": "assumption: $253 covers 4 buildings and each building after the 4th adds $42",
+      "addons": [{ "when": "rcv", "add": 45, "label": "RCV form completed", "action": "Move the inspection to \"For RCV\" status instead of sending it to the client." }] },
+    { "name": "Markel Specialty - Marine Program Account", "match": "markel.*(specialty|marine)", "limited": 85, "bands": [[80, 220], [120, 258], [170, 295], [null, 330]] },
+    { "name": "Markel Insurance - RCT and Markel Insurance Company", "match": "markel", "bands": [[85, 210], [115, 245], [140, 280], [160, 315], [null, 345]] },
+    { "name": "Marsh & McLennan Agency - Saddle Brook", "match": "marsh", "custom": true, "note": "Always has custom pricing in the pricing notes. If no client pricing is noted, refer the order to management." },
+    { "name": "Millenial (MSI)", "match": "millen+ial|\\bmsi\\b", "limited": 85, "bands": [[75, 250], [110, 285], [null, 315]] },
+    { "name": "Pacific Inspections, Inc.", "match": "pacific inspections", "schedule": "standard" },
+    { "name": "Precision Risk Management", "match": "precision risk", "bands": [[80, 200], [100, 225]], "virtual": { "flat": 185, "label": "virtual inspection" },
+      "bandsNote": "the guide lists $200 for an inspector fee of $70-$80 and $225 for $81-$100; nothing above $100" },
+    { "name": "Prime Insurance", "match": "prime insurance", "schedule": "standard" },
+    { "name": "Risk Point Insurance", "match": "risk ?point", "limited": 85, "bands": [[80, 210], [110, 245], [140, 280], [null, 315]] },
+    { "name": "RPS Bollinger Sports and Leisure", "match": "bollinger|\\brps\\b", "phone": 100, "limited": null, "bands": [[70, 185], [80, 210], [100, 245], [150, 280], [null, 315]] },
+    { "name": "RT Specialty - Atlanta / New York / Philadelphia", "match": "\\brt specialty|\\brts\\b", "limited": 85, "bands": [[80, 220], [115, 260], [140, 295], [null, 330]] },
+    { "name": "Sterling Insurance Company", "match": "sterling", "limited": 85, "bands": [[70, 185], [95, 210], [null, 245]] },
+    { "name": "Synapse Services, LLC", "match": "synapse", "flat": 300, "addons": [{ "when": "wildfire", "add": 40, "label": "Wildfire Supplement" }] },
+    { "name": "Wright Specialty", "match": "wright", "bands": [[100, 245], [130, 280], [150, 315], [175, 350], [210, 385], [250, 420], [275, 490], [300, 525], [349, 560], [null, 630]] },
+    { "name": "Seneca Insurance (all offices)", "match": "seneca", "seneca": true },
+    { "name": "Boost AI (sandbox, priced like Seneca)", "match": "boost ai", "seneca": true, "note": "Not in the guide: its fee drop-down is Seneca's tier list, so Seneca rules are used." }
+  ],
+
+  "seneca": {
+    "nyc": 135,
+    "tiers": [[10000, 156], [20000, 197], [50000, 234], [99999, 270], [null, 306]],
+    "tierNames": ["Tier 2 - Standard", "Tier 3 - Medium", "Tier 4 - Large", "Tier 5 - Extra Large", "Tier 6 - Custom"],
+    "limited": 85,
+    "limitedLabel": "Recommendation checks and exterior-only surveys (incl. sidewalk, dwelling fire and phone surveys)",
+    "supplement": 50,
+    "supplementNote": "assumption: +$50 for each additional supplement (manufacturing, cannabis, freeze, etc.)",
+    "cooking": { "nycFree": 4, "otherFree": 1, "each": 25 },
+    "travel": 50,
+    "travelNote": "Only in remote areas where the inspector is billing more than usual.",
+    "nonProductive": 50
+  }
+}

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Writer test</title>
+<style>body{font:13px system-ui;margin:16px} .pass{color:#1b7f3b} .fail{color:#a71b21} table{border-collapse:collapse} td{border:1px solid #ccc;padding:3px 6px}</style>
+<link rel="stylesheet" href="/ext/content/content.css">
+</head>
+<body>
+<h3>EZ markup replica (field names and structure from the real General Form / Recommendations form / Images page)</h3>
+<form name="myform"><input type="hidden" name="orderid" value="1166305"><input type="hidden" name="formid" value="2055">
+<table>
+  <tr><td><input type="checkbox" name="cbox111470_1"> Property Hazards (applies to both) Omit Section</td></tr>
+  <tr><td id="fixedcol111470_1_1">21. Housekeeping satisfactory?</td>
+      <td id="fixedcol111470_1_2"><label><input type="checkbox" name="F2_111470_1_100" value="Yes" checked onclick="window.__flag=(window.__flag||0)+1">Yes</label>
+        <label><input type="checkbox" name="F2_111470_1_100" value="No" onclick="window.__flag=(window.__flag||0)+1">No</label>
+        <label><input type="checkbox" name="F2_111470_1_100" value="N/A">N/A</label></td>
+      <td id="fixedcol111470_1_3"><input type="text" name="F1_111470_1_101" value=""></td></tr>
+  <tr><td colspan="3"><table id="flagrecshow111470_1_900" style="display:none"><tr><td><textarea name="F13_111470_1_900"></textarea></td></tr></table></td></tr>
+  <tr><td><input type="checkbox" name="cbox111473_1"> Special Liability- Fire Doors (omit, if none) Omit Section</td></tr>
+  <tr><td id="fixedcol111473_1_1">2. Fire doors listed?</td><td id="fixedcol111473_1_2"><select name="F4_111473_1_200"><option>Select</option><option>-----------</option><option>Yes</option><option>No</option><option>N/A</option></select></td></tr>
+  <tr><td>Narrative</td><td><textarea name="F7_111459_1_300">Old narrative.</textarea></td></tr>
+  <tr><td>Hazard list (Seneca: one shared box)</td><td><textarea name="F7_112407_1_10705169">Unsecured access
+Sidewalks cracked /or uneven</textarea></td></tr>
+  <tr><td><input type="checkbox" name="cbox111474_1"> Omit Section</td></tr>
+</table>
+<table>
+  <tr><td>Rec</td><td><textarea name="F13_1056_1_900"></textarea><select name="RECIMAGEID_F13_1056_1_900"><option value="">Select</option><option value="18441033t.jpg">18441033</option><option value="18441284t.JPG">18441284</option></select></td></tr>
+  <tr id="addrectitle0" style="display:none"><td>Recommendation</td></tr>
+  <tr id="addrecbody0" style="display:none"><td><textarea name="F14_1056_1_10321503">Existing free-form rec</textarea><select name="RECIMAGEID_F14_1056_1_10321503"><option value="">Select</option><option value="18441033t.jpg">18441033</option></select></td></tr>
+  <tr id="addreclink0"><td>ADD ANOTHER</td></tr>
+  <tr id="addrectitle1" style="display:none"><td>Recommendation</td></tr>
+  <tr id="addrecbody1" style="display:none"><td><textarea name="F14_1056_1_10321504"></textarea><select name="RECIMAGEID_F14_1056_1_10321504"><option value="">Select</option><option value="18441033t.jpg">18441033</option><option value="18441284t.JPG">18441284</option></select></td></tr>
+  <tr id="addreclink1" style="display:none"><td>ADD ANOTHER</td></tr>
+</table>
+</form>
+<!-- real Images page shape: one gallery row, one imageordertagP<n> box per photo -->
+<form name="imgeditform"><table><tr id="galleryRow"><td><div id="sortimagesP">
+  <div id="imageordertagP0"><table class="smalltext"><tr><td><div><img id="img18441033" alt=""></div></td></tr></table><input name="caption18441033" value="130 east 72nd st-IMG_3699 basement clutter"></div>
+  <div id="imageordertagP1"><table class="smalltext"><tr><td><div><img id="img18441284" alt=""></div></td></tr></table><input name="caption18441284" value="Front"></div>
+</div></td></tr></table></form>
+<h3>Results</h3><div id="out"></div>
+<script src="/ext/content/snapshot.js"></script>
+<script src="/ext/content/writer.js"></script>
+<script src="/ext/content/overlay.js"></script>
+<script>
+const out = [], ok = (name, cond, extra = '') => out.push(`<div class="${cond ? 'pass' : 'fail'}">${cond ? '✓' : '✗'} ${name} ${extra}</div>`);
+const W = self.TIS_WRITER, v = n => document.getElementsByName(n)[0].value, checked = n => [...document.getElementsByName(n)].filter(x => x.checked).map(x => x.value).join('|');
+let r = W.present(['F2_111470_1_100', 'F14:new', 'RECIMAGEID_F14:new', 'nope']);
+ok('present() finds fields, F14:new and RECIMAGEID_F14:new; not unknown', r.F2_111470_1_100 && r['F14:new'] && r['RECIMAGEID_F14:new'] && !r.nope);
+r = W.apply([{ key: 'F2_111470_1_100', value: 'No', kind: 'choice' }, { key: 'F1_111470_1_101', value: 'Basement storage.', kind: 'text' }]);
+ok('checkbox group switched Yes → No (only one checked)', checked('F2_111470_1_100') === 'No', `[${checked('F2_111470_1_100')}]`);
+ok('EZ onclick handlers fired (flag())', (window.__flag || 0) >= 2, `[${window.__flag}]`);
+ok('comment written', v('F1_111470_1_101') === 'Basement storage.');
+r = W.apply([{ key: 'F13_111470_1_900', value: 'Improve housekeeping.', kind: 'rec' }]);
+ok('hidden rec box revealed + written', document.getElementById('flagrecshow111470_1_900').style.display === 'table' && v('F13_111470_1_900') === 'Improve housekeeping.');
+r = W.apply([{ key: 'F7_112407_1_10705169', value: 'No CS burglar alarm system', kind: 'recLine' }]);
+ok('Seneca hazard list: line added on its own line, existing lines kept', v('F7_112407_1_10705169') === 'Unsecured access\nSidewalks cracked /or uneven\nNo CS burglar alarm system', `[${v('F7_112407_1_10705169')}]`);
+W.apply([{ key: 'F7_112407_1_10705169', value: 'unsecured access', kind: 'recLine' }]);
+ok('Seneca hazard list: a line already there is not added twice', (v('F7_112407_1_10705169').match(/unsecured access/gi) || []).length === 1);
+W.revert(['F7_112407_1_10705169']);
+ok('Seneca hazard list: Undo restores the list exactly', v('F7_112407_1_10705169') === 'Unsecured access\nSidewalks cracked /or uneven', `[${v('F7_112407_1_10705169')}]`);
+r = W.apply([{ key: 'F4_111473_1_200', value: 'No', kind: 'choice' }]);
+ok('select set by option text', v('F4_111473_1_200') === 'No');
+r = W.apply([{ key: 'F14:new', value: 'Remove debris from the rooftop.', kind: 'rec' }, { key: 'RECIMAGEID_F14:new', value: '18441284t.jpg', kind: 'recImage' }]);
+ok('F14:new → first EMPTY slot (not the filled one)', v('F14_1056_1_10321504') === 'Remove debris from the rooftop.' && v('F14_1056_1_10321503') === 'Existing free-form rec', `[${r.results.map(x => x.resolved).join(', ')}]`);
+ok('slot revealed like addrec()', document.getElementById('addrecbody1').style.display === 'table-row' && document.getElementById('addreclink1').style.display === 'none');
+ok('photo for new rec set, .jpg/.JPG case tolerated', v('RECIMAGEID_F14_1056_1_10321504') === '18441284t.JPG');
+r = W.apply([{ key: 'RECIMAGEID_F13_1056_1_900', value: '18441033t.jpg', kind: 'recImage' }]);
+ok('rec photo picker set', v('RECIMAGEID_F13_1056_1_900') === '18441033t.jpg');
+r = W.apply([{ key: 'RECIMAGEID_F13_1056_1_900', value: '99999999t.jpg', kind: 'recImage' }]);
+ok('unknown photo id rejected with a reason', !r.ok && /not in the ImageID list/.test(r.results[0].reason));
+r = W.apply([{ key: 'caption18441033', value: 'Basement – accumulated storage', kind: 'caption' }]);
+ok('Images page caption renamed', v('caption18441033') === 'Basement – accumulated storage');
+ok('rename marks only that photo box, not the gallery', document.getElementById('imageordertagP0').classList.contains('tisqc-applied') && !document.getElementById('imageordertagP1').classList.contains('tisqc-applied') && !document.getElementById('galleryRow').classList.contains('tisqc-applied'));
+ok('photo box found from the image too', W.blockFor(document.getElementById('img18441284')).id === 'imageordertagP1');
+r = W.apply([{ key: 'F7_111459_1_300', value: 'New narrative.', kind: 'text' }, { key: 'F2_999_1_1', value: 'Yes', kind: 'choice' }]);
+ok('partial apply reports missing field', r.ok && r.results[1].reason === 'not on this page');
+r = W.apply([{ key: 'cbox111474_1', value: true, kind: 'omitSection' }]);
+ok('omit-section checkbox ticked', document.getElementsByName('cbox111474_1')[0].checked);
+ok('applied rows marked with AI tag', document.querySelectorAll('.tisqc-applied').length >= 5 && document.querySelectorAll('.tisqc-tag').length >= 5);
+// undo everything
+W.revert(['F2_111470_1_100', 'F1_111470_1_101', 'F13_111470_1_900', 'F4_111473_1_200', 'F14_1056_1_10321504', 'RECIMAGEID_F14_1056_1_10321504', 'RECIMAGEID_F13_1056_1_900', 'caption18441033', 'F7_111459_1_300', 'cbox111474_1']);
+ok('undo: checkbox back to Yes', checked('F2_111470_1_100') === 'Yes');
+ok('undo: texts restored', v('F1_111470_1_101') === '' && v('F7_111459_1_300') === 'Old narrative.' && v('caption18441033').startsWith('130 east'));
+ok('undo: selects restored', v('F4_111473_1_200') === 'Select' && v('RECIMAGEID_F13_1056_1_900') === '');
+ok('undo: omit unticked', !document.getElementsByName('cbox111474_1')[0].checked);
+ok('undo: AI marks removed', document.querySelectorAll('.tisqc-applied').length === 0);
+// panel-side undo: apply() returns the previous values; revert works from them even if the writer forgot them (page reload)
+r = W.apply([{ key: 'F2_111470_1_100', value: 'No', kind: 'choice' }, { key: 'F7_111459_1_300', value: 'Rewritten.', kind: 'text' }]);
+const entries = r.results.map(x => ({ key: x.resolved, prev: x.prev, kind: x.kind }));
+ok('apply returns previous values for Undo', entries[0].prev === 'Yes' && entries[1].prev === 'Old narrative.', `[${entries.map(e => e.prev).join(' | ')}]`);
+W.revert(['F2_111470_1_100', 'F7_111459_1_300']);          // empties the writer's own memory…
+[...document.getElementsByName('F2_111470_1_100')].find(x => x.value === 'No').click();   // …then the values change again
+document.getElementsByName('F7_111459_1_300')[0].value = 'Rewritten.';
+W.revert(entries);                                          // …the stored entries still restore the original values
+ok('undo from stored values (after reload)', checked('F2_111470_1_100') === 'Yes' && v('F7_111459_1_300') === 'Old narrative.');
+// page helpers: rec photo thumbnails + picker, section jump bar
+const O = self.TIS_OVERLAY;
+O.recPhotos();
+const pickers = () => [...document.querySelectorAll('select[name^=RECIMAGEID]')], hasThumb = s => !!s.nextElementSibling?.classList.contains('tisqc-rp');
+const pstate = () => pickers().map(s => s.name.slice(-4) + (s.getClientRects().length ? ':vis' : ':hid') + (hasThumb(s) ? '+thumb' : '')).join(' ');
+ok('rec photo thumbnail next to each visible picker only', pickers().every(s => hasThumb(s) === !!s.getClientRects().length) && pickers().some(hasThumb), `[${pstate()}]`);
+const before = document.querySelectorAll('.tisqc-rp').length;
+document.getElementById('addrecbody0').style.display = 'table-row'; O.recPhotos();   // a hidden rec slot opened (EZ's ADD ANOTHER / flag())
+ok('a rec slot revealed later gets its thumbnail too', document.querySelectorAll('.tisqc-rp').length === before + 1 && pickers().every(s => hasThumb(s) === !!s.getClientRects().length), `[${before} → ${document.querySelectorAll('.tisqc-rp').length}]`);
+const rpSel = document.getElementsByName('RECIMAGEID_F13_1056_1_900')[0]; let changed = 0; rpSel.addEventListener('change', () => changed++);
+rpSel.nextElementSibling.querySelector('.tisqc-rp-pick').click();
+const tiles = document.querySelectorAll('.tisqc-picker .tisqc-pt');
+ok('picker shows every photo of the drop-down + "No photo"', tiles.length === rpSel.options.length, `[${tiles.length}]`);
+[...tiles].find(t => t.dataset.v === '18441284t.JPG').click();
+ok('choosing a thumbnail sets the drop-down like a hand pick (change fired)', rpSel.value === '18441284t.JPG' && changed === 1 && !document.querySelector('.tisqc-picker'));
+ok('thumbnail shows the chosen photo (case-sensitive file name)', /\/orders\/1\/1\/6\/6\/3\/0\/5\/18441284t\.JPG$/.test(rpSel.nextElementSibling.querySelector('img')?.getAttribute('src') || ''), rpSel.nextElementSibling.querySelector('img')?.getAttribute('src'));
+const nav = O.sectionNav();
+ok('section jump bar lists the form sections', nav.ok && nav.sections === 3 && document.querySelectorAll('.tisqc-ns-list [data-sec]').length === 3, JSON.stringify(nav));
+O.highlight([{ key: 'F2_111470_1_100', severity: 'blocker', title: 'Housekeeping' }, { key: 'F4_111473_1_200', severity: 'warning', title: 'Fire doors' }]);
+ok('issue counts per section follow the highlights', document.querySelector('[data-sec="111470_1"] b')?.textContent === '1' && document.querySelector('[data-sec="111473_1"] b')?.textContent === '1' && /2/.test(document.querySelector('.tisqc-ns-toggle').textContent));
+O.clear();
+ok('clearing highlights clears the counts', !document.querySelector('.tisqc-ns-list b'));
+document.querySelector('.tisqc-nav-sec').remove();
+document.getElementById('out').innerHTML = out.join('') + `<p><b>${out.filter(x => x.includes('pass')).length}/${out.length} passed</b></p>`;
+window.__result = out.filter(x => x.includes('fail')).length === 0 ? 'ALL PASS ' + out.length : 'FAILURES';
+</script>
+</body>
+</html>

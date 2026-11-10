@@ -1,0 +1,180 @@
+{
+  "version": "1",
+  "note": "Structured rules for the deterministic engine. 'kind: dsl' rules are evaluated generically via form-registry keyQuestions. 'kind: code' rules are implemented in lib/rules.mjs (computed logic). TIS edits these through /v1/rules; every PUT creates a new version.",
+  "rules": [
+    {
+      "id": "general.veneer_backing_yes",
+      "kind": "dsl",
+      "severity": "blocker",
+      "checklistItem": "2.2",
+      "scope": {
+        "formTypes": [
+          "general",
+          "property_only"
+        ]
+      },
+      "when": {
+        "q": "brick_veneer",
+        "equals": "Yes"
+      },
+      "then": {
+        "q": "veneer_backing",
+        "notIn": [
+          "N/A",
+          ""
+        ]
+      },
+      "message": "Brick veneer is 'Yes' but the backing material behind the veneer is N/A or blank."
+    },
+    {
+      "id": "general.veneer_backing_no",
+      "kind": "dsl",
+      "severity": "warning",
+      "checklistItem": "2.2",
+      "scope": {
+        "formTypes": [
+          "general",
+          "property_only"
+        ]
+      },
+      "when": {
+        "q": "brick_veneer",
+        "equals": "No"
+      },
+      "then": {
+        "q": "veneer_backing",
+        "in": [
+          "N/A",
+          ""
+        ]
+      },
+      "message": "Brick veneer is 'No' so the backing-material question should be N/A."
+    },
+    {
+      "id": "general.sqft_per_unit",
+      "kind": "code",
+      "severity": "warning",
+      "checklistItem": "1.3",
+      "params": {
+        "min": 600,
+        "max": 1200,
+        "commonAreaFactor": 0.9
+      },
+      "message": "Average area per apartment is outside the expected range (internal red flag only)."
+    },
+    {
+      "id": "general.sqft_consistency",
+      "kind": "code",
+      "severity": "warning",
+      "checklistItem": "1.1",
+      "message": "Square footage differs between narrative, form, order and diagram."
+    },
+    {
+      "id": "general.vacancy_utilities",
+      "kind": "code",
+      "severity": "warning",
+      "checklistItem": "3.3",
+      "message": "Vacancy answers and the 'risk heated / utilities shut off' answer disagree."
+    },
+    {
+      "id": "general.aluminum_wiring_1965_1975",
+      "kind": "code",
+      "severity": "blocker",
+      "checklistItem": "3.4",
+      "message": "Apartment/mixed-use building built 1965-1975: aluminum wiring questions must be answered (not N/A)."
+    },
+    {
+      "id": "order.form_vs_coverage",
+      "kind": "code",
+      "severity": "blocker",
+      "checklistItem": "4.3",
+      "message": "Form type does not match coverage on the order form (e.g. Property-Only form on a Package/GL order)."
+    },
+    {
+      "id": "order.omit_sections_vs_coverage",
+      "kind": "code",
+      "severity": "warning",
+      "checklistItem": "5.1",
+      "message": "Section included that the coverage says to omit (pool, professional/auto liability, crime)."
+    },
+    {
+      "id": "order.photos_required",
+      "kind": "code",
+      "severity": "blocker",
+      "checklistItem": "4.1",
+      "message": "Photos are required unless the order is a telephone survey."
+    },
+    {
+      "id": "order.diagram_required",
+      "kind": "code",
+      "severity": "warning",
+      "checklistItem": "1.1",
+      "message": "Diagram requirement on the order form not met (or diagram present when not required)."
+    },
+    {
+      "id": "recs.flagged_answer_has_rec",
+      "kind": "code",
+      "severity": "blocker",
+      "checklistItem": "4.1",
+      "message": "Answer triggers a recommendation but the recommendation box is empty."
+    },
+    {
+      "id": "recs.photos_attached",
+      "kind": "code",
+      "severity": "warning",
+      "checklistItem": "4.4",
+      "message": "Recommendation has no photo attached."
+    },
+    {
+      "id": "recs.rating_vs_recs",
+      "kind": "code",
+      "severity": "warning",
+      "checklistItem": "5.1",
+      "message": "Recommendations exist, so Opinion of Risk must be 'Good with Recommendations' or 'Poor'."
+    },
+    {
+      "id": "recs.emergency_lighting_applicability",
+      "kind": "code",
+      "severity": "warning",
+      "checklistItem": "5.1",
+      "params": {
+        "minStories": 4,
+        "minUnitsExclusive": 12
+      },
+      "message": "Emergency-lighting recommendation on a building under 4 stories with 12 or fewer units (NFPA threshold)."
+    },
+    {
+      "id": "recs.style",
+      "kind": "code",
+      "severity": "advisory",
+      "checklistItem": "5.1",
+      "message": "Recommendation should start with an action verb, not 'Recommend', and not just describe the hazard."
+    },
+    {
+      "id": "recs.duplicates",
+      "kind": "code",
+      "severity": "warning",
+      "checklistItem": "5.1",
+      "message": "Two recommendations address the same hazard."
+    },
+    {
+      "id": "state.water_heater_straps",
+      "kind": "code",
+      "severity": "advisory",
+      "checklistItem": "4.1",
+      "params": {
+        "states": [
+          "NV",
+          "ID",
+          "MT",
+          "WY",
+          "AZ",
+          "AR",
+          "TX",
+          "WA"
+        ]
+      },
+      "message": "Risk in a water-heater-strap state: check photos for strapping."
+    }
+  ]
+}
