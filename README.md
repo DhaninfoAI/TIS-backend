@@ -56,6 +56,7 @@ everyone it removes the narrative rewrite and comment findings that older review
 | `DATABASE_URL` | Postgres (Neon). Empty → `data/state.json` |
 | `DEV_TOKEN` / `ALLOW_DEV_TOKEN` | Developer token (acts as admin; tests, harness, eval). Set `ALLOW_DEV_TOKEN=0` for customers |
 | `JWT_SECRET` | Signs access tokens. Empty → generated once and kept in the database |
+| `HOST` | Address to listen on. `127.0.0.1` on a hosted server (only nginx can reach the app; the service file sets it). Default: all |
 | `EXTENSION_DIR` | Where the extension folder is, for the developer previews only (`/ext/…` harness, `/writer-test`). Default `../extension`; not needed on a hosted server |
 | `SEAT_IDLE_HOURS` | Hours without use before a computer's seat is freed (default 8; 0 = never) |
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | First admin, created at start-up when no admin exists (remove the password afterwards) |
@@ -113,3 +114,7 @@ Nothing is hard-coded per order: every review is computed from the snapshot. Sav
 
 Data in Postgres: orgs (licences), users, sessions (hashed refresh tokens), snapshots, analyses (with token usage and $, orgId), feedback (every Apply / Dismiss / Undo from the
 extension), QC outcomes, photo insights, rules + TIS notes + change log.
+
+## Hosting
+
+Server set-up (nginx + HTTPS + service + firewall) and the DNS record: [`deploy/DEPLOY.md`](deploy/DEPLOY.md).

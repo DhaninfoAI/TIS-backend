@@ -553,6 +553,7 @@ const server = http.createServer(async (req, res) => {
   err(res, 404, 'NOT_FOUND', `${req.method} ${url.pathname} is not an endpoint`);
 });
 
-server.listen(PORT, () => console.log(`SmartFill backend on http://localhost:${PORT}  (engine: ${llm.enabled() ? 'openai ' + llm.MODELS.photo() + '/' + llm.MODELS.reason() : 'mock'} · store: ${store.backend} · ${JSON.stringify(store.counts())}${ALLOW_DEV_TOKEN ? ' · developer token ON (set ALLOW_DEV_TOKEN=0 for customers)' : ''})`));
+// HOST=127.0.0.1 on a hosted server: only nginx (same machine) can reach the app; default = all interfaces
+server.listen({ port: PORT, host: process.env.HOST || undefined }, () => console.log(`SmartFill backend on http://localhost:${PORT}  (engine: ${llm.enabled() ? 'openai ' + llm.MODELS.photo() + '/' + llm.MODELS.reason() : 'mock'} · store: ${store.backend} · ${JSON.stringify(store.counts())}${ALLOW_DEV_TOKEN ? ' · developer token ON (set ALLOW_DEV_TOKEN=0 for customers)' : ''})`));
 for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, async () => { await store.close().catch(() => {}); process.exit(0); });
 export default server;

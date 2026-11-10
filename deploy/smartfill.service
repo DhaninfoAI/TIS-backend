@@ -1,0 +1,30 @@
+# systemd service for the SmartFill backend. setup.sh installs it as /etc/systemd/system/smartfill.service
+# (replacing /opt/smartfill/backend with the folder you cloned into).
+#   status:  systemctl status smartfill        logs:  journalctl -u smartfill -f
+#   restart: systemctl restart smartfill
+# Starts at boot and restarts by itself if it stops. Secrets come from backend/.env (never in this file).
+
+[Unit]
+Description=SmartFill backend (API + dashboard)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=smartfill
+Group=smartfill
+WorkingDirectory=/opt/smartfill/backend
+Environment=NODE_ENV=production
+# only nginx on this machine can reach the app; these win over the same names in .env
+Environment=HOST=127.0.0.1
+Environment=PORT=4010
+ExecStart=/usr/bin/node server.mjs
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
