@@ -23,7 +23,7 @@
       auth = null; localStorage.removeItem('h_auth'); emit({ type: 'AUTH_CHANGED', signedIn: false, message: j.error?.message });
       throw Object.assign(new Error(j.error?.message || 'Please sign in.'), { signIn: true });
     }
-    if (!r.ok) throw new Error(j.error?.message || r.status); return { status: r.status, json: j };
+    if (!r.ok) throw Object.assign(new Error(j.error?.message || r.status), { code: j.error?.code }); return { status: r.status, json: j };
   };
   // Same split as the worker: PREPARE (order opened) reads + uploads, ANALYZE (Run) reuses it and starts the AI.
   // &prepdelay=ms slows the fake read down so the "Getting the order ready" hint can be seen.
@@ -86,7 +86,7 @@
   window.chrome = {
     runtime: { lastError: null, onMessage: { addListener: f => listeners.push(f) },
       getManifest: () => ({ version: '1.0.0' }), getURL: p => location.origin + '/ext/' + p,
-      sendMessage(msg, cb) { window.__harnessLog.push(msg); const h = handlers[msg.type]; (h ? h(msg) : Promise.reject(new Error('harness: unhandled ' + msg.type))).then(d => cb?.({ ok: true, data: d }), e => cb?.({ ok: false, error: e.message })); } },
+      sendMessage(msg, cb) { window.__harnessLog.push(msg); const h = handlers[msg.type]; (h ? h(msg) : Promise.reject(new Error('harness: unhandled ' + msg.type))).then(d => cb?.({ ok: true, data: d }), e => cb?.({ ok: false, error: e.message, code: e.code })); } },
     tabs: { query: async () => [{ id: 1, url: NOT_EZ ? 'chrome://newtab/' : 'https://server-ezsm.ezsurveyform.com/cgi-bin/current/aa.cgi?g=3&orderid=' + ORDER }],
       update: async (id, o) => console.log('[harness] tabs.update', o.url),
       get: async id => ({ id, index: 0 }), create: async o => { window.__harnessCreated = o.url; return { id: 2 }; }, onActivated: { addListener() {} }, onUpdated: { addListener: f => updated.push(f) } },

@@ -164,10 +164,19 @@ try {
       const r = await call('POST', '/v1/orders/1166305/analyses?force=true', {}, A); assert.equal(r.status, 202); await waitDone(r.body.analysisId);
       assert.equal((await call('GET', '/v1/auth/me', null, A)).body.org.usage.imagesThisMonth, 38);
     });
-    await t('an order with 49 new photos when 2 are left → 402 IMAGE_LIMIT with a clear message', async () => {
+    await t('before Run, the panel can see that the order does not fit (49 new photos, 2 left)', async () => {
       assert.equal((await call('PUT', '/v1/orders/1166309/snapshot', snap2, A)).status, 200);
+      const al = (await call('GET', '/v1/orders/1166309/photo-allowance', null, A)).body;
+      assert.deepEqual([al.limited, al.need, al.left, al.cap, al.enough], [true, 49, 2, 40, false]);
+      assert.match(al.message, /49 new photos for the AI to review, but only 2 of your plan's 40 photos are left this month\. The allowance resets on \w{3} \d+\. Ask your administrator/);
+      const again = (await call('GET', '/v1/orders/1166305/photo-allowance', null, A)).body;   // already reviewed: free
+      assert.deepEqual([again.need, again.enough], [0, true]);
+      assert.equal((await call('GET', '/v1/orders/1166309/photo-allowance')).body.limited, false);   // admins are not limited
+    });
+    await t('an order with 49 new photos when 2 are left → 402 IMAGE_LIMIT with a clear message and the numbers', async () => {
       const r = await call('POST', '/v1/orders/1166309/analyses', {}, A); assert.equal(r.status, 402); assert.equal(r.body.error.code, 'IMAGE_LIMIT');
-      assert.match(r.body.error.message, /49 photos to review, but only 2 of your plan's 40 photos/);
+      assert.match(r.body.error.message, /49 new photos for the AI to review, but only 2 of your plan's 40 photos/);
+      assert.deepEqual([r.body.error.details.need, r.body.error.details.left, r.body.error.details.cap], [49, 2, 40]);
     });
     await t('admin raises the allowance → the same order can be reviewed', async () => {
       await call('PATCH', '/v1/admin/orgs/acme-inspections', { licence: { imagesPerMonth: 200 } });

@@ -221,6 +221,24 @@ function photosToReview(oid, snap) {
   return (snap.photos || []).filter(ph => existsSync(path.join(dir, ph.imageId + '.jpg')) && state.photoInsights[insightKey(oid, ph.imageId, model)]?.v !== PHOTO_PROMPT_V).length;
 }
 
+/** The customer's monthly photo allowance against the photos this order still needs the AI to look at (photos it
+ *  already reviewed are reused and free). Admins, and the practice engine (no AI), are not limited. */
+function photoAllowance(auth, oid, snap) {
+  if (isAdmin(auth) || !llm.enabled()) return { limited: false };
+  const cap = Number(A.org(auth.orgId)?.licence?.imagesPerMonth || 0); if (!cap) return { limited: false };
+  const used = A.imagesThisMonth(auth.orgId), left = Math.max(0, cap - used), need = snap ? photosToReview(oid, snap) : 0;
+  const now = new Date(), reset = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 1, 1));
+  const al = { limited: true, cap, used, left, need, enough: need <= left, resetsOn: reset.toISOString().slice(0, 10) };
+  if (!al.enough) {
+    const n = x => x.toLocaleString('en-US'), on = reset.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+    al.message = (left === 0 ? `Your plan's ${n(cap)} photos for this month are used up, and this order has ${n(need)} new photo${need === 1 ? '' : 's'} for the AI to review.`
+      : left === cap ? `This order has ${n(need)} new photos for the AI to review, more than the ${n(cap)} photos a month your plan includes.`
+      : `This order has ${n(need)} new photos for the AI to review, but only ${n(left)} of your plan's ${n(cap)} photos are left this month.`)
+      + ` The allowance resets on ${on}. Ask your administrator for more photos. Orders already reviewed can still be re-run.`;
+  }
+  return al;
+}
+
 function newAnalysis(orderId, snapshotId, modules, autonomy = 1, auth = null) {
   const aid = 'an_' + randomUUID().slice(0, 8);
   state.analyses[aid] = { analysisId: aid, orderId, snapshotId, autonomy, status: 'queued', createdAt: new Date().toISOString(), orgId: auth?.orgId || DEFAULT_ORG, userId: auth?.userId || null,
@@ -269,6 +287,11 @@ route('PUT', '/v1/orders/:orderId/snapshot', async (req, res, p) => {
   send(res, 200, { snapshotId, contentHash, unchanged: prev?.contentHash === contentHash, photosNeeded: (snap.photos || []).map(x => x.imageId).filter(id => !have.has(String(id))),
     stats: { forms: snap.forms.length, fields: snap.forms.flatMap(f => f.sections || []).flatMap(s => s.fields || []).length, recommendations: (snap.recommendations || []).length, photos: (snap.photos || []).length } });
 });
+// Before Run: does this order fit in what is left of the month's photos? (the panel warns instead of failing on Run)
+route('GET', '/v1/orders/:orderId/photo-allowance', (req, res, p) => {
+  const s = state.snapshots[p.orderId]; if (s && !mine(req.auth, s)) return err(res, 404, 'NOT_FOUND', 'no snapshot');
+  send(res, 200, photoAllowance(req.auth, p.orderId, s?.snapshot));
+});
 route('GET', '/v1/orders/:orderId/snapshot', (req, res, p) => state.snapshots[p.orderId] && mine(req.auth, state.snapshots[p.orderId]) ? send(res, 200, state.snapshots[p.orderId]) : err(res, 404, 'NOT_FOUND', 'no snapshot'));
 
 route('POST', '/v1/orders/:orderId/photos', async (req, res, p) => {
@@ -312,12 +335,10 @@ route('POST', '/v1/orders/:orderId/analyses', async (req, res, p) => {
   }
   const modules = b.modules?.length ? b.modules : MODULE_ORDER;
   const bad = modules.filter(m => !MODULES[m]); if (bad.length) return err(res, 400, 'INVALID_PAYLOAD', 'unknown modules: ' + bad.join(','));
-  if (!isAdmin(req.auth) && llm.enabled() && modules.includes('photoReview')) {   // the plan's photos per month
-    const cap = Number(A.org(req.auth.orgId)?.licence?.imagesPerMonth || 0), need = photosToReview(p.orderId, s.snapshot);
-    if (cap && need) {
-      const left = Math.max(0, cap - A.imagesThisMonth(req.auth.orgId));
-      if (need > left) return err(res, 402, 'IMAGE_LIMIT', `This order has ${need} photos to review, but only ${left} of your plan's ${cap.toLocaleString('en-US')} photos are left this month. Please contact your administrator for more photos.`);
-    }
+  if (modules.includes('photoReview')) {   // the plan's photos per month
+    const al = photoAllowance(req.auth, p.orderId, s.snapshot);
+    if (al.limited && !al.enough) return send(res, 402, { error: { code: 'IMAGE_LIMIT', message: al.message, retryable: false,
+      details: { need: al.need, left: al.left, cap: al.cap, resetsOn: al.resetsOn } } });
   }
   const a = newAnalysis(Number(p.orderId), s.snapshotId, modules, b.autonomy, req.auth);
   send(res, 202, { analysisId: a.analysisId, status: a.status, modules, events: `/v1/analyses/${a.analysisId}/events`, ...(isAdmin(req.auth) ? { engine } : {}) });

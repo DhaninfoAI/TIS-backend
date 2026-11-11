@@ -9,7 +9,7 @@ AI QC service for the TIS Chrome extension (`../extension`). Implements the API 
 npm install
 npm start          # http://localhost:4010 · dashboard at /dashboard · API explorer at / · AI rules = admin tab in the dashboard (/rules forwards there)
 npm run create-user -- --email you@company.com --role admin   # account on the running backend (asks for the password)
-npm test           # photo clean-up (10) + photo claims (9) + renames (16) + pricing guide (43) + 22-order fixes (24) + end-to-end API (49) + sign-in/licences/seats/photo plans (39) + seat idle limit (7) + customer brand/platform (6) + recommendation checks (6); never touches Neon or OpenAI
+npm test           # photo clean-up (10) + photo claims (9) + renames (16) + pricing guide (43) + 22-order fixes (24) + end-to-end API (49) + sign-in/licences/seats/photo plans (40) + seat idle limit (7) + customer brand/platform (6) + recommendation checks (6); never touches Neon or OpenAI
 npm run import-narratives   # re-import TIS's example narratives (../GPT_Narrative_Training.md) → rules/narrative-examples.json
 npm run test:ai    # OpenAI code path against a fake OpenAI server (25 checks, no cost)
 npm run eval       # full review of the 6 Boost AI sandbox orders → reports/eval-*.md (real engine, costs money)
