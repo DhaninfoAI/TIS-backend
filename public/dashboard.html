@@ -36,6 +36,7 @@ textarea { font: inherit; color: inherit; background: var(--card-2); border: 1px
 
 /* shell */
 header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 24px; background: color-mix(in srgb, var(--card) 90%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.reset-row { flex-basis: 100%; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .org-cell { display: flex; align-items: center; gap: 10px; } .org-logo { height: 22px; max-width: 70px; object-fit: contain; }
 .brand-edit { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; padding-top: 4px; border-top: 1px solid var(--line-2); }
 .logo-prev { display: flex; gap: 8px; flex-basis: 100%; } .lp { display: grid; place-items: center; height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--line); }
@@ -348,6 +349,14 @@ $('view').addEventListener('submit', async e => {
     if (f.id === 'setPw') { await api('PATCH', '/v1/admin/users/' + f.dataset.user, { password: d.password }); $('pwEditor').innerHTML = '<p class="note ok">Password changed. That person was signed out everywhere.</p>'; }
   } catch (err) { const m = f.querySelector('.note') || f; m.textContent = err.message; m.classList?.add('bad'); }
 });
+// Reset this month's photos used to 0 for one customer (click twice; no browser pop-ups). Photos already reviewed stay free.
+$('view').addEventListener('click', async e => {
+  const b = e.target.closest('[data-reset-photos]'); if (!b) return;
+  if (!b.dataset.sure) { b.dataset.sure = '1'; b.textContent = 'Click again to reset'; b.classList.add('bad'); setTimeout(() => { if (b.isConnected && !b.disabled) { delete b.dataset.sure; b.textContent = 'Reset photos used to 0'; b.classList.remove('bad'); } }, 4000); return; }
+  b.disabled = true; b.textContent = 'Resetting…';
+  try { await api('PATCH', '/v1/admin/orgs/' + encodeURIComponent(b.dataset.resetPhotos), { resetPhotoCount: true }); await load(); document.querySelector(`[data-edit-org="${CSS.escape(b.dataset.resetPhotos)}"]`)?.click(); }
+  catch (err) { b.disabled = false; b.textContent = err.message; }
+});
 $('view').addEventListener('change', e => {   // picking a plan for a customer fills in that plan's photos + seats
   if (!e.target.matches('[data-plan-pick]')) return;
   const p = (data.plans || []).find(x => x.id === e.target.value), f = e.target.form; if (!p) return;
@@ -369,6 +378,8 @@ $('view').addEventListener('click', async e => {
       <label>Plan <select name="plan" data-plan-pick>${L.plan && !(data.plans || []).some(p => p.id === L.plan) ? `<option value="${esc(L.plan)}" selected>${esc(L.plan)} (not in the plan list)</option>` : ''}${(data.plans || []).map(p => `<option value="${esc(p.id)}"${p.id === L.plan ? ' selected' : ''}>${esc(p.name)}</option>`).join('')}</select></label>
       <label>Photos / month <input name="imagesPerMonth" type="number" min="0" value="${L.imagesPerMonth ?? 0}"></label><label>Seats <input name="seats" type="number" min="0" value="${L.seats ?? 0}"></label><label>Valid until <input name="expiresAt" type="date" value="${L.expiresAt ? L.expiresAt.slice(0, 10) : ''}"></label>
       <label>Platform <select name="platform">${platformOpts(o.platform)}</select></label>
+      <div class="reset-row"><span class="small">Photos used this month: <b>${fmt(o.usage?.imagesThisMonth ?? 0)}</b>${L.imagesPerMonth ? ` of ${fmt(L.imagesPerMonth)}` : ''}${L.usageResetAt && Date.parse(L.usageResetAt) >= Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1) ? ` <span class="muted">(counted since ${esc(dt(L.usageResetAt))})</span>` : ''}</span>
+        <button class="ghost sm" type="button" data-reset-photos="${esc(o.orgId)}">Reset photos used to 0</button></div>
       <div class="brand-edit"><label>Name on their logo <input name="brandName" value="${esc(o.brand?.name || o.name)}" maxlength="80"></label>
         <div class="logo-prev">${o.brand?.logoLight ? `<span class="lp light"><img src="${esc(o.brand.logoLight)}" alt="Logo on light"></span><span class="lp dark"><img src="${esc(o.brand.logoDark || o.brand.logoLight)}" alt="Logo on dark"></span>` : '<span class="muted small">No logo yet: their team sees the SmartFill mark.</span>'}</div>
         <label>Logo for light theme <input name="logoLight" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label>

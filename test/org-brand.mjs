@@ -44,5 +44,19 @@ t('the brand name is cleaned', () => {
   assert.equal(A.publicOrg(A.org('plain-co')).brand.name, 'bPlain/b Co');
 });
 
+console.log('photos used this month: reset to 0');
+t('an admin reset sets the count to 0; later photos count again; plan edits keep the reset', () => {
+  const at = h => new Date(Date.now() - h * 3600e3).toISOString();
+  for (let i = 0; i < 5; i++) state.photoInsights['p' + i] = { orgId: 'plain-co', orderId: '1', imageId: 'a' + i, firstAt: at(1) };
+  assert.equal(A.imagesThisMonth('plain-co'), 5);
+  A.updateOrg('plain-co', { resetPhotoCount: true });
+  assert.equal(A.imagesThisMonth('plain-co'), 0);
+  assert.equal(A.publicOrg(A.org('plain-co')).usage.imagesThisMonth, 0);
+  state.photoInsights.p9 = { orgId: 'plain-co', orderId: '2', imageId: 'b9', firstAt: new Date(Date.now() + 1000).toISOString() };
+  assert.equal(A.imagesThisMonth('plain-co'), 1);
+  A.updateOrg('plain-co', { licence: { seats: 4 } });   // editing the licence keeps the reset point
+  assert.equal(A.imagesThisMonth('plain-co'), 1); assert.ok(A.org('plain-co').licence.usageResetAt);
+});
+
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);
