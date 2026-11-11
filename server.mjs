@@ -408,7 +408,10 @@ route('GET', '/v1/rules/tree', (req, res) => {
   send(res, 200, { rulesVersion: meta().rules.version, universal: (k.global_quality_control_standards?.requirements || []).map(r => r.topic),
     forms: Object.keys(k.global_forms || {}), clients: Object.fromEntries(Object.entries(k.clients || {}).map(([c, v]) => [c, { status: v.status, forms: Object.keys(v.forms || {}) }])),
     structuredRules: meta().rules.published.map(r => ({ id: r.id, severity: r.severity, kind: r.kind, message: r.message, checklistItem: r.checklistItem })),
-    drafts: Object.keys(meta().rules.drafts), docs: Object.keys(meta().ruleDocs) });
+    drafts: Object.keys(meta().rules.drafts), docs: Object.keys(meta().ruleDocs).filter(k => (meta().ruleDocs[k].at(-1)?.markdown || '').trim()),
+    // for the dashboard's AI rules tab: the checks in full, unpublished changes, question names, change log
+    rules: meta().rules.published, draftRules: meta().rules.drafts, changelog: meta().rules.changelog,
+    questions: Object.keys(JSON.parse(readFileSync(path.join(here, 'rules/form-registry.json'), 'utf8')).keyQuestions || {}) });
 }, ADMIN);
 route('GET', '/v1/rules/changelog', (req, res) => send(res, 200, { rulesVersion: meta().rules.version, changelog: meta().rules.changelog }), ADMIN);
 route('POST', '/v1/rules/publish', async (req, res) => {

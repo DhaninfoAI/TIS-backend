@@ -2,11 +2,11 @@
 
 > **Live (2026-11-11)**: hosted under a path prefix on the Boost dashboard host:
 > dashboard `https://dashboard.boost-usa.com/tis/dashboard`, API base `https://dashboard.boost-usa.com/tis`
-> (the extension's `apiBase`), rules `https://dashboard.boost-usa.com/tis/rules`. See "Hosting under a path" at the
+> (the extension's `apiBase`), AI rules: admin tab in the dashboard (`/tis/rules` forwards there). See "Hosting under a path" at the
 > end; the steps below describe a server of its own (`smartfill.boost.com`).
 
-One server runs everything: the API the extension calls (`/v1/…`), the dashboard (`/dashboard`) and the rules page
-(`/rules`). nginx sits in front with HTTPS; the Node app listens on `127.0.0.1:4010` only.
+One server runs everything: the API the extension calls (`/v1/…`), the dashboard (`/dashboard`, including the admins'
+AI rules tab). nginx sits in front with HTTPS; the Node app listens on `127.0.0.1:4010` only.
 
 ```
 Chrome extension ─┐

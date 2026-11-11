@@ -7,7 +7,7 @@ AI QC service for the TIS Chrome extension (`../extension`). Implements the API 
 
 ```bash
 npm install
-npm start          # http://localhost:4010 · dashboard at /dashboard · API explorer at / · rules editor at /rules
+npm start          # http://localhost:4010 · dashboard at /dashboard · API explorer at / · AI rules = admin tab in the dashboard (/rules forwards there)
 npm run create-user -- --email you@company.com --role admin   # account on the running backend (asks for the password)
 npm test           # photo clean-up (10) + photo claims (9) + renames (16) + pricing guide (43) + 22-order fixes (24) + end-to-end API (49) + sign-in/licences/seats/photo plans (39) + seat idle limit (7) + customer brand/platform (6); never touches Neon or OpenAI
 npm run import-narratives   # re-import TIS's example narratives (../GPT_Narrative_Training.md) → rules/narrative-examples.json
@@ -38,7 +38,7 @@ or the developer token while `ALLOW_DEV_TOKEN` is on. Sign-in, licences, admin a
 
 Dashboard: `GET /v1/dashboard` (role decides the content), admin: `/v1/admin/orgs`, `/v1/admin/users`, `/v1/admin/plans`.
 A review is refused with 402 `IMAGE_LIMIT` when the order's photos still to review exceed what is left of the plan's photos this month.
-Not used by the extension yet: batches, `orders/status` (orders-list badges), rules API (used by `/rules`).
+Not used by the extension yet: batches, `orders/status` (orders-list badges), rules API (admin-only; used by the dashboard's AI rules tab).
 Admin-only: `/v1/analytics/summary`, cost estimate/compare. For the customer role the server removes AI usage, cost,
 models, engines, fallback reasons and the score from every review response (`forClient` in `server.mjs`); for
 everyone it removes the narrative rewrite and comment findings that older reviews still carry.
@@ -80,7 +80,7 @@ everyone it removes the narrative rewrite and comment findings that older review
 
 All AI steps share one cached context (order rules pack + compact order + photo results), return strict
 JSON, and cite evidence. Prompts are plain markdown in `prompts/`: edit and the next review uses them.
-TIS notes saved on `/rules` are appended to every prompt. If an AI step fails or hits the cost cap, it
+Notes saved in the dashboard's AI rules tab are appended to every prompt. If an AI step fails or hits the cost cap, it
 falls back to the heuristic so the review always completes, and the result says so (`engine: "mock (fallback)"`).
 
 ## Files

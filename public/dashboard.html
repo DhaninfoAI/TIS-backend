@@ -25,6 +25,7 @@ button, input, select { font: inherit; color: inherit; } [hidden] { display: non
 .ghost { background: var(--card); color: var(--ink-2); border: 1px solid var(--line); border-radius: 9px; padding: 6px 12px; cursor: pointer; }
 .ghost:hover { background: var(--chip); } .sm { padding: 4px 10px; font-size: 12px; }
 input, select { background: var(--card-2); border: 1px solid var(--line); border-radius: 9px; padding: 7px 10px; }
+textarea { font: inherit; color: inherit; background: var(--card-2); border: 1px solid var(--line); border-radius: 9px; padding: 8px 10px; resize: vertical; line-height: 1.55; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* sign-in */
@@ -162,7 +163,7 @@ $('btnLogout').onclick = async () => { await fetch(BASE + '/v1/auth/logout', { m
 
 // ---------------------------------------------------------------- app
 const admin = () => me?.user?.role === 'admin';
-const TABS = () => admin() ? [['overview', 'Overview'], ['orders', 'Orders'], ['ai', 'AI usage & cost'], ['customers', 'Customers & licences'], ['users', 'Users']]
+const TABS = () => admin() ? [['overview', 'Overview'], ['orders', 'Orders'], ['ai', 'AI usage & cost'], ['customers', 'Customers & licences'], ['users', 'Users'], ['rules', 'AI rules']]
   : [['overview', 'Overview'], ['orders', 'Orders'], ['inspectors', 'Inspectors'], ['licence', 'Licence & team']];
 async function start() {
   $('signin').hidden = true; $('app').hidden = false;
@@ -172,6 +173,7 @@ async function start() {
   $('brandSlot').innerHTML = light ? `<img class="logo logo-light" src="${esc(light)}" alt="${esc(b.name)}"><img class="logo logo-dark" src="${esc(dark)}" alt="${esc(b.name)}">` : `<img class="mark" src="${BASE}/brand/boost-star.png" alt="">`;
   $('whoRole').textContent = admin() ? 'Admin' : 'Customer'; $('whoRole').className = 'badge' + (admin() ? ' admin' : '');
   $('orgPick').hidden = !admin();
+  if (location.hash.length > 1 && TABS().some(([k]) => k === location.hash.slice(1))) tab = location.hash.slice(1);   // e.g. /dashboard#rules
   if (!TABS().some(([k]) => k === tab)) tab = 'overview';   // e.g. a customer tab after an admin signs in
   $('tabs').innerHTML = TABS().map(([k, l]) => `<button role="tab" data-tab="${k}" aria-selected="${k === tab}">${l}</button>`).join('');
   await load();
@@ -187,7 +189,7 @@ async function load() {
   $('periodText').textContent = `${dd(data.period.from)} – ${dd(data.period.to)}`;
   render();
 }
-function render() { $('view').innerHTML = ({ overview, orders, inspectors, licence, ai, customers, users }[tab] || overview)(); bindTips(); }
+function render() { document.querySelector('.bar-filters').hidden = tab === 'rules'; $('view').innerHTML = ({ overview, orders, inspectors, licence, ai, customers, users, rules }[tab] || overview)(); bindTips(); }
 
 const tile = (k, v, s = '', tech) => `<div class="card tile${tech ? ' tech' : ''}"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`;
 function columnChart(points, key, label, valueFmt = fmt) {
@@ -382,6 +384,140 @@ $('view').addEventListener('click', async e => {
     await load();
   } catch (err) { b.textContent = err.message; }
 });
+
+// ---------------------------------------------------------------- AI rules (admins): what SmartFill checks, without code
+// Notes = plain-English instructions added to every AI review (all clients, one client or one form).
+// Checks = fixed "if answer A is X, answer B must …" tests that run on every review without the AI.
+const R = { tree: null, scope: 'universal', name: 'all', doc: null, editing: null, msg: '' };
+const SEV = { blocker: ['Must fix', 'red'], warning: ['To check', 'amber'], advisory: ['Advisory', ''] };
+const qLabel = q => { const s = String(q || '').replace(/_/g, ' '); return s.charAt(0).toUpperCase() + s.slice(1); };
+const vals = list => (list || []).map(v => v === '' ? 'blank' : `“${v}”`).join(' or ');
+/** A check as a sentence a reviewer can read. */
+function checkSentence(r) {
+  if (r.kind !== 'dsl' || !r.when || !r.then) return r.message || r.id;
+  const t = r.then.notIn ? `must not be ${vals(r.then.notIn)}` : r.then.in ? `must be ${vals(r.then.in)}` : 'is checked';
+  return `If “${qLabel(r.when.q)}” is “${r.when.equals}”, then “${qLabel(r.then.q)}” ${t}.`;
+}
+/** A change-log line in plain words ("doc client/X: why" → "Notes for X: why"). */
+function logText(c) {
+  const m = /^doc (universal|client|form)\/(.*?):\s*(.*)$/s.exec(c.note || '');
+  if (m) return `Notes for ${m[1] === 'universal' ? 'all clients' : m[2]}${m[3] ? `: ${m[3]}` : ''}`;
+  if (/^Seeded from/.test(c.note || '')) return 'Starting checks';
+  return c.note || (c.changed || []).map(id => checkSentence(R.tree?.rules.find(r => r.id === id) || { message: id })).join('; ');
+}
+function rules() { setTimeout(loadRules); return '<div id="rulesView"><div class="empty">Loading…</div></div>'; }
+async function loadRules() {
+  try { R.tree = await api('GET', '/v1/rules/tree'); } catch (e) { if ($('rulesView')) $('rulesView').innerHTML = `<div class="empty">${esc(e.message)}</div>`; return; }
+  await openNote(R.scope, R.name, true);
+}
+async function openNote(scope, name, keepMsg) {
+  R.scope = scope; R.name = name; if (!keepMsg) R.msg = '';
+  R.doc = name ? await api('GET', `/v1/rules/${scope}/${encodeURIComponent(name)}`).catch(() => null) : null;
+  drawRules();
+}
+function drawRules() {
+  const T = R.tree, el = $('rulesView'); if (!T || !el) return;
+  const withNotes = T.docs.map(k => { const i = k.indexOf('/'); return { scope: k.slice(0, i), name: k.slice(i + 1) }; });
+  const names = R.scope === 'client' ? Object.keys(T.clients).filter(c => T.clients[c].status !== 'excluded') : R.scope === 'form' ? T.forms : [];
+  const last = R.doc?.history?.at(-1);
+  const drafts = Object.values(T.draftRules || {});
+  const draftIds = new Set(drafts.map(d => d.id));
+  const rows = [...drafts.filter(d => !T.rules.some(r => r.id === d.id)), ...T.rules.map(r => T.draftRules?.[r.id] || r)];
+  el.innerHTML = `
+    <p class="note" style="margin-top:0">Two ways to change what SmartFill checks, without code. Changes apply from the next <b>Run AI review</b>; reviews already done stay as they are.</p>
+
+    <h2>Notes for the AI</h2>
+    <form class="card" id="noteForm">
+      <p class="note" style="margin:0 0 12px">Plain-English instructions the AI follows on every review. One instruction per line works best, e.g. <i>“Flag every sidewalk crack as a required recommendation.”</i></p>
+      <div class="form">
+        <label>Applies to <select id="rScope"><option value="universal"${R.scope === 'universal' ? ' selected' : ''}>All clients</option><option value="client"${R.scope === 'client' ? ' selected' : ''}>One client</option><option value="form"${R.scope === 'form' ? ' selected' : ''}>One form</option></select></label>
+        ${R.scope === 'universal' ? '' : `<label>${R.scope === 'client' ? 'Client' : 'Form'} <input id="rName" list="rNames" value="${esc(R.name || '')}" placeholder="Type to search…" style="min-width:260px"><datalist id="rNames">${names.map(n => `<option value="${esc(n)}">`).join('')}</datalist></label>`}
+      </div>
+      ${R.scope !== 'universal' && !R.name ? '<p class="note">Pick a name to see or write its notes.</p>' : R.scope !== 'universal' && !names.includes(R.name) ? `<p class="note bad">“${esc(R.name)}” is not in the list, so its notes would never be used. Pick a ${R.scope === 'client' ? 'client' : 'form'} from the list.</p>` : `
+      <textarea id="rText" rows="7" placeholder="- One instruction per line" style="width:100%;margin-top:12px">${esc(R.doc?.markdown || '')}</textarea>
+      <div class="form" style="margin-top:8px"><label style="flex:1">Why (for the change log) <input id="rWhy" placeholder="e.g. Asked by TIS on the weekly call" style="width:100%"></label><button class="primary" type="submit">Save notes</button></div>
+      <p class="note">${last ? `Last changed ${esc(dt(last.at))}${last.author ? ` by ${esc(last.author)}` : ''} · ${R.doc.versions} version${R.doc.versions === 1 ? '' : 's'} kept` : 'No notes here yet.'} ${R.msg ? `<span class="ok">${esc(R.msg)}</span>` : ''}</p>`}
+      ${withNotes.length ? `<p class="note">Has notes: ${withNotes.map(w => `<button type="button" class="ghost sm" data-r-open="${esc(w.scope)}|${esc(w.name)}">${esc(w.scope === 'universal' ? 'All clients' : w.name)}</button>`).join(' ')}</p>` : ''}
+    </form>
+
+    <h2>Automatic checks</h2>
+    <div class="card">
+      <p class="note" style="margin:0 0 10px">Run on every review without the AI and show up in the reviewer's panel. “Built in” checks are part of SmartFill; “Yours” you can change here.</p>
+      <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Check</th><th>Shown as</th><th>Type</th><th></th></tr></thead><tbody>
+      ${rows.map(r => { const [lab, col] = SEV[r.severity] || [r.severity, '']; const mine = r.kind === 'dsl';
+        return `<tr${r.deleted ? ' style="opacity:.55"' : ''}><td>${esc(checkSentence(r))}${mine && r.message ? `<div class="muted small">Reviewer sees: ${esc(r.message)}</div>` : ''}</td>
+          <td><span class="pill ${col}">${esc(lab)}</span></td>
+          <td style="white-space:nowrap">${mine ? 'Yours' : 'Built in'}${draftIds.has(r.id) ? ` <span class="pill amber">${r.deleted ? 'to remove' : 'not published'}</span>` : ''}</td>
+          <td style="white-space:nowrap">${mine && !r.deleted ? `<button class="ghost sm" type="button" data-r-edit="${esc(r.id)}">Edit</button> <button class="ghost sm" type="button" data-r-del="${esc(r.id)}">Remove</button>` : ''}</td></tr>`; }).join('')}
+      </tbody></table></div>
+      <div class="form" style="margin-top:12px"><button class="ghost" type="button" data-r-new>Add a check</button></div>
+      <div id="rEdit"></div>
+      ${drafts.length ? `<form class="form" id="publishForm" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line-2)">
+        <span class="small"><b>${drafts.length}</b> change${drafts.length === 1 ? '' : 's'} not published yet: reviews don't use ${drafts.length === 1 ? 'it' : 'them'} until you publish.</span>
+        <label style="flex:1">Why (for the change log) <input name="note" style="width:100%" required></label><button class="primary" type="submit">Publish</button></form>` : ''}
+    </div>
+
+    <h2>Change log</h2>
+    <div class="card tbl-wrap"><table class="tbl"><thead><tr><th>When</th><th>Who</th><th>What changed</th></tr></thead><tbody>
+      ${(T.changelog || []).slice().reverse().slice(0, 30).map(c => `<tr><td style="white-space:nowrap">${esc(dt(c.at))}</td><td>${esc(c.author || '')}</td><td>${esc(logText(c))}</td></tr>`).join('') || '<tr><td colspan="3" class="muted">No changes yet.</td></tr>'}
+    </tbody></table></div>`;
+  if (R.editing) drawEditor();
+}
+/** Add / edit a check with plain fields (no code). */
+function drawEditor() {
+  const r = R.editing, qs = R.tree.questions || [];
+  const opt = (sel) => qs.map(q => `<option value="${esc(q)}"${q === sel ? ' selected' : ''}>${esc(qLabel(q))}</option>`).join('');
+  const mustNot = !!r.then?.notIn, list = (r.then?.notIn || r.then?.in || []).map(v => v === '' ? 'blank' : v).join(', ');
+  $('rEdit').innerHTML = `<form class="card form" id="checkForm" style="margin-top:12px;background:var(--card-2)">
+    <label>If the answer to <select name="whenQ">${opt(r.when?.q)}</select></label>
+    <label>is <input name="equals" value="${esc(r.when?.equals ?? 'Yes')}" style="min-width:90px"></label>
+    <label>then <select name="thenQ">${opt(r.then?.q)}</select></label>
+    <label>must <select name="mode"><option value="notIn"${mustNot ? ' selected' : ''}>not be</option><option value="in"${mustNot ? '' : ' selected'}>be</option></select></label>
+    <label>any of (comma between; “blank” = empty) <input name="values" value="${esc(list || 'N/A, blank')}" style="min-width:180px"></label>
+    <label>Show it as <select name="severity">${Object.entries(SEV).map(([k, [l]]) => `<option value="${k}"${k === r.severity ? ' selected' : ''}>${l}</option>`).join('')}</select></label>
+    <label style="flex-basis:100%">What the reviewer reads <input name="message" value="${esc(r.message || '')}" placeholder="e.g. Brick veneer is Yes but the backing material is blank." style="width:100%" required></label>
+    <button class="primary" type="submit">Save</button><button class="ghost" type="button" data-r-test>Try on saved orders</button><button class="ghost" type="button" data-r-cancel>Cancel</button>
+    <span class="note" id="rEditMsg"></span><div id="rTest" style="flex-basis:100%"></div></form>`;
+}
+function checkFromForm(f) {
+  const d = Object.fromEntries(new FormData(f).entries()), r = R.editing;
+  const values = d.values.split(',').map(s => s.trim()).map(s => /^blank$/i.test(s) ? '' : s).filter((s, i, a) => a.indexOf(s) === i);
+  const id = r.id || `custom.${d.whenQ}_${d.thenQ}_${Date.now().toString(36)}`;
+  return { ...r, id, kind: 'dsl', severity: d.severity, scope: r.scope || { formTypes: ['general', 'property_only'] },
+    when: { q: d.whenQ, equals: d.equals.trim() }, then: { q: d.thenQ, [d.mode]: values }, message: d.message.trim(), checklistItem: r.checklistItem || '' };
+}
+const saveDraft = rule => api('PUT', `/v1/rules/rule/${encodeURIComponent(rule.id)}`, { rule });
+$('view').addEventListener('change', e => {
+  if (e.target.id === 'rScope') openNote(e.target.value, e.target.value === 'universal' ? 'all' : '');
+  if (e.target.id === 'rName' && e.target.value) openNote(R.scope, e.target.value);
+});
+$('view').addEventListener('click', async e => {
+  const o = e.target.closest('[data-r-open]'); if (o) { const [s, n] = o.dataset.rOpen.split('|'); return openNote(s, n); }
+  if (e.target.closest('[data-r-new]')) { R.editing = { severity: 'warning' }; drawEditor(); return $('rEdit').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  const ed = e.target.closest('[data-r-edit]'); if (ed) { const id = ed.dataset.rEdit; R.editing = structuredClone(R.tree.draftRules?.[id] || R.tree.rules.find(r => r.id === id)); drawEditor(); return $('rEdit').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  if (e.target.closest('[data-r-cancel]')) { R.editing = null; $('rEdit').innerHTML = ''; return; }
+  const del = e.target.closest('[data-r-del]');
+  if (del) {   // second click confirms (no browser pop-ups)
+    if (!del.dataset.sure) { del.dataset.sure = '1'; del.textContent = 'Click again to remove'; del.classList.add('bad'); return; }
+    const r = R.tree.draftRules?.[del.dataset.rDel] || R.tree.rules.find(x => x.id === del.dataset.rDel);
+    try { await saveDraft({ ...r, deleted: true }); R.editing = null; await loadRules(); } catch (err) { del.textContent = err.message; } return;
+  }
+  if (e.target.closest('[data-r-test]')) {
+    const f = $('checkForm'); try { const rule = checkFromForm(f); await saveDraft(rule); R.editing = rule;
+      const t = await api('POST', `/v1/rules/rule/${encodeURIComponent(rule.id)}/test`, {});
+      $('rTest').innerHTML = `<p class="small">Would flag <b>${t.ordersFlagged}</b> of ${t.ordersTested} saved orders${t.ordersFlagged ? ': ' + t.results.filter(x => x.hits.length).slice(0, 12).map(x => esc(x.orderId)).join(', ') : ''}. Saved as not published.</p>`;
+      R.tree = await api('GET', '/v1/rules/tree'); } catch (err) { $('rEditMsg').textContent = err.message; $('rEditMsg').className = 'note bad'; }
+  }
+});
+$('view').addEventListener('submit', async e => {
+  const f = e.target; if (!['noteForm', 'checkForm', 'publishForm'].includes(f.id)) return;
+  e.preventDefault(); e.stopImmediatePropagation();
+  try {
+    if (f.id === 'noteForm') { await api('PUT', `/v1/rules/${R.scope}/${encodeURIComponent(R.name)}`, { markdown: $('rText').value, note: $('rWhy').value }); R.msg = 'Saved. Used from the next review.'; R.tree = await api('GET', '/v1/rules/tree'); await openNote(R.scope, R.name, true); }
+    if (f.id === 'checkForm') { await saveDraft(checkFromForm(f)); R.editing = null; await loadRules(); }
+    if (f.id === 'publishForm') { await api('POST', '/v1/rules/publish', { note: f.note.value }); R.editing = null; await loadRules(); }
+  } catch (err) { const m = f.querySelector('.note:last-of-type') || f; m.textContent = err.message; m.classList.add('bad'); }
+}, true);
 
 // boot: a valid refresh cookie signs you straight in
 (async () => { if (await refresh()) start(); else showSignIn(); })();
