@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TIS QC Rules</title>
+<title>SmartFill Rules</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -31,10 +31,10 @@
 </head>
 <body>
 <header>
-  <img src="/brand/boost-star.png" alt="SmartFill">
+  <img class="mark" src="brand/boost-star.png" alt="SmartFill">
   <h1>SmartFill · Rules</h1>
   <span class="pill" id="ver">…</span>
-  <input id="token" type="password" placeholder="token" style="width:140px" aria-label="API token">
+  <span id="who" class="who"></span>
 </header>
 <main>
   <section>
@@ -59,10 +59,27 @@
 </main>
 <script>
 const $ = id => document.getElementById(id);
+// Hosted under a path prefix (e.g. https://dashboard.boost-usa.com/tis/dashboard) or at the root (localhost:4010/dashboard):
+// every call goes to <prefix>/v1/…, so the same page works in both places without editing.
+const BASE = location.pathname.replace(/\/[^/]*\/?$/, '');
+document.querySelectorAll('img.mark').forEach(i => { i.src = BASE + '/brand/boost-star.png'; });
+
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-try { $('token').value = localStorage.getItem('tisqc_token') || 'dev-token'; } catch { $('token').value = 'dev-token'; }
-$('token').onchange = () => { try { localStorage.setItem('tisqc_token', $('token').value); } catch {} load(); };
-const api = async (m, p, b) => { const r = await fetch(p, { method: m, headers: { Authorization: 'Bearer ' + $('token').value, 'Content-Type': 'application/json', 'X-EZ-User': 'rules-page' }, body: b ? JSON.stringify(b) : undefined }); const j = await r.json(); if (!r.ok) throw new Error(j.error?.message || r.status); return j; };
+// Signed in through the dashboard (its sign-in cookie); admins only. Locally without a sign-in, the developer token.
+let access = null;
+async function signIn() {
+  const r = await fetch(BASE + '/v1/auth/refresh', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}', credentials: 'same-origin' }).catch(() => null);
+  const j = r?.ok ? await r.json() : null;
+  access = j?.accessToken || (/^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'dev-token' : null);
+  $('who').textContent = j?.user ? j.user.email : access ? 'developer token' : '';
+  return !!access;
+}
+const notSignedIn = () => { $('editor').innerHTML = `<p>Sign in on the <a href="${BASE}/dashboard">SmartFill dashboard</a> with an admin account, then reload this page.</p>`; };
+const api = async (m, p, b, again) => {
+  if (!access && !(await signIn())) { notSignedIn(); throw new Error('Not signed in'); }
+  const r = await fetch(BASE + p, { method: m, headers: { Authorization: 'Bearer ' + access, 'Content-Type': 'application/json' }, body: b ? JSON.stringify(b) : undefined });
+  if (r.status === 401 && !again) { access = null; return api(m, p, b, true); }   // the 15-minute pass ran out: renew once
+  const j = await r.json(); if (!r.ok) throw new Error(r.status === 403 ? 'Only SmartFill admins can open the rules.' : j.error?.message || r.status); return j; };
 let tree = null;
 
 async function load() {

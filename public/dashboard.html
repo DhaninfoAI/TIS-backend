@@ -85,7 +85,7 @@ h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: v
 <!-- sign-in -->
 <section class="signin" id="signin" hidden>
   <form id="loginForm" novalidate>
-    <img class="mark" src="/brand/boost-star.png" alt="">
+    <img class="mark" src="brand/boost-star.png" alt="">
     <h1>SmartFill Dashboard</h1>
     <p class="muted small" style="margin:0">Sign in with your SmartFill account.</p>
     <label>Email <input id="email" type="email" autocomplete="username"></label>
@@ -98,7 +98,7 @@ h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: v
 <!-- app -->
 <div id="app" hidden>
   <header>
-    <span id="brandSlot"><img class="mark" src="/brand/boost-star.png" alt=""></span>
+    <span id="brandSlot"><img class="mark" src="brand/boost-star.png" alt=""></span>
     <span class="title">SmartFill Dashboard</span>
     <span class="who"><span id="whoName"></span><span id="whoOrg" class="muted small"></span><span id="whoRole" class="badge"></span>
       <button class="ghost sm" id="btnTheme" title="Light / dark">◐</button><button class="ghost sm" id="btnLogout">Sign out</button></span>
@@ -115,6 +115,11 @@ h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: v
 
 <script>
 const $ = id => document.getElementById(id);
+// Hosted under a path prefix (e.g. https://dashboard.boost-usa.com/tis/dashboard) or at the root (localhost:4010/dashboard):
+// every call goes to <prefix>/v1/…, so the same page works in both places without editing.
+const BASE = location.pathname.replace(/\/[^/]*\/?$/, '');
+document.querySelectorAll('img.mark').forEach(i => { i.src = BASE + '/brand/boost-star.png'; });
+
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const fmt = n => n == null ? '–' : Number(n).toLocaleString('en-US');
 const money = n => n == null ? '–' : '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: n < 1 ? 3 : 2 });
@@ -132,12 +137,12 @@ $('btnTheme').onclick = () => setTheme(document.documentElement.dataset.theme ==
 // ---------------------------------------------------------------- sign-in (access token in memory, refresh token in an HttpOnly cookie)
 let access = null, me = null, data = null, tab = 'overview';
 async function refresh() {
-  const r = await fetch('/v1/auth/refresh', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}', credentials: 'same-origin' });
+  const r = await fetch(BASE + '/v1/auth/refresh', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}', credentials: 'same-origin' });
   if (!r.ok) { access = null; return false; }
   const j = await r.json(); access = j.accessToken; me = j; return true;
 }
 async function api(method, path, body, retried) {
-  const r = await fetch(path, { method, headers: { Authorization: 'Bearer ' + access, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+  const r = await fetch(BASE + path, { method, headers: { Authorization: 'Bearer ' + access, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
   if (r.status === 401 && !retried && await refresh()) return api(method, path, body, true);
   const j = await r.json().catch(() => ({}));
   if (r.status === 401 || (r.status === 403 && /LICENCE|SUSPENDED/.test(j.error?.code || ''))) { showSignIn(j.error?.message); throw new Error(j.error?.message || 'Please sign in.'); }
@@ -148,12 +153,12 @@ function showSignIn(msg) { $('app').hidden = true; $('signin').hidden = false; $
 $('loginForm').onsubmit = async e => {
   e.preventDefault(); $('btnLogin').disabled = true; $('loginErr').textContent = '';
   try {
-    const r = await fetch('/v1/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: $('email').value.trim(), password: $('password').value, client: 'dashboard' }) });
+    const r = await fetch(BASE + '/v1/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: $('email').value.trim(), password: $('password').value, client: 'dashboard' }) });
     const j = await r.json(); if (!r.ok) throw new Error(j.error?.message || 'Sign-in failed.');
     access = j.accessToken; me = j; $('password').value = ''; start();
   } catch (err) { $('loginErr').textContent = err.message; } finally { $('btnLogin').disabled = false; }
 };
-$('btnLogout').onclick = async () => { await fetch('/v1/auth/logout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' }).catch(() => {}); access = null; showSignIn(); };
+$('btnLogout').onclick = async () => { await fetch(BASE + '/v1/auth/logout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' }).catch(() => {}); access = null; showSignIn(); };
 
 // ---------------------------------------------------------------- app
 const admin = () => me?.user?.role === 'admin';
@@ -164,7 +169,7 @@ async function start() {
   $('whoName').textContent = me.user.name; $('whoOrg').textContent = admin() ? '' : me.org?.name || '';
   // a customer sees their own logo; admins (us) and organisations without a logo see SmartFill's mark
   const b = !admin() && me.org?.brand, light = b?.logoLight, dark = b?.logoDark || light;
-  $('brandSlot').innerHTML = light ? `<img class="logo logo-light" src="${esc(light)}" alt="${esc(b.name)}"><img class="logo logo-dark" src="${esc(dark)}" alt="${esc(b.name)}">` : '<img class="mark" src="/brand/boost-star.png" alt="">';
+  $('brandSlot').innerHTML = light ? `<img class="logo logo-light" src="${esc(light)}" alt="${esc(b.name)}"><img class="logo logo-dark" src="${esc(dark)}" alt="${esc(b.name)}">` : `<img class="mark" src="${BASE}/brand/boost-star.png" alt="">`;
   $('whoRole').textContent = admin() ? 'Admin' : 'Customer'; $('whoRole').className = 'badge' + (admin() ? ' admin' : '');
   $('orgPick').hidden = !admin();
   if (!TABS().some(([k]) => k === tab)) tab = 'overview';   // e.g. a customer tab after an admin signs in

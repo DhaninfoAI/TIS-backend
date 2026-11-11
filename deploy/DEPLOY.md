@@ -1,5 +1,10 @@
 # Hosting the SmartFill backend + dashboard
 
+> **Live (2026-11-11)**: hosted under a path prefix on the Boost dashboard host:
+> dashboard `https://dashboard.boost-usa.com/tis/dashboard`, API base `https://dashboard.boost-usa.com/tis`
+> (the extension's `apiBase`), rules `https://dashboard.boost-usa.com/tis/rules`. See "Hosting under a path" at the
+> end; the steps below describe a server of its own (`smartfill.boost.com`).
+
 One server runs everything: the API the extension calls (`/v1/…`), the dashboard (`/dashboard`) and the rules page
 (`/rules`). nginx sits in front with HTTPS; the Node app listens on `127.0.0.1:4010` only.
 
@@ -168,6 +173,44 @@ Once the server works, stop the local backend on your PC (port 4010). Both use t
 running copies would both clean up photos and count seats.
 
 ---
+
+## Hosting under a path (e.g. `/tis`)
+
+When the app shares a host with other sites, serve it under a prefix. In `backend/.env` set `BASE_PATH=/tis`
+(it scopes the dashboard's sign-in cookie to `/tis/v1/auth`), restart (`systemctl restart smartfill`), and in the
+host's nginx `server { … }` add:
+
+```nginx
+location /tis/ {
+    proxy_pass http://127.0.0.1:4010;          # no trailing slash: the app gets /tis/… and removes the prefix itself
+    proxy_http_version 1.1;
+    proxy_set_header Connection "";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    client_max_body_size 64m;
+    proxy_read_timeout 300s;
+    proxy_send_timeout 300s;
+}
+location ~ ^/tis/v1/analyses/[^/]+/events$ {   # live review progress: no buffering
+    proxy_pass http://127.0.0.1:4010;
+    proxy_http_version 1.1;
+    proxy_set_header Connection "";
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_buffering off;
+    proxy_cache off;
+    proxy_read_timeout 1h;
+}
+location ~ ^/tis/(ext/|fixtures/|writer-test|harness-chrome-stub\.js|content/|index\.html) { return 404; }
+```
+
+An nginx that strips the prefix (`proxy_pass http://127.0.0.1:4010/;`) also works. The dashboard and rules pages
+work out the prefix from their own address, so no file needs editing on the server: hand edits to
+`public/*.html` or `server.mjs` there make `update.sh` (`git pull --ff-only`) fail. If the server has some, run
+`git -C /opt/smartfill/backend status`, then `git -C /opt/smartfill/backend checkout -- public server.mjs` before
+updating.
 
 ## Later
 

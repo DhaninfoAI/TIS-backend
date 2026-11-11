@@ -30,6 +30,9 @@ const { PHOTO_PROMPT_V } = await import('./lib/ai-modules.mjs');
 const { sweepUnreviewedPhotos } = await import('./lib/photo-sweep.mjs');
 
 const PORT = Number(process.env.PORT || 4010);
+// Hosted under a path prefix (nginx: https://dashboard.boost-usa.com/tis/… → this app). nginx may strip the prefix or
+// pass it on; either way routes see /v1/…, and the dashboard's sign-in cookie is scoped to <prefix>/v1/auth.
+const BASE_PATH = (process.env.BASE_PATH || '').trim().replace(/\/+$/, '').replace(/^(?=[^/])/, '/');
 const DEV_TOKEN = process.env.DEV_TOKEN || 'dev-token';
 // The fixed developer token works only while ALLOW_DEV_TOKEN is not 0 (set ALLOW_DEV_TOKEN=0 before giving the product to a customer).
 const ALLOW_DEV_TOKEN = process.env.ALLOW_DEV_TOKEN !== '0';
@@ -406,41 +409,41 @@ route('GET', '/v1/rules/tree', (req, res) => {
     forms: Object.keys(k.global_forms || {}), clients: Object.fromEntries(Object.entries(k.clients || {}).map(([c, v]) => [c, { status: v.status, forms: Object.keys(v.forms || {}) }])),
     structuredRules: meta().rules.published.map(r => ({ id: r.id, severity: r.severity, kind: r.kind, message: r.message, checklistItem: r.checklistItem })),
     drafts: Object.keys(meta().rules.drafts), docs: Object.keys(meta().ruleDocs) });
-});
-route('GET', '/v1/rules/changelog', (req, res) => send(res, 200, { rulesVersion: meta().rules.version, changelog: meta().rules.changelog }));
+}, ADMIN);
+route('GET', '/v1/rules/changelog', (req, res) => send(res, 200, { rulesVersion: meta().rules.version, changelog: meta().rules.changelog }), ADMIN);
 route('POST', '/v1/rules/publish', async (req, res) => {
   const b = await json(req); const r = meta().rules; const ids = Object.keys(r.drafts);
   if (!ids.length) return err(res, 400, 'INVALID_PAYLOAD', 'no drafts to publish');
   for (const id of ids) { const i = r.published.findIndex(x => x.id === id); const d = r.drafts[id];
     if (d.deleted) { if (i >= 0) r.published.splice(i, 1); } else if (i >= 0) r.published[i] = d; else r.published.push(d); }
   r.version++; r.drafts = {};
-  r.changelog.push({ version: r.version, at: new Date().toISOString(), author: req.headers['x-ez-user'] || b.author || 'unknown', note: b.note || '', changed: ids });
+  r.changelog.push({ version: r.version, at: new Date().toISOString(), author: req.auth?.email || b.author || 'unknown', note: b.note || '', changed: ids });
   save('meta', 'rules'); send(res, 200, { rulesVersion: r.version, published: ids });
-});
+}, ADMIN);
 route('GET', '/v1/rules/:scope/:id', (req, res, p) => {
   const id = decodeURIComponent(p.id), r = meta().rules;
   if (p.scope === 'rule') { const x = r.drafts[id] || r.published.find(y => y.id === id); return x ? send(res, 200, { rule: x, draft: !!r.drafts[id] }) : err(res, 404, 'NOT_FOUND', 'rule not found'); }
   const versions = meta().ruleDocs[`${p.scope}/${id}`] || []; const k = loadKb();
   const kbEntry = p.scope === 'client' ? k.clients?.[id] : p.scope === 'form' ? k.global_forms?.[id] : null;
   send(res, 200, { scope: p.scope, id, markdown: versions.at(-1)?.markdown || null, versions: versions.length, history: versions.map(v => ({ at: v.at, author: v.author, note: v.note })), kbEntry });
-});
+}, ADMIN);
 route('PUT', '/v1/rules/:scope/:id', async (req, res, p) => {
   const id = decodeURIComponent(p.id); const b = await json(req);
   if (p.scope === 'rule') {
     if (!b.rule?.id || b.rule.id !== id || !['dsl', 'code'].includes(b.rule.kind)) return err(res, 400, 'INVALID_PAYLOAD', 'body.rule with matching id and kind dsl|code required');
     meta().rules.drafts[id] = b.rule; save('meta', 'rules'); return send(res, 200, { draft: true, id, publishWith: 'POST /v1/rules/publish' });
   }
-  const docKey = `${p.scope}/${id}`; (meta().ruleDocs[docKey] ||= []).push({ markdown: String(b.markdown || ''), author: req.headers['x-ez-user'] || b.author || null, note: b.note || '', at: new Date().toISOString() });
+  const docKey = `${p.scope}/${id}`; (meta().ruleDocs[docKey] ||= []).push({ markdown: String(b.markdown || ''), author: req.auth?.email || b.author || null, note: b.note || '', at: new Date().toISOString() });
   meta().rules.version++;   // notes change what the AI is told → cached analyses are no longer current
-  meta().rules.changelog.push({ version: meta().rules.version, at: new Date().toISOString(), author: req.headers['x-ez-user'] || b.author || null, note: `doc ${docKey}: ${b.note || ''}` });
+  meta().rules.changelog.push({ version: meta().rules.version, at: new Date().toISOString(), author: req.auth?.email || b.author || null, note: `doc ${docKey}: ${b.note || ''}` });
   save('meta', 'ruleDocs'); save('meta', 'rules'); send(res, 200, { scope: p.scope, id, version: meta().ruleDocs[docKey].length });
-});
+}, ADMIN);
 route('POST', '/v1/rules/:scope/:id/test', async (req, res, p) => {
   const id = decodeURIComponent(p.id); const rule = meta().rules.drafts[id] || meta().rules.published.find(x => x.id === id);
   if (p.scope !== 'rule' || !rule) return err(res, 404, 'NOT_FOUND', 'only structured rules can be dry-run');
   const results = Object.entries(state.snapshots).map(([oid, s]) => ({ orderId: Number(oid), hits: runRules(s.snapshot, [rule]).map(i => i.message) }));
   send(res, 200, { ruleId: id, ordersTested: results.length, ordersFlagged: results.filter(r => r.hits.length).length, results });
-});
+}, ADMIN);
 route('GET', '/v1/orders/:orderId/rules-pack', (req, res, p) => { const s = state.snapshots[p.orderId]; if (!s) return err(res, 404, 'NOT_FOUND', 'no snapshot'); send(res, 200, rulesPack(s.snapshot)); });
 route('GET', '/v1/hazard-library', (req, res) => send(res, 200, { items: meta().hazardLibrary, taxonomy: JSON.parse(readFileSync(path.join(here, 'rules/hazard_taxonomy.json'), 'utf8')).hazards.map(h => ({ id: h.id, name: h.name, parent: h.parent })) }));
 route('POST', '/v1/hazard-library', async (req, res) => { const b = await json(req); const item = { id: 'hz_' + randomUUID().slice(0, 8), ...b, at: new Date().toISOString() }; meta().hazardLibrary.push(item); save('meta', 'hazardLibrary'); send(res, 201, item); });
@@ -449,7 +452,8 @@ route('GET', '/v1/form-registry', (req, res) => send(res, 200, JSON.parse(readFi
 // --- sign-in (access + refresh tokens). The dashboard keeps its refresh token in an HttpOnly cookie; the extension in its own storage.
 const RT_COOKIE = 'tisqc_rt';
 const cookie = req => Object.fromEntries((req.headers.cookie || '').split(';').map(c => c.trim().split('=')).filter(x => x[0]).map(([k, ...v]) => [k, decodeURIComponent(v.join('='))]));
-const setRt = (req, res, token, maxAge) => res.setHeader('Set-Cookie', `${RT_COOKIE}=${token ? encodeURIComponent(token) : ''}; Path=/v1/auth; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${req.headers['x-forwarded-proto'] === 'https' || req.socket.encrypted ? '; Secure' : ''}`);
+const prefixOf = req => BASE_PATH || String(req.headers['x-forwarded-prefix'] || '').replace(/[^\w\-/]/g, '').replace(/\/+$/, '');
+const setRt = (req, res, token, maxAge) => res.setHeader('Set-Cookie', `${RT_COOKIE}=${token ? encodeURIComponent(token) : ''}; Path=${prefixOf(req)}/v1/auth; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${req.headers['x-forwarded-proto'] === 'https' || req.socket.encrypted ? '; Secure' : ''}`);
 const tokensOut = (req, res, r, dashboard) => {
   if (!dashboard) return send(res, 200, r);
   setRt(req, res, r.refreshToken, r.refreshExpiresIn);
@@ -533,6 +537,7 @@ const server = http.createServer(async (req, res) => {
   res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type, X-EZ-User');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
   if (req.method === 'OPTIONS') { res.setHeader('Access-Control-Allow-Private-Network', 'true'); res.writeHead(204); return res.end(); }
+  if (BASE_PATH && (req.url === BASE_PATH || req.url.startsWith(BASE_PATH + '/') || req.url.startsWith(BASE_PATH + '?'))) req.url = req.url.slice(BASE_PATH.length) || '/';
   const url = new URL(req.url, 'http://x');
   if (req.method === 'GET' && serveStatic(req, res, url)) return;
   if (url.pathname.startsWith('/v1/') && process.env.LOG_REQUESTS !== '0' && !/\/photos\/\w+$/.test(url.pathname)) {

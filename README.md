@@ -56,6 +56,7 @@ everyone it removes the narrative rewrite and comment findings that older review
 | `DATABASE_URL` | Postgres (Neon). Empty → `data/state.json` |
 | `DEV_TOKEN` / `ALLOW_DEV_TOKEN` | Developer token (acts as admin; tests, harness, eval). Set `ALLOW_DEV_TOKEN=0` for customers |
 | `JWT_SECRET` | Signs access tokens. Empty → generated once and kept in the database |
+| `BASE_PATH` | Path prefix when hosted under one, e.g. `/tis` for `https://dashboard.boost-usa.com/tis` (scopes the dashboard's sign-in cookie; requests with or without the prefix both work). Default: none |
 | `HOST` | Address to listen on. `127.0.0.1` on a hosted server (only nginx can reach the app; the service file sets it). Default: all |
 | `EXTENSION_DIR` | Where the extension folder is, for the developer previews only (`/ext/…` harness, `/writer-test`). Default `../extension`; not needed on a hosted server |
 | `SEAT_IDLE_HOURS` | Hours without use before a computer's seat is freed (default 8; 0 = never) |
