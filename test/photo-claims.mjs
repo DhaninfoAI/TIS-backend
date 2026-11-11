@@ -1,5 +1,5 @@
 // Unit check for photoClaimRefuted: "no photos of X" claims vs. what the vision pass saw.  node test/photo-claims.mjs
-import { photoClaimRefuted } from '../lib/ai-modules.mjs';
+import { photoClaimRefuted, shapeWords } from '../lib/ai-modules.mjs';
 
 const roof = { 18441044: { scene: 'roof', caption: 'Roof Closeup', description: 'The image shows a snow-covered flat roof.' },
   18441041: { scene: 'roof', caption: 'Roof Hatch Lock', description: 'A roof hatch with a lock mechanism is visible.' } };
@@ -22,5 +22,9 @@ for (const [name, reason, ins, want, label] of cases) {
   if (got !== want) fail++;
   console.log(got === want ? '✓' : '✗', name);
 }
-console.log(fail ? `${fail} FAILED` : `ALL PASS ${cases.length}`);
+// photo shapes in words, not "1.11:1 vs 1.33:1" (1169277)
+for (const [r, want] of [[1.11, 'almost square'], [1.33, '4:3, the usual phone-camera shape'], [1.5, '3:2, a camera shape'], [1.78, '16:9, a wide screen shape'], [1.41, 'longer and narrower than a camera photo'], [1.22, 'squarer than a camera photo']]) {
+  const got = shapeWords(r); if (got !== want) fail++; console.log(got === want ? '✓' : '✗', `shape ${r} → ${got}`);
+}
+console.log(fail ? `${fail} FAILED` : `ALL PASS ${cases.length + 6}`);
 process.exit(fail ? 1 : 0);
