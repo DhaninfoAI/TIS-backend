@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "node test/photo-sweep.mjs && node test/photo-claims.mjs && node test/photo-backstop.mjs && node test/ai-failure.mjs && node test/narrative-links.mjs && node test/plain-text.mjs && node test/renames.mjs && node test/fees.mjs && node test/qc-fixes.mjs && node test/e2e.mjs && node test/auth.mjs && node test/seat-idle.mjs && node test/org-brand.mjs",
+    "test": "node test/photo-sweep.mjs && node test/photo-claims.mjs && node test/photo-backstop.mjs && node test/ai-failure.mjs && node test/narrative-links.mjs && node test/plain-text.mjs && node test/renames.mjs && node test/fees.mjs && node test/qc-fixes.mjs && node test/e2e.mjs && node test/auth.mjs && node test/seat-idle.mjs && node test/org-brand.mjs && node test/rec-checks.mjs",
     "test:ai": "node test/ai.mjs",
     "start": "node server.mjs",
     "eval": "node scripts/eval.mjs",
