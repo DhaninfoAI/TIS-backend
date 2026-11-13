@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { sqftValue, buildingCount, firstQ, totalSqft, narrativeText } from '../lib/snapshot.mjs';
 import { comparePrior, priorFacts } from '../lib/prior.mjs';
-import { answerGuard, answerMeans, recSame, photoBacksClaim } from '../lib/ai-modules.mjs';
+import { answerGuard, answerMeans, recSame, photoBacksClaim, misquotesAnswer } from '../lib/ai-modules.mjs';
 import { MOCK } from '../lib/modules.mjs';
 import { price } from '../lib/fees.mjs';
 import { runRules } from '../lib/rules.mjs';
@@ -103,6 +103,15 @@ await t('real clutter in the photo result → backed', () =>
 await t('Stab-Lok panels in the photo hazards → backed', () =>
   assert.equal(photoBacksClaim('25. Does the wiring & electrical system, including junction & panel boxes, etc., all appear safely arranged?', [{ description: 'Electrical panel.', hazards: [{ hazardType: 'stab_lok_breakers', severity: 'required', evidence: 'FPE Stab-Lok panel' }] }]), true));
 await t('a question without subject words is not judged here', () => assert.equal(photoBacksClaim('3. Any other concerns?', [{ description: 'A wall.', hazards: [] }]), true));
+
+console.log('quoted answers must match the form (1168084, 2026-11-13)');
+const veneer = v => ({ forms: [form('Seneca General Form', [sec('Construction', [
+  { ...fld('2. Brick (or stone) veneer (If Yes, MUST INCLUDE A CLOSE-UP EXTERIOR PHOTO)?', v, 'choice'), options: ['Yes (close-up photos required)', 'No'] },
+  { ...fld('3. Load-bearing substrate behind the brick veneer (if NO brick veneer, check N/A)?', 'Concrete block', 'choice'), options: ['Concrete block', 'N/A'] }])])] });
+await t('"Brick veneer is marked as \'No\'" while the form says Yes → misquoted', () => assert.equal(misquotesAnswer(veneer('Yes (close-up photos required)'), "Brick veneer is marked as 'No', so the substrate should be 'N/A'."), true));
+await t('the same claim when the form really says No → fine', () => assert.equal(misquotesAnswer(veneer('No'), "Brick veneer is marked as 'No', so the substrate should be 'N/A'."), false));
+await t('"marked as \'Yes\'" matches "Yes (close-up photos required)"', () => assert.equal(misquotesAnswer(veneer('Yes (close-up photos required)'), "Brick veneer is marked as 'Yes', so a substrate is expected."), false));
+await t('a subject no question matches is not judged', () => assert.equal(misquotesAnswer(veneer('Yes (close-up photos required)'), "Sprinkler riser is marked as 'No'."), false));
 
 console.log('recommendation duplicates');
 await t('three "relocate BBQ" wordings are the same rec', () => {
