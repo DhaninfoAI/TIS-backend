@@ -37,7 +37,8 @@ try {
   t('no AI module fell back to mock', () => assert.deepEqual(Object.entries(m).filter(([, v]) => v.engine === 'mock (fallback)').map(([k]) => k), []));
   if (hasPhotos) {
     t('photo review used vision in batches of ≤6', () => { const pc = fake.calls.filter(c => c.schema === 'photo_review'); assert.ok(pc.length >= 7); assert.ok(pc.every(c => c.images > 0 && c.images <= 6)); });
-    t('photo hazard → finding with photo evidence', () => assert.ok(m.photoReview.items.some(i => i.hazardType === 'housekeeping' && i.evidence.photos.length)));
+    t('summary.checked lists every photo the AI has a result for', () => { const s = m.photoReview.summary; assert.ok(Array.isArray(s.checked) && s.checked.length === s.photos && s.photos > 0); });
+    t('photo hazard → finding with photo evidence',() => assert.ok(m.photoReview.items.some(i => i.hazardType === 'housekeeping' && i.evidence.photos.length)));
     t('captions from vision insights', () => assert.ok(m.captions.engine === 'openai' && m.captions.items.length > 0));
     t('photo insights cached in store', () => assert.ok(a.usage.bySchema.photo_review.calls >= 7));
     t('Street View: batch guess checked on its own, flagged with what the AI reports', () => { const sv = m.photoReview.items.filter(i => i.kind === 'photo_source'); assert.ok(sv.length >= 1 && sv.every(i => i.status === 'fail' && /the AI reports © 2012 Google/i.test(i.message))); assert.equal(a.usage.bySchema.photo_source_check.calls, sv.length); });
