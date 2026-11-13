@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { sqftValue, buildingCount, firstQ, totalSqft, narrativeText } from '../lib/snapshot.mjs';
 import { comparePrior, priorFacts } from '../lib/prior.mjs';
-import { answerGuard, answerMeans, recSame } from '../lib/ai-modules.mjs';
+import { answerGuard, answerMeans, recSame, photoBacksClaim } from '../lib/ai-modules.mjs';
 import { MOCK } from '../lib/modules.mjs';
 import { price } from '../lib/fees.mjs';
 import { runRules } from '../lib/rules.mjs';
@@ -89,6 +89,20 @@ await t('re-run leftovers: off-subject note that changes nothing, "no visible" v
 });
 await t('real finding stays: clutter piled in the corridor → housekeeping "No"', () =>
   assert.equal(answerGuard('21. Housekeeping satisfactory and with premises free of accumulated refuse', 'Yes', 'No', 'problem', 'Photo 123 shows storage piled in the corridor.'), null));
+
+console.log('photo claims must be in the photo results (2026-11-13)');
+const HK = '21. Housekeeping satisfactory and with premises free of accumulated refuse & debris?';
+await t('1166312: "dumpster area with accumulated refuse" from a clean dumpster photo → not backed', () =>
+  assert.equal(photoBacksClaim(HK, [{ description: 'A dumpster area with a blue dumpster enclosed by a brick wall. The surrounding area is paved with parking spaces.', hazards: [] }]), false));
+await t('1166305: an extension cord is not housekeeping', () =>
+  assert.equal(photoBacksClaim(HK, [{ description: 'Interior with shelves and an extension cord running across the floor.', hazards: [{ hazardType: 'extension_cords', severity: 'advisory', evidence: 'Extension cord running across the floor.' }] }]), false));
+await t('1166310: graffiti does not show the building unsecured', () =>
+  assert.equal(photoBacksClaim('1. Risk secured from unauthorized access (including fencing)?', [{ description: 'Close-up of graffiti on a yellow and brick wall. Debris is scattered on the ground.', hazards: [] }]), false));
+await t('real clutter in the photo result → backed', () =>
+  assert.equal(photoBacksClaim(HK, [{ description: 'Electrical room with boxes and clutter stored in front of the panel.', hazards: [{ hazardType: 'housekeeping', severity: 'required', evidence: 'Storage in the electrical room' }] }]), true));
+await t('Stab-Lok panels in the photo hazards → backed', () =>
+  assert.equal(photoBacksClaim('25. Does the wiring & electrical system, including junction & panel boxes, etc., all appear safely arranged?', [{ description: 'Electrical panel.', hazards: [{ hazardType: 'stab_lok_breakers', severity: 'required', evidence: 'FPE Stab-Lok panel' }] }]), true));
+await t('a question without subject words is not judged here', () => assert.equal(photoBacksClaim('3. Any other concerns?', [{ description: 'A wall.', hazards: [] }]), true));
 
 console.log('recommendation duplicates');
 await t('three "relocate BBQ" wordings are the same rec', () => {
