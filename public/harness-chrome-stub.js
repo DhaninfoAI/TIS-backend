@@ -85,7 +85,7 @@
   };
   window.chrome = {
     runtime: { lastError: null, onMessage: { addListener: f => listeners.push(f) },
-      getManifest: () => ({ version: '1.0.0' }), getURL: p => location.origin + '/ext/' + p,
+      getManifest: () => ({ version: '1.0.5' }), getURL: p => location.origin + '/ext/' + p,
       sendMessage(msg, cb) { window.__harnessLog.push(msg); const h = handlers[msg.type]; (h ? h(msg) : Promise.reject(new Error('harness: unhandled ' + msg.type))).then(d => cb?.({ ok: true, data: d }), e => cb?.({ ok: false, error: e.message, code: e.code })); } },
     tabs: { query: async () => [{ id: 1, url: NOT_EZ ? 'chrome://newtab/' : 'https://server-ezsm.ezsurveyform.com/cgi-bin/current/aa.cgi?g=3&orderid=' + ORDER }],
       update: async (id, o) => console.log('[harness] tabs.update', o.url),
