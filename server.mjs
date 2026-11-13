@@ -64,7 +64,8 @@ for (const r of seedRules) {
   else if (r.kind === 'code' && JSON.stringify(meta().rules.published[i]) !== JSON.stringify(r)) { meta().rules.published[i] = r; save('meta', 'rules'); }
 }
 // Rules TIS no longer wants (2026-11-05: comments are handled by the reviewer)
-for (const id of ['general.no_answer_needs_comment']) { const i = meta().rules.published.findIndex(x => x.id === id); if (i >= 0) { meta().rules.published.splice(i, 1); save('meta', 'rules'); } }
+// retired rules, removed from the live store too (recs.duplicates: the user dropped duplicate-recommendation cards, 2026-11-13)
+for (const id of ['general.no_answer_needs_comment', 'recs.duplicates']) { const i = meta().rules.published.findIndex(x => x.id === id); if (i >= 0) { meta().rules.published.splice(i, 1); save('meta', 'rules'); } }
 const rulesWithVersion = () => meta().rules.published.map(r => ({ ...r, __version: meta().rules.version }));
 
 // ---------------------------------------------------------------- accounts & licences (lib/auth.mjs)

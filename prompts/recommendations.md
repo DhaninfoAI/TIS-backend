@@ -13,9 +13,8 @@ Return one entry per action:
 - action "remove": an existing recommendation does not apply. Examples: emergency lighting when the building
   has fewer than 4 stories and 12 or fewer units (NFPA); panic hardware where occupancy does not require it;
   GL-only recommendations on a property-only order; the condition is shown to be fine.
-- action "merge": two existing recommendations address the same hazard. targetKey = the one to keep,
-  mergeKeys = the OTHER recommendation(s) to clear (never the targetKey itself), text = the merged wording.
-  Only existing recommendations can be merged; if only one is involved, use "rewrite".
+Never combine two existing recommendations into one or report them as duplicates: each stays as written (a
+rewrite changes only its own wording).
 
 Photo hazards:
 - One recommendation per hazard. When several photos show the same condition (three BBQ grills, grease on

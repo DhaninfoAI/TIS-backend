@@ -71,7 +71,7 @@ everyone it removes the narrative rewrite and comment findings that older review
 | orderBrief, checks, pricing, priorReport | Rule engine (`lib/rules.mjs`, `rules/*.json`) | Cross-field QC logic, final check |
 | photoReview | OpenAI vision, 6 photos per call, cached per photo | Missed hazards (#1 value for TIS) |
 | uwConcerns | OpenAI | Underwriter questions answered |
-| recommendations | OpenAI + rules | **Recommendation** (add / rewrite / remove / merge) |
+| recommendations | OpenAI + rules | **Recommendation** (add / rewrite / remove; no merge since 2026-11-13) |
 | recPhotos | OpenAI | **Recommendation photo addition** |
 | questions | OpenAI + rules | **Yes or No questions** |
 | captions | from vision results | **Renaming of images** |

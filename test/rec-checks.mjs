@@ -1,5 +1,5 @@
 // Recommendation checks after order 1169277 (2026-11-11): a blank answer is not "needs a recommendation", two recs
-// about different things are not duplicates, and duplicates are named by their words, not field codes.
+// about different things are not the same rec. (The duplicate-recommendation card was removed on 2026-11-13.)
 //   node test/rec-checks.mjs
 import assert from 'node:assert/strict';
 import { recTriggered, recSame } from '../lib/snapshot.mjs';
@@ -9,7 +9,6 @@ let pass = 0, fail = 0;
 const t = (name, fn) => { try { fn(); pass++; console.log('  ✓', name); } catch (e) { fail++; console.log('  ✗', name, '→', e.message); } };
 const RULES = [
   { id: 'recs.flagged_answer_has_rec', kind: 'code', severity: 'blocker', checklistItem: '4.1', message: 'Answer triggers a recommendation but the recommendation box is empty.' },
-  { id: 'recs.duplicates', kind: 'code', severity: 'warning', checklistItem: '5.1', message: 'Two recommendations address the same hazard.' },
 ];
 const q27 = value => ({ key: 'F2_1', label: '27. Has the branch aluminum wiring been upgraded?', type: 'choice', value,
   rec: { box: 'question', key: 'F13_1', text: '', trigger: ['Yes-verbally, w/o documentation', 'No-not upgraded', ''] } });
@@ -25,22 +24,13 @@ t('a real trigger answer with an empty box is still a must-fix', () => {
   assert.equal(recTriggered(q27('No-not upgraded')), true);
   const out = run(snap([q27('No-not upgraded')])); assert.equal(out.length, 1); assert.equal(out[0].severity, 'blocker');
 });
-t('parking lot and sidewalks are two hazards, not duplicates', () => {
-  assert.equal(recSame('Restore parking lot to a smooth & even condition.', 'Restore sidewalks to a smooth and even condition.'), false);
-  assert.equal(run(snap([], [{ key: 'F13_a', text: 'Restore parking lot to a smooth & even condition.' }, { key: 'F13_b', text: 'Restore sidewalks to a smooth and even condition.' }])).length, 0);
-});
-t('ceilings and sidewalks are not duplicates either', () => assert.equal(recSame('Restore ceilings to good condition.', 'Restore sidewalks to a smooth and even condition.'), false));
-t('the same subject in other words is still a duplicate, named by its words', () => {
-  const a = 'Restore parking lot to a smooth & even condition.', b = 'Repair the parking lot potholes and restore it to a smooth condition.';
-  assert.equal(recSame(a, b), true);
-  const out = run(snap([], [{ key: 'F13_1056_1_1', text: a }, { key: 'F13_1056_1_2', text: b }]));
-  assert.equal(out.length, 1);
-  assert.match(out[0].message, /^"Restore parking lot to a smooth & even condition\." and "Repair the parking lot potholes and restore it to a smooth…" look like the same recommendation\.$/);
-  assert.doesNotMatch(out[0].message, /F13_/);
-});
-t('a rec number is used when the snapshot has one', () => {
-  const out = run(snap([], [{ key: 'k1', number: 3, text: 'Repair the parking lot potholes.' }, { key: 'k2', number: 5, text: 'Fill the potholes in the parking lot.' }]));
-  assert.equal(out.length, 1); assert.match(out[0].message, /^Rec 3 and Rec 5 /);
+// recSame stays: it stops the AI adding a new rec an existing one already says. Duplicate cards are gone (2026-11-13).
+t('parking lot and sidewalks are two hazards', () => assert.equal(recSame('Restore parking lot to a smooth & even condition.', 'Restore sidewalks to a smooth and even condition.'), false));
+t('ceilings and sidewalks are different too', () => assert.equal(recSame('Restore ceilings to good condition.', 'Restore sidewalks to a smooth and even condition.'), false));
+t('the same subject in other words is the same rec', () => assert.equal(recSame('Restore parking lot to a smooth & even condition.', 'Repair the parking lot potholes and restore it to a smooth condition.'), true));
+t('no duplicate-recommendation card, even for two recs that say the same thing (rule removed)', () => {
+  const recs = [{ key: 'F13_1', text: 'Repair the parking lot potholes.' }, { key: 'F13_2', text: 'Fill the potholes in the parking lot.' }];
+  assert.equal(runRules(snap([], recs), [{ id: 'recs.duplicates', kind: 'code', severity: 'warning', message: 'x' }]).length, 0);
 });
 
 console.log(`\n${pass} passed, ${fail} failed`);

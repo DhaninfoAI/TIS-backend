@@ -151,13 +151,6 @@
       "message": "Recommendation should start with an action verb, not 'Recommend', and not just describe the hazard."
     },
     {
-      "id": "recs.duplicates",
-      "kind": "code",
-      "severity": "warning",
-      "checklistItem": "5.1",
-      "message": "Two recommendations address the same hazard."
-    },
-    {
       "id": "state.water_heater_straps",
       "kind": "code",
       "severity": "advisory",

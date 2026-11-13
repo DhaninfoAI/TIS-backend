@@ -48,7 +48,7 @@ try {
   t('rewrite carries before/after', () => assert.ok(m.recommendations.items.some(i => i.kind === 'rewrite' && i.before && i.after)));
   t('questions: suggested value is a valid option', () => assert.ok(m.questions.items.filter(i => i.kind === 'differ').every(i => i.proposedWrites.some(w => w.value === 'No'))));
   t('questions: a suggestion pointing the wrong way is dropped (guard)', () => assert.ok(!m.questions.items.some(i => /housekeeping/i.test(i.title) && i.message === 'Photo shows accumulated debris.') && (m.questions.summary.guarded?.direction || 0) + (m.questions.summary.guarded?.subject || 0) >= 0));
-  t('recs: a merge never clears the rec it keeps', () => assert.ok(m.recommendations.items.every(i => !i.proposedWrites.some(w => w.clear && i.proposedWrites.some(x => !x.clear && x.key === w.key)))));
+  t('recs: no "Duplicate recommendations" (the fake still returns a merge; it is ignored)', () => assert.ok(!m.recommendations.items.some(i => i.kind === 'merge' || /duplicate/i.test(i.title) || i.proposedWrites.some(w => w.clear && i.kind !== 'remove'))));
   t('recs: the same photo hazard in other words is one rec', () => assert.equal(m.recommendations.items.filter(i => i.kind === 'missing' && i.source === 'photo_hazard').length, 1));
   const nd = m.narrative.items.find(i => i.kind === 'draft');
   t('narrative: draft offered for the narrative field, outside the score', () => assert.ok(nd && nd.status === 'needs_review' && nd.after && nd.proposedWrites[0].kind === 'text' && /^F7_/.test(nd.proposedWrites[0].key)));
