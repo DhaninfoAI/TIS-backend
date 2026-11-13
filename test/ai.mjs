@@ -53,7 +53,8 @@ try {
   const nd = m.narrative.items.find(i => i.kind === 'draft');
   t('narrative: draft offered for the narrative field, outside the score', () => assert.ok(nd && nd.status === 'needs_review' && nd.after && nd.proposedWrites[0].kind === 'text' && /^F7_/.test(nd.proposedWrites[0].key)));
   t('narrative: [[confirm]] markers counted on the draft', () => assert.ok(nd.confirm === 1 && /year built/.test(nd.message)));
-  t('narrative: question set → left-out facts and not-in-report items', () => assert.ok(m.narrative.items.some(i => i.kind === 'missing_required' && i.questions?.length) && m.narrative.items.some(i => i.kind === 'not_in_report')));
+  t('narrative: no free-form "does not mention X" cards (missing content comes from the question set only)', () => assert.ok(m.narrative.items.filter(i => i.kind === 'missing_required').every(i => i.questions?.length)));
+  t('narrative: question set → left-out facts and not-in-report items',() => assert.ok(m.narrative.items.some(i => i.kind === 'missing_required' && i.questions?.length) && m.narrative.items.some(i => i.kind === 'not_in_report')));
   t('narrative: GL questions only when GL is ordered', () => assert.equal(m.narrative.summary.gl, /package|bop|monoline gl|liability/i.test(JSON.stringify(snap.order.orderForm.coverages) + (snap.order.orderForm.liability || []).join(''))));
   t('answers: no comment drafts (the reviewer writes comments)', () => assert.ok(!m.questions.items.some(i => i.kind === 'comment' || (i.proposedWrites || []).some(w => w.kind === 'text'))));
   t('narrative: contradiction without a quoted form value is dropped', () => assert.ok(!m.narrative.items.some(i => /Bogus/.test(i.message)) && m.narrative.items.some(i => i.kind === 'contradiction')));

@@ -33,7 +33,9 @@ narrative (or another written area) address it? topics = what is missing, from t
 {{coverageNeeds}}
 
 ## 3. issues: problems in the current narrative
-Each with type (contradiction | missing_required | stale_value | spelling | grammar | style), topic (2–4 words
+Errors in what the narrative says, not what it leaves out: missing content is recorded only through section 1
+(the question set), the same list the draft covers, so never report "the narrative does not mention X" here.
+Each with type (contradiction | stale_value | spelling | grammar | style), topic (2–4 words
 naming what it is about, e.g. "square footage", "roof age", "sprinkler coverage", "restaurant operations"; one
 issue per topic), quote (the exact words from the narrative, or "" for missing content), formValue (the exact form answer / recommendation text that
 conflicts, or ""), problem (one sentence), fix (what it should say), fieldKey (the form field that is the truth, or
@@ -41,10 +43,8 @@ conflicts, or ""), problem (one sentence), fix (what it should say), fieldKey (t
 List only real problems; never list a statement to note that it agrees with the form.
 - contradiction: the narrative states X and a form answer or recommendation explicitly states not-X
   (e.g. narrative "housekeeping is good" vs answer "Housekeeping satisfactory? No"). Fill both quote and
-  formValue. NOT contradictions: something left out (at most missing_required), wording that agrees in
+  formValue. NOT contradictions: something left out (section 1 records that), wording that agrees in
   substance ("100% vacant" = "0% occupied"), a condition that a recommendation addresses.
-- missing_required: content required by the form's instructions is absent. Do not repeat every unanswered
-  question here: section 1 already records those.
 - stale_value: an old number or statement left behind (e.g. a square footage that no longer matches).
 
 ## 4. draft: a complete narrative in TIS's style
@@ -56,6 +56,11 @@ tenants and occupancy, year built and ownership, total area, losses, walls/roof/
 extinguisher), {{glNote}} fire protection (sprinklers, extinguishers, alarm and monitoring, fire department,
 hydrant), security, surroundings, housekeeping and maintenance, overall condition.
 Rules for the draft:
+- Cover every question of section 1 that this report answers, in the order above and in the examples' wording.
+  Leave out questions the report does not answer or that do not apply here: never write that something is "not
+  applicable", "N/A" or absent only to tick a question off (no tenants on a vacant building, no stairs so no
+  handrails). The coverage question (q1) decides whether the liability topics belong in the draft; do not write
+  the coverage or policy type as a sentence (TIS's narratives never do).
 - Use only facts in this report (form answers, comments, recommendations, photo results). Where the current
   narrative and the form disagree, the form wins. Keep facts from the current narrative that nothing in the
   report contradicts (fire department, hydrant distance, monitoring company…).
