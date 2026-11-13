@@ -2,7 +2,7 @@
 // 1168089 (2026-11-10): q16 "How many apartment units are there?" was linked to the form's "16. Number of years the
 // insured has owned the building".  node test/narrative-links.mjs
 import assert from 'node:assert/strict';
-import { questionField, issueField, notAsked, numbersIn, restatesForm } from '../lib/ai-modules.mjs';
+import { questionField, issueField, notAsked, numbersIn, restatesForm, quoteIn } from '../lib/ai-modules.mjs';
 
 const field = (key, label, value = '', comment) => ({ key, label, value, ...(comment ? { comment: { key: comment, value } } : {}) });
 const snap = { forms: [{ name: 'Seneca General Form', sections: [
@@ -52,5 +52,9 @@ t('"six years" vs "9 years" → a real contradiction', () => assert.equal(restat
 t('"14,450 square feet" vs "14450" → same', () => assert.equal(restatesForm('a 14,450-square-foot building', '14450'), true));
 t('"two-story" vs "3" → a real contradiction', () => assert.equal(restatesForm('a two-story building', '3'), false));
 t('no number in the form value (Yes/No) → left to the other checks', () => assert.equal(restatesForm('housekeeping is good', 'No'), false));
-console.log(fail ? `${fail} FAILED` : 'ALL PASS 23');
+// a narrative card's quote must be in the narrative (1169277, 2026-11-13: the quote came from the U/W response box)
+const NARR = 'PROTECTION:\nThe building is protected by an Automatic Fire Sprinkler system provided by the insured. The unit is also sprinkler protected.';
+t('quote from another box → not in the narrative', () => assert.equal(quoteIn(NARR, 'There is no sprinkler system at this address.'), false));
+t('quote in the narrative, other spacing / curly quotes / no full stop → found', () => assert.equal(quoteIn(NARR, '“The building is protected by an  Automatic Fire Sprinkler system”'), true));
+console.log(fail ? `${fail} FAILED` : 'ALL PASS 25');
 process.exit(fail ? 1 : 0);

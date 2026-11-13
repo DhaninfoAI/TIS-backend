@@ -51,6 +51,9 @@ function answer(schema, text) {
     }
     case 'narrative': {
       const ids = pick(/^- ([a-z]\d+): /gm, text);   // the question set as listed in the prompt
+      // a real contradiction quotes the narrative it was given (quotes from elsewhere are dropped since 2026-11-13)
+      const cur = (text.match(/Current narrative:\s*"""\s*([\s\S]*?)\s*"""/) || [])[1] || '';
+      const said = cur.split(/[.\n]/).map(s => s.trim()).find(s => s.length > 12) || 'housekeeping is good';
       return {
         answers: ids.map((id, i) => ({ id, answer: i % 3 === 0 ? '' : `answer ${id}`, inForm: i % 3 !== 0, inNarrative: i % 3 === 1, fieldKey: '' })),
         hazardousTenants: ids.includes('r1') ? ['restaurant'] : [],
@@ -59,7 +62,7 @@ function answer(schema, text) {
           + 'The exterior walls are concrete block with a brick veneer. The roof is wood joists with wood decking and a rubber membrane covering, in fair condition. The interior walls are sheetrock and the floors are tile over wood.\n\n'
           + 'The utilities remain on. Electric is BX cable with circuit breaker protection. The plumbing is copper and PVC. Heat is provided by a gas-fired boiler. The building is not sprinkler protected; fire extinguishers were noted in the common areas. '
           + 'Interior walking surfaces are uneven at the rear entrance and the drive-thru window is broken. Housekeeping and maintenance are fair. The overall structural condition of the building is fair.',
-        issues: [{ type: 'contradiction', quote: 'housekeeping is good', formValue: 'Housekeeping satisfactory? No', meaningDiffers: true, problem: 'Form says otherwise.', fix: 'State the form value.', fieldKey: '', confidence: 0.9 },
+        issues: [{ type: 'contradiction', quote: said, formValue: 'Housekeeping satisfactory? No', meaningDiffers: true, problem: 'Form says otherwise.', fix: 'State the form value.', fieldKey: '', confidence: 0.9 },
                         { type: 'missing_required', quote: '', formValue: '', meaningDiffers: false, problem: 'Egress not described.', fix: 'Describe exits.', fieldKey: '', confidence: 0.7 },
                         { type: 'contradiction', quote: '100% vacant', formValue: '', meaningDiffers: false, problem: 'Bogus: agrees with form.', fix: '', fieldKey: '', confidence: 0.5 }] };
     }
