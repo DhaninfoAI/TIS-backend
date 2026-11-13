@@ -2,7 +2,7 @@
 // 1168089 (2026-11-10): q16 "How many apartment units are there?" was linked to the form's "16. Number of years the
 // insured has owned the building".  node test/narrative-links.mjs
 import assert from 'node:assert/strict';
-import { questionField, issueField, notAsked } from '../lib/ai-modules.mjs';
+import { questionField, issueField, notAsked, numbersIn, restatesForm } from '../lib/ai-modules.mjs';
 
 const field = (key, label, value = '', comment) => ({ key, label, value, ...(comment ? { comment: { key: comment, value } } : {}) });
 const snap = { forms: [{ name: 'Seneca General Form', sections: [
@@ -45,5 +45,12 @@ t('q14 "No" → q15 not asked', () => assert.deepEqual([...notAsked([A('q14', 'N
 t('q14 "vacant building, no tenants" → q15 not asked', () => assert.deepEqual([...notAsked([A('q14', 'The building is 100% vacant.')])], ['q15']));
 t('q14 "Yes, a restaurant" → q15 asked', () => assert.deepEqual([...notAsked([A('q14', 'Yes, a restaurant tenant')])], []));
 t('q14 not in the report → q15 still asked', () => assert.deepEqual([...notAsked([A('q14', 'No', false)])], []));
-console.log(fail ? `${fail} FAILED` : 'ALL PASS 17');
+// a "contradiction" that states the form's own number (1166305, 2026-11-13: "nine years" vs "9 years", a blocker)
+t('numbers in words and digits', () => assert.deepEqual(numbersIn('nine years, twenty-five units, 14,450 sf, 100%'), [9, 25, 14450, 100]));
+t('"approximately nine years" vs "9 years" → same, not a contradiction', () => assert.equal(restatesForm('has been owned by the insured for approximately nine years', '9 years'), true));
+t('"six years" vs "9 years" → a real contradiction', () => assert.equal(restatesForm('owned for six years', '9 years'), false));
+t('"14,450 square feet" vs "14450" → same', () => assert.equal(restatesForm('a 14,450-square-foot building', '14450'), true));
+t('"two-story" vs "3" → a real contradiction', () => assert.equal(restatesForm('a two-story building', '3'), false));
+t('no number in the form value (Yes/No) → left to the other checks', () => assert.equal(restatesForm('housekeeping is good', 'No'), false));
+console.log(fail ? `${fail} FAILED` : 'ALL PASS 23');
 process.exit(fail ? 1 : 0);
