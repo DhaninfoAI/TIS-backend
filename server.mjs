@@ -25,7 +25,7 @@ const { createStore } = await import('./lib/store.mjs');
 const llm = await import('./lib/llm.mjs');
 const { createAuth, DEFAULT_ORG } = await import('./lib/auth.mjs');
 const { PLATFORMS } = await import('./lib/platforms.mjs');
-const { buildDashboard } = await import('./lib/dashboard.mjs');
+const { buildDashboard, buildOrderDetail } = await import('./lib/dashboard.mjs');
 const { PHOTO_PROMPT_V } = await import('./lib/ai-modules.mjs');
 const { sweepUnreviewedPhotos } = await import('./lib/photo-sweep.mjs');
 
@@ -526,6 +526,11 @@ route('POST', '/v1/admin/users/:id/sign-out', (req, res, p) => send(res, 200, A.
 route('GET', '/v1/dashboard', (req, res) => {
   const q = new URL(req.url, 'http://x').searchParams;
   send(res, 200, buildDashboard(state, req.auth, { orgId: q.get('org') || null, from: q.get('from'), to: q.get('to'), auth: A }));
+});
+// one order's latest review in detail (Orders tab): customers their own orders, admins any (with AI cost per step)
+route('GET', '/v1/dashboard/orders/:orderId', (req, res, p) => {
+  const d = buildOrderDetail(state, req.auth, p.orderId);
+  d ? send(res, 200, d) : err(res, 404, 'NOT_FOUND', 'No review of this order.');
 });
 
 // ---------------------------------------------------------------- static (dev tools)

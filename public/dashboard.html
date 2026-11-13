@@ -80,6 +80,11 @@ h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: v
 .form { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; } .form label { display: grid; gap: 3px; font-size: 11.5px; color: var(--muted); }
 .form input, .form select { min-width: 120px; }
 .note { font-size: 12px; color: var(--muted); margin-top: 8px; } .ok { color: var(--green); } .bad { color: var(--red); }
+/* order drill-down */
+.lnk { background: none; border: 0; padding: 0; color: var(--accent); font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.detail-head { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; } .dh-title { font-size: 18px; font-weight: 600; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; } .chips button[aria-pressed=true] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.nowrap { white-space: nowrap; } .fw { font-weight: 500; }
 @media (max-width: 640px) { header, nav.tabs, .bar-filters, main { padding-left: 16px; padding-right: 16px; } .two { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -179,8 +184,8 @@ async function start() {
   $('tabs').innerHTML = TABS().map(([k, l]) => `<button role="tab" data-tab="${k}" aria-selected="${k === tab}">${l}</button>`).join('');
   await load();
 }
-$('tabs').onclick = e => { const b = e.target.closest('[data-tab]'); if (!b) return; tab = b.dataset.tab; [...$('tabs').children].forEach(x => x.setAttribute('aria-selected', String(x === b))); render(); };
-$('period').onchange = load; $('orgSel').onchange = load;
+$('tabs').onclick = e => { const b = e.target.closest('[data-tab]'); if (!b) return; tab = b.dataset.tab; detail = null; [...$('tabs').children].forEach(x => x.setAttribute('aria-selected', String(x === b))); render(); };
+$('period').onchange = () => { detail = null; load(); }; $('orgSel').onchange = () => { detail = null; load(); };
 async function load() {
   const days = Number($('period').value), from = new Date(Date.now() - (days - 1) * 864e5).toISOString().slice(0, 10);
   const q = new URLSearchParams({ from }); if ($('orgSel').value) q.set('org', $('orgSel').value);
@@ -226,13 +231,70 @@ function overview() {
     <h2>Most frequent issues</h2>
     <div class="card tbl-wrap">${data.topIssues.length ? `<table class="tbl"><thead><tr><th>Issue</th><th>Area</th><th class="num">Orders</th></tr></thead><tbody>${data.topIssues.map(i => `<tr><td>${esc(i.title)}</td><td class="muted">${esc(i.area)}</td><td class="num">${fmt(i.orders)}</td></tr>`).join('')}</tbody></table>` : '<div class="empty">No issues in this period</div>'}</div>`;
 }
+// ---------------------------------------------------------------- one order in detail (click an order number)
+let detail = null, detailFilter = 'all';
+const DEC_PILL = { Applied: 'green', Dismissed: 'amber', Undone: '', 'Not acted on': '' }, SEV_PILL = { 'Must fix': 'red', 'To check': 'amber', Advisory: '', Note: '' };
+const FILTERS = [['all', 'All'], ['must', 'Must fix'], ['open', 'Not acted on'], ['Dismissed', 'Dismissed'], ['Applied', 'Applied']];
+async function openOrder(id) {
+  $('view').innerHTML = '<div class="empty">Loading…</div>';
+  try { detail = await api('GET', '/v1/dashboard/orders/' + encodeURIComponent(id)); detailFilter = 'all'; }
+  catch (e) { detail = { error: e.message, orderId: id }; }
+  render(); window.scrollTo(0, 0);
+}
+function orderDetail() {
+  const d = detail, A = admin();
+  const back = '<button class="ghost sm" data-back>← All orders</button>';
+  if (d.error) return `${back}<div class="card empty" style="margin-top:12px">${esc(d.error)}</div>`;
+  const c = d.counts, f = d.findings.filter(x => detailFilter === 'all' || (detailFilter === 'must' ? x.severity === 'Must fix' : detailFilter === 'open' ? x.decision === 'Not acted on' : x.decision === detailFilter));
+  const n = k => k === 'all' ? d.findings.length : k === 'must' ? c.mustFix : k === 'open' ? c.notActed : d.findings.filter(x => x.decision === k).length;
+  const pct = d.photos.total ? Math.round((d.photos.checkedByAi ?? 0) / d.photos.total * 100) : null;
+  return `<div class="detail-head">${back}<div><div class="dh-title">Order ${esc(d.orderId)}</div>
+      <div class="muted small">${esc([d.insured, d.location].filter(Boolean).join(' · '))}</div>
+      <div class="muted small">${esc([d.client && `Client: ${d.client}`, d.inspector && `Inspector: ${d.inspector}`, d.request && `Request: ${d.request}`, d.coverage && `Coverage: ${d.coverage}`].filter(Boolean).join(' · '))}</div></div></div>
+    <div class="grid tiles" style="margin-top:12px">
+      ${tile('Findings', fmt(c.findings), `${fmt(c.mustFix)} must fix`)}
+      ${tile('Reviewer decisions', fmt(c.applied + c.dismissed + c.undone), `${fmt(c.applied)} applied · ${fmt(c.dismissed)} dismissed · ${fmt(c.undone)} undone · ${fmt(c.notActed)} not acted on`)}
+      ${tile('Photos checked by the AI', d.photos.total ? `${fmt(d.photos.checkedByAi)} of ${fmt(d.photos.total)}` : '–', pct != null && pct < 100 ? `${100 - pct}% not checked` : d.photos.total ? 'all photos' : 'no photos on this order')}
+      ${tile('Last review', esc(dd(d.reviewedAt)), `${esc(d.reviewer)} · ${secs(d.seconds)}${d.reviews > 1 ? ` · ${d.reviews} reviews of this order` : ''}`)}
+    </div>
+    ${d.aiDidNotRun.length ? `<p class="note bad">The AI part didn't run for: ${esc(d.aiDidNotRun.join(', '))}. Those areas were checked by the basic rules only.</p>` : ''}
+    <h2>Findings and what the reviewer did</h2>
+    <div class="chips" role="group" aria-label="Filter findings">${FILTERS.map(([k, l]) => `<button class="ghost sm" data-dfilter="${k}" aria-pressed="${detailFilter === k}">${l} ${n(k)}</button>`).join('')}</div>
+    <div class="card tbl-wrap" style="margin-top:8px">${f.length ? `<table class="tbl"><thead><tr><th>Severity</th><th>Area</th><th>Finding</th><th>Reviewer</th><th class="num">Photos</th></tr></thead><tbody>
+      ${f.map(x => `<tr><td><span class="pill ${SEV_PILL[x.severity] || ''}">${esc(x.severity)}</span></td><td class="muted nowrap">${esc(x.area)}</td>
+        <td><b class="fw">${esc(x.title)}</b>${x.message ? `<div class="muted small">${esc(x.message)}</div>` : ''}</td>
+        <td class="nowrap"><span class="pill ${DEC_PILL[x.decision] || ''}">${esc(x.decision)}</span>${x.reason ? `<div class="muted small">${esc(x.reason)}</div>` : ''}${x.decidedAt ? `<div class="muted small">${esc(dt(x.decidedAt))}</div>` : ''}</td>
+        <td class="num">${x.photos || ''}</td></tr>`).join('')}</tbody></table>` : '<div class="empty">No findings in this group</div>'}</div>
+    ${A && d.ai ? adminOrderAi(d.ai) : ''}`;
+}
+function adminOrderAi(ai) {
+  return `<h2>AI for this order · admin only</h2>
+    <div class="grid tiles">
+      ${tile('AI cost (last review)', money(ai.cost), `${fmt(ai.calls)} calls · ${esc(ai.models || '–')}`, true)}
+      ${tile('Tokens', `${fmt(ai.tokens.input)} / ${fmt(ai.tokens.output)}`, `in / out · ${fmt(ai.tokens.cached)} cached`, true)}
+      ${tile('Photos', `${fmt(ai.photosLookedAt ?? 0)} looked at`, `${fmt(ai.photosReused ?? 0)} reused from earlier reviews`, true)}
+    </div>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card tbl-wrap"><h2 style="margin-top:0">Cost by step</h2>${ai.byStep.length ? `<table class="tbl"><thead><tr><th>Step</th><th class="num">Calls</th><th class="num">Cost</th></tr></thead><tbody>${ai.byStep.map(s => `<tr><td>${esc(s.step)}</td><td class="num">${fmt(s.calls)}</td><td class="num">${money(s.cost)}</td></tr>`).join('')}</tbody></table>` : '<div class="empty">No AI calls</div>'}</div>
+      <div class="card tbl-wrap"><h2 style="margin-top:0">How each step ran</h2><table class="tbl"><thead><tr><th>Step</th><th>Engine</th><th>Note</th></tr></thead><tbody>${ai.steps.map(s => `<tr><td>${esc(s.step)}</td><td class="${/fallback|error/.test(s.engine || '') ? 'bad' : 'muted'}">${esc(s.engine)}</td><td class="small">${esc(s.fallback || '')}</td></tr>`).join('')}</tbody></table></div>
+    </div>
+    <h2>Every review of this order</h2>
+    <div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Reviewed</th><th>By</th><th class="num">Time</th><th class="num">AI cost</th><th>Review id</th></tr></thead><tbody>${ai.runs.map(r => `<tr><td>${esc(dt(r.at))}</td><td>${esc(r.reviewer)}</td><td class="num">${secs(r.seconds)}</td><td class="num">${money(r.cost)}</td><td class="muted small">${esc(r.analysisId)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+$('view').addEventListener('click', e => {
+  const o = e.target.closest('[data-order]'); if (o) return openOrder(o.dataset.order);
+  if (e.target.closest('[data-back]')) { detail = null; render(); return; }
+  const f = e.target.closest('[data-dfilter]'); if (f) { detailFilter = f.dataset.dfilter; render(); }
+});
+
 function orders() {
+  if (detail) return orderDetail();
   const A = admin(), o = data.orders;
   if (!o.length) return '<div class="card empty">No orders reviewed in this period</div>';
   return `<div class="card tbl-wrap"><table class="tbl"><thead><tr><th>Order</th>${A && !$('orgSel').value ? '<th>Customer</th>' : ''}<th>Insured · location</th><th>Reviewed</th><th>By</th>
       <th class="num">Must fix</th><th class="num">To check</th><th class="num">Advisory</th><th class="num">Hazards</th><th class="num">Applied</th><th class="num">Dismissed</th><th class="num">Time</th>
       ${A ? '<th class="num">AI cost</th><th class="num">Tokens in / out</th><th>Models</th><th class="num">Re-runs</th>' : ''}</tr></thead><tbody>
-    ${o.map(r => `<tr><td><b>${esc(r.orderId)}</b></td>${A && !$('orgSel').value ? `<td>${esc((data.orgs || []).find(x => x.orgId === r.orgId)?.name || r.orgId)}</td>` : ''}
+    ${o.map(r => `<tr><td><button class="lnk" data-order="${esc(r.orderId)}" title="Every finding of this order and what the reviewer did">${esc(r.orderId)}</button></td>${A && !$('orgSel').value ? `<td>${esc((data.orgs || []).find(x => x.orgId === r.orgId)?.name || r.orgId)}</td>` : ''}
       <td>${esc(r.insured)}<div class="muted small">${esc(r.location)}</div></td><td>${esc(dt(r.reviewedAt))}</td><td>${esc(r.reviewer)}</td>
       <td class="num">${r.mustFix ? `<span class="pill red">${r.mustFix}</span>` : 0}</td><td class="num">${r.toCheck}</td><td class="num">${r.advisory}</td><td class="num">${r.hazards}</td>
       <td class="num">${r.applied}</td><td class="num">${r.dismissed}</td><td class="num">${secs(r.seconds)}</td>

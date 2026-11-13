@@ -36,7 +36,8 @@ or the developer token while `ALLOW_DEV_TOKEN` is on. Sign-in, licences, admin a
 | `POST /v1/orders/{id}/qc-outcome` | Inspector feedback + every finding of the review with the reviewer's decision (`items[]`: applied / dismissed + reason / undone / not acted). The final-check route was removed 2026-11-10 |
 | `POST /v1/orders/{id}/qc-outcome` | §6 flags, §7 rating, §8 note, applied/dismissed counts → `outcomes` (inspector analytics) |
 
-Dashboard: `GET /v1/dashboard` (role decides the content), admin: `/v1/admin/orgs`, `/v1/admin/users`, `/v1/admin/plans`.
+Dashboard: `GET /v1/dashboard` (role decides the content), `GET /v1/dashboard/orders/:orderId` (one order's findings and
+reviewer decisions; admins also AI per step and every run), admin: `/v1/admin/orgs`, `/v1/admin/users`, `/v1/admin/plans`.
 A review is refused with 402 `IMAGE_LIMIT` when the order's photos still to review exceed what is left of the plan's photos this month.
 Not used by the extension yet: batches, `orders/status` (orders-list badges), rules API (admin-only; used by the dashboard's AI rules tab).
 Admin-only: `/v1/analytics/summary`, cost estimate/compare. For the customer role the server removes AI usage, cost,
