@@ -120,7 +120,7 @@ try {
   await t('1166312: Property-Only form on a Package+CGL order', async () => assert.ok(fails(1166312, /form_vs_coverage/).length));
   await t('1166312: 2 recs without photos', async () => assert.equal(fails(1166312, /recs\.photos_attached/).length, 2));
   await t('1166310 / 1166311: rec without photo', async () => { assert.ok(fails(1166310, /recs\.photos_attached/).length); assert.ok(fails(1166311, /recs\.photos_attached/).length); });
-  await t('1166307: Monoline Property with full General Form', async () => assert.ok(fails(1166307, /Monoline Property/).length));
+  await t('1166307: Monoline Property, General Form with its liability sections omitted → no warning', async () => assert.equal(fails(1166307, /Monoline Property/).length, 0));
   await t('1166307: U/W instructions not checked without the AI (marked, no findings)', async () => assert.ok(real[1166307].modules.uwConcerns.summary.notChecked && !real[1166307].modules.uwConcerns.items.length));
   await t('1166305: recs with photos untouched', async () => assert.equal(fails(1166305, /recs\.photos_attached/).length, 0));
   await t('no "No answer needs a comment" findings (TIS handles comments)', async () => { for (const id of Object.keys(real)) assert.ok(fails(id, /no_answer_needs_comment/).length === 0, id); });

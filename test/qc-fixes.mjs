@@ -5,6 +5,7 @@ import { comparePrior, priorFacts } from '../lib/prior.mjs';
 import { answerGuard, answerMeans, recSame } from '../lib/ai-modules.mjs';
 import { MOCK } from '../lib/modules.mjs';
 import { price } from '../lib/fees.mjs';
+import { runRules } from '../lib/rules.mjs';
 
 let n = 0, failed = 0;
 const t = async (name, fn) => { n++; try { await fn(); console.log('  ✓', name); } catch (e) { failed++; console.log('  ✗', name, '\n    ', e.message); } };
@@ -97,6 +98,24 @@ await t('three "relocate BBQ" wordings are the same rec', () => {
 await t('different hazards in the same place are not', () => {
   assert.ok(!recSame('Install approved blank breakers to fill gaps in the electrical panel in Unit 352.', 'Inspect and repair corroded breakers in Unit 352 to prevent electrical hazards.'));
   assert.ok(!recSame('Clear stored items from the stairway to ensure safe egress.', 'Clear egress routes in the basement to ensure safe passage.'));
+});
+
+console.log('form vs coverage (1166307, 2026-11-13)');
+const FVC = [{ id: 'order.form_vs_coverage', kind: 'code', severity: 'blocker', message: 'Form type does not match coverage on the order form.' }];
+const propOrder = sections => ({ order: { orderForm: { coverages: ['Monoline Property'], liability: [] } }, forms: [form('Sample General Form', sections)] });
+const liabSecs = (omitted, filled = '') => [
+  sec('Liability Hazards (omit on Property Only surveys)', [fld('1. Trip hazards?', filled)], { omitted }),
+  sec('Products Liability (only omit if coverage is for premises hazards only)', [fld('1. Products?', '')], { omitted }),
+  sec('Public Protection (omit on Liability Only surveys)', [fld('1. Hydrant?', 'Yes')]),
+  sec('Exposures (omit on Liablity Only surveys)', [fld('1. Left?', 'Vacant lot')])];
+await t('property-only order, General Form with every liability section omitted → no warning', () => assert.equal(runRules(propOrder(liabSecs(true)), FVC).length, 0));
+await t('liability sections left open → one warning naming them (not Public Protection / Exposures)', () => {
+  const r = runRules(propOrder(liabSecs(false)), FVC); assert.equal(r.length, 1);
+  assert.match(r[0].message, /not omitted: Liability Hazards, Products Liability\. Omit them\./); assert.doesNotMatch(r[0].message, /Public Protection|Exposures/);
+});
+await t('a filled-in Liability Hazards is left to the omit rule (it has the Apply)', () => {
+  const r = runRules(propOrder(liabSecs(false, 'Yes')), FVC); assert.equal(r.length, 1);
+  assert.match(r[0].message, /not omitted: Products Liability\. Omit it\./);
 });
 
 console.log(`\n${n - failed} passed, ${failed} failed`);
