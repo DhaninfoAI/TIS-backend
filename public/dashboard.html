@@ -397,18 +397,18 @@ function users() {
 // admin actions (event delegation: the views are re-rendered)
 const formData = f => Object.fromEntries(new FormData(f).entries());
 $('view').addEventListener('submit', async e => {
-  e.preventDefault(); const f = e.target, d = formData(f);
+  e.preventDefault(); const f = e.target, d = formData(f), fid = f.getAttribute('id');   // not f.id: a field named "id" (plan rows) shadows it
   try {
-    if (f.id === 'newOrg') { await api('POST', '/v1/admin/orgs', { name: d.name, platform: d.platform, licence: { plan: d.plan, expiresAt: d.expiresAt || null } }); await load(); }
-    if (f.id === 'plans') { const rows = [...f.querySelectorAll('[data-plan-row]')].map(r => Object.fromEntries([...r.querySelectorAll('input')].map(i => [i.name, i.value])));
+    if (fid === 'newOrg') { await api('POST', '/v1/admin/orgs', { name: d.name, platform: d.platform, licence: { plan: d.plan, expiresAt: d.expiresAt || null } }); await load(); }
+    if (fid === 'plans') { const rows = [...f.querySelectorAll('[data-plan-row]')].map(r => Object.fromEntries([...r.querySelectorAll('input')].map(i => [i.name, i.value])));
       await api('PUT', '/v1/admin/plans', { plans: rows }); await load(); }
-    if (f.id === 'newUser') { await api('POST', '/v1/admin/users', d); await load(); }
-    if (f.id === 'editOrg') {
+    if (fid === 'newUser') { await api('POST', '/v1/admin/users', d); await load(); }
+    if (fid === 'editOrg') {
       const brand = { name: d.brandName };
       if (f.removeLogo?.checked) Object.assign(brand, { logoLight: null, logoDark: null });
       else { const l = await asDataUrl(f.logoLight.files[0]), k = await asDataUrl(f.logoDark.files[0]); if (l) brand.logoLight = l; if (k) brand.logoDark = k; }
       await api('PATCH', '/v1/admin/orgs/' + f.dataset.org, { status: d.status, platform: d.platform, brand, licence: { plan: d.plan, seats: d.seats, imagesPerMonth: d.imagesPerMonth, expiresAt: d.expiresAt || null } }); await load(); }
-    if (f.id === 'setPw') { await api('PATCH', '/v1/admin/users/' + f.dataset.user, { password: d.password }); $('pwEditor').innerHTML = '<p class="note ok">Password changed. That person was signed out everywhere.</p>'; }
+    if (fid === 'setPw') { await api('PATCH', '/v1/admin/users/' + f.dataset.user, { password: d.password }); $('pwEditor').innerHTML = '<p class="note ok">Password changed. That person was signed out everywhere.</p>'; }
   } catch (err) { const m = f.querySelector('.note') || f; m.textContent = err.message; m.classList?.add('bad'); }
 });
 // Reset this month's photos used to 0 for one customer (click twice; no browser pop-ups). Photos already reviewed stay free.
@@ -583,12 +583,12 @@ $('view').addEventListener('click', async e => {
   }
 });
 $('view').addEventListener('submit', async e => {
-  const f = e.target; if (!['noteForm', 'checkForm', 'publishForm'].includes(f.id)) return;
+  const f = e.target, fid = f.getAttribute('id'); if (!['noteForm', 'checkForm', 'publishForm'].includes(fid)) return;
   e.preventDefault(); e.stopImmediatePropagation();
   try {
-    if (f.id === 'noteForm') { await api('PUT', `/v1/rules/${R.scope}/${encodeURIComponent(R.name)}`, { markdown: $('rText').value, note: $('rWhy').value }); R.msg = 'Saved. Used from the next review.'; R.tree = await api('GET', '/v1/rules/tree'); await openNote(R.scope, R.name, true); }
-    if (f.id === 'checkForm') { await saveDraft(checkFromForm(f)); R.editing = null; await loadRules(); }
-    if (f.id === 'publishForm') { await api('POST', '/v1/rules/publish', { note: f.note.value }); R.editing = null; await loadRules(); }
+    if (fid === 'noteForm') { await api('PUT', `/v1/rules/${R.scope}/${encodeURIComponent(R.name)}`, { markdown: $('rText').value, note: $('rWhy').value }); R.msg = 'Saved. Used from the next review.'; R.tree = await api('GET', '/v1/rules/tree'); await openNote(R.scope, R.name, true); }
+    if (fid === 'checkForm') { await saveDraft(checkFromForm(f)); R.editing = null; await loadRules(); }
+    if (fid === 'publishForm') { await api('POST', '/v1/rules/publish', { note: f.note.value }); R.editing = null; await loadRules(); }
   } catch (err) { const m = f.querySelector('.note:last-of-type') || f; m.textContent = err.message; m.classList.add('bad'); }
 }, true);
 
