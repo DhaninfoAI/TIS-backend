@@ -103,6 +103,7 @@ lib/snapshot.mjs        field lookup helpers (form registry questions, narrative
 lib/auth.mjs            accounts, organisations + licences, access/refresh tokens, seats, scrypt passwords
 lib/dashboard.mjs       dashboard figures: customer view and admin view (AI tokens, cost)
 scripts/create-user.mjs create an account on a running backend
+scripts/hand-over.mjs   hand an account to a customer: new email, plan, sign everyone out, delete the org's review data (server stopped; deploy/DEPLOY.md)
 fixtures/               real captures of the 6 Boost AI orders (tests, eval and the preview harness)
 data/photos/<order>/    photos uploaded by the extension (gitignored); unreviewed orders' folders removed after 24 h
 public/                 dashboard.html, API explorer (index.html), rules editor, harness chrome.* stub, writer test page

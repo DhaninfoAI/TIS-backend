@@ -222,3 +222,18 @@ updating.
   photo results in the database are reused.
 - **Something wrong**: `journalctl -u smartfill -n 100` (app), `tail -n 50 /var/log/nginx/error.log` (nginx),
   `nginx -t` (config check), `systemctl restart smartfill`.
+
+## Handing an account over to a customer
+
+`scripts/hand-over.mjs` gives an account a new email (password unchanged), puts the organisation on a plan (photo
+count reset), signs every account out and deletes the organisation's review data (order reads, reviews, Apply/Dismiss
+records, QC outcomes, AI photo results, uploaded photos). Accounts, plans and AI rules stay. Run it with the service
+**stopped** (the running server would write its in-memory copy back); without `--apply` it only prints what it would do:
+
+```bash
+cd /opt/smartfill/backend && git pull --ff-only
+sudo systemctl stop smartfill
+sudo -u smartfill node scripts/hand-over.mjs --org tis --from old@example.com --to new@example.com --plan starter --sign-out-all --delete-data
+sudo -u smartfill node scripts/hand-over.mjs --org tis --from old@example.com --to new@example.com --plan starter --sign-out-all --delete-data --apply
+sudo systemctl start smartfill
+```
